@@ -1,0 +1,15 @@
+
+Charcoal
+*consumes: Wood:100.0 
+*produces: Coal:30.0
+*machines: people:1.0
+
+IronSmelting_early
+*consumes: IronOre=10.0 Coal=30.0 LimeStone=20.0
+*produces: Iron=6.0
+*machines: people=1.0
+
+SteelMaking_early
+*consumes: Iron=10.0  Coal=20.0
+*produces: Steel=9.0
+*machines: people=1.0

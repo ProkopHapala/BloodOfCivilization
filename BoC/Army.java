@@ -2,7 +2,7 @@ package BoC;
 
 import java.util.*;
 
-public class Army{
+public class Army extends GameObject{
 	Player owner;
     HashMap<CombatantType,Brigade> brigades;
 	HashMap<ComodityType,ComodityManager> store;

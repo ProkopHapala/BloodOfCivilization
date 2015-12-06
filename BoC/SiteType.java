@@ -3,8 +3,7 @@ package BoC;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 
-public class SiteType implements StringIO{
-	String name;
+public class SiteType extends GameObject {
 	double terrain;      // how rugh is terrain for transit
 	double bush;         // how much vegetation there is for cover ( in urban areas these are houses )
 	double fertility;

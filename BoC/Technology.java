@@ -4,8 +4,7 @@ import java.util.*;
 /*
 Technology is ( or FactoryType ? ) is a production process which converts some comodities into some other comodities and machines, with asistence of other machines
 */
-class Technology implements StringIO{
-	String name;
+class Technology extends GameObject {
 	double cycle_time;  // time to produce unit
 	double unit_space;  // unit space taken in factory
 	
@@ -38,7 +37,11 @@ class Technology implements StringIO{
 	// ========== IO
 	@Override
 	public String toString(){
-		return name+" "+cycle_time+" "+unit_space;			
+		//String s_consumes = FileSystem.MapToString( consumes );
+		//String s_produces = FileSystem.MapToString( produces );
+		//String s_machines = FileSystem.MapToString( machines );
+		//return name+" "+cycle_time+" "+unit_space + s_consumes + s_produces + s_machines;
+		return name+" "+cycle_time+" "+unit_space;
 	}
 	
 	@Override
@@ -47,6 +50,7 @@ class Technology implements StringIO{
 		name         = words[0];
 		cycle_time   = Double.parseDouble( words[1] );
 		unit_space   = Double.parseDouble( words[2] );
+		
 	}
 	
 	// ========== Constructor

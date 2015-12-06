@@ -2,7 +2,7 @@ package BoC;
         
 import java.util.*;
 
-public class Factory{
+public class Factory extends GameObject{
     double size;
 	double activity;
     Technology technology;

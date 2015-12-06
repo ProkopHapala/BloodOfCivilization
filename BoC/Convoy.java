@@ -1,6 +1,6 @@
 package BoC;
         
-public class Convoy{
+public class Convoy extends GameObject{
 	Route    route;
 	boolean  forward;
 	double   time_loc;

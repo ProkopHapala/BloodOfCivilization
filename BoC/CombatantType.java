@@ -1,6 +1,5 @@
 package BoC;
         
-public class CombatantType{
-	String name;
+public class CombatantType extends GameObject{
 
 }

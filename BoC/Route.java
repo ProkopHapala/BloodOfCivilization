@@ -3,8 +3,7 @@ package BoC;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class Route implements StringIO, Drawable{
-	String name;
+public class Route extends GameObject implements  Drawable{
     RouteType    type;
     City         city_from, city_to;
     Site []      sites; 

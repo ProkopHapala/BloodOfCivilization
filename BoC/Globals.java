@@ -37,8 +37,9 @@ public class Globals {
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	
 	public static WorldMap               worldMap;
-	public static HashMap< String, SiteType > siteTypes = new HashMap<>( );
-	public static HashMap< String, City     > cities    = new HashMap<>( );
+	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
+	public static HashMap< String, City          > cities         = new HashMap<>( );
+	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
 	
 	public static void initSiteTypes(){
 		/*
@@ -56,6 +57,7 @@ public class Globals {
 	}
 	
 	public static void initCities(){
+		/*
 		BufferedReader reader = FileSystem.getReader( "Cities.txt" );
 		String line;
 		try{
@@ -65,6 +67,17 @@ public class Globals {
 				System.out.println( city.toString() );
 			};
 		} catch (Exception e) { e.printStackTrace(); };
+		*/
+		//City clazz = new City( );
+		FileSystem.loadObjectMap( City.class, cities, "Cities.txt" );
+	}
+	
+	public static void initComodityTypes(){
+		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, "ComodityTypes.txt" );
+	}
+	
+	public static void initTechnologies(){
+		
 	}
 		
 	static public void exit() {

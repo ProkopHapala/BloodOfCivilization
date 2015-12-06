@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class City implements StringIO, Drawable {
-	String name;
+public class City extends GameObject implements Drawable {
 	Player owner;
     Site   site;
     Set<Route> routes; // HasSet ?
@@ -63,6 +62,5 @@ public class City implements StringIO, Drawable {
 	
 	City( ){ }
     City( String s ){ fromString( s );	}
-	
 	
 }

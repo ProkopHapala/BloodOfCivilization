@@ -18,21 +18,13 @@ import java.awt.image.BufferedImage;
 interface TxtStorbale {
 	public void readFromTxt( BufferedReader reader ) throws IOException;
 	public void writeToTxt ( BufferedWriter writer ) throws IOException;
-	
-}
-
-interface StringIO {
-	public void fromString( String s );
-}
-
-interface Named {
-	public String getName( );
 }
 
 // ========== Static objects
 
 public class FileSystem {
 	
+	/*
 	public static String MapToString( Map<Named,StringIO> mp ){
 		StringBuilder sb = new StringBuilder( 3 * mp.size() );
 		Iterator it = mp.entrySet().iterator();
@@ -44,6 +36,44 @@ public class FileSystem {
 			//System.out.println( pair.getKey() + " = " + pair.getValue() );
 		}
 		return sb.toString(); 
+	}
+	
+	public static String MapToStringNumber( Map<Named,Number> mp ){
+		StringBuilder sb = new StringBuilder( 3 * mp.size() );
+		Iterator it = mp.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry)it.next();
+			sb.append( sb + "\n"                   );
+			sb.append( pair.getValue().toString()  );
+			sb.append( "\n"                        );
+			//System.out.println( pair.getKey() + " = " + pair.getValue() );
+		}
+		return sb.toString(); 
+	}
+	*/
+	
+	public static void MapFromString_Double( Map<Named,Double> mp, Map<String,Named> dict, String s ){ 
+		String [] words     = s.split("\\s+");
+		for ( int i=1; i<words.length; i++ ){
+			String [] tuple = s.split("=");
+			Named named     = dict.get( tuple[0] );
+			Double num      = Double.parseDouble( tuple[1] );
+			mp.put( named, num );	
+		}
+	}
+	
+	public static <TYPE extends GameObject> void loadObjectMap( Class<TYPE> clazz, Map<String,TYPE> mp, String filename ){
+		BufferedReader reader = FileSystem.getReader( filename );
+		String line;
+		try{
+			while( null != ( line = reader.readLine() )  ){
+				System.out.println( clazz +" "+ mp +" "+ filename  );
+				TYPE item = clazz.newInstance( );
+				item.fromString( line );
+				mp.put( item.getName(), item );
+				//System.out.println( item.toString() );
+			}
+		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
 	public static BufferedImage loadImage( String filename ){
