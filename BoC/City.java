@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class City{
+public class City implements StringIO, Drawable {
 	String name;
 	Player owner;
     Site   site;
     Set<Route> routes; // HasSet ?
 	HashMap<ComodityType,ComodityManager> store;
-	
+	HashMap<Technology,Factory> factories;
 	Set<Army> Armies;
 	
 	double FactorySpace; // ? is this useful
@@ -30,10 +30,12 @@ public class City{
 	
 	// ========== IO
 	
+	@Override
 	public String toString(){
 		return name+" "+site.ix+" "+site.iy+" "+FactorySpace+" "+storageSpace;
 	}
 	
+	@Override
 	public void fromString( String s ){
 		//System.out.println( s );
 		String [] words = s.split("\\s+");
@@ -49,6 +51,7 @@ public class City{
 	
 	// ================= Graphics
 	
+	@Override
 	public void paint( GraphicsCanvas canvas ){
 		Graphics2D g2 = canvas.g2;
 		g2.setColor( Color.BLACK );

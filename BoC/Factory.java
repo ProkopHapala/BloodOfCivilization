@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Factory{
     double size;
+	double activity;
     Technology technology;
 	HashMap<MachineType,Integer> machines;
 	City city;

@@ -3,7 +3,7 @@ package BoC;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 
-public class SiteType{
+public class SiteType implements StringIO{
 	String name;
 	double terrain;      // how rugh is terrain for transit
 	double bush;         // how much vegetation there is for cover ( in urban areas these are houses )
@@ -16,10 +16,14 @@ public class SiteType{
 	String         imgName = "img/ground_Grass.png";
 	BufferedImage  img = null; 
 	
+	// ========== IO
+	
+	@Override
 	public String toString(){
 		return name+" "+terrain+" "+bush+" "+fertility+" "+temperature+" "+water;
 	}
 	
+	@Override
 	public void fromString( String s ){
 		String [] words = s.split("\\s+");
 		name            = words[0];

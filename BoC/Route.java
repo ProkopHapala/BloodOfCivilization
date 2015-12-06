@@ -3,7 +3,7 @@ package BoC;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class Route{
+public class Route implements StringIO, Drawable{
 	String name;
     RouteType    type;
     City         city_from, city_to;
@@ -68,6 +68,7 @@ public class Route{
 		return city_from.name+" "+city_to.name;  //ix+" "+iy+" "+height+" "+type.name;
 	}
 	
+	@Override
 	public void fromString( String s ){
 		String [] words = s.split("\\s+");
 		city_from = Globals.cities.get( words[0] );
@@ -75,7 +76,7 @@ public class Route{
 	}
 	
 	// ================= Graphics
-	
+	@Override
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
 		//g2.setColor( type.color );

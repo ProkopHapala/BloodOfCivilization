@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Map implements TxtStorbale {
+public class Map implements TxtStorbale, Drawable {
 	
     public int block_side_pow, block_side_n, block_side_mask;
     public int block_area_pow, block_area_n, block_area_mask;
@@ -110,6 +110,7 @@ public class Map implements TxtStorbale {
 		}
 	}
 	
+	@Override
 	public void paint( GraphicsCanvas canvas ) {
 		//System.out.println( " Map.paint "  );
 		for ( Site [] block : sites ){ 	paintBlock( canvas, block ); }

@@ -6,7 +6,7 @@ import java.util.*;
 
 import BoC.Globals;
 
-public class Site{
+public class Site implements StringIO, Drawable {
     SiteType   type;
     double     height;
     int        ix,iy;
@@ -17,10 +17,12 @@ public class Site{
 	
 	// ========== IO
 	
+	@Override
 	public String toString(){
 		return ix+" "+iy+" "+height+" "+type.name;
 	}
 	
+	@Override
 	public void fromString( String s ){
 		String [] words = s.split("\\s+");
 		ix     = Integer.parseInt( words[0] );
@@ -31,6 +33,7 @@ public class Site{
 	
 	// ================= Graphics
 	
+	@Override
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
 		//float zoom = Globals.zoom;

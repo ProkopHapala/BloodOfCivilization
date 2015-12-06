@@ -7,9 +7,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
+interface Drawable {
+	public void paint( GraphicsCanvas canvas );
+}
+
+
 public class GraphicsCanvas extends JPanel {
 
-	
 	static public int winWidth = 1024;
 	static public int winHeight = 768;
 	

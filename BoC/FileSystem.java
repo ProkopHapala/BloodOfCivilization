@@ -11,10 +11,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
+// ========== Interfaces
+
 interface TxtStorbale {
 	public void readFromTxt( BufferedReader reader ) throws IOException;
-	public void writeToTxt( BufferedWriter writer ) throws IOException;
+	public void writeToTxt ( BufferedWriter writer ) throws IOException;
+	
 }
+
+interface StringIO {
+	public void fromString( String s );
+}
+
+// ========== Static objects
 
 public class FileSystem {
 
