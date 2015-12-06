@@ -58,6 +58,12 @@ public class Main extends JFrame {
 		this.setSize(800,400);
 		//this.getContentPane().setSize(800,400);
 		
+		Globals.initComodityTypes();
+		Globals.initMachineTypes();
+		Globals.initTechnologies();
+		
+		Globals.initSiteTypes();
+		
 		Globals.initSiteTypes();
 		Globals.worldMap        = new WorldMap( 4, 4, 3  );
 		

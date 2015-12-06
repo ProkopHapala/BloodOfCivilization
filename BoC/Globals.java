@@ -40,6 +40,8 @@ public class Globals {
 	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
 	public static HashMap< String, City          > cities         = new HashMap<>( );
 	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
+	public static HashMap< String, MachineType   > machineTypes   = new HashMap<>( );
+	public static HashMap< String, Technology    > technologoies  = new HashMap<>( );
 	
 	public static void initSiteTypes(){
 		/*
@@ -57,18 +59,6 @@ public class Globals {
 	}
 	
 	public static void initCities(){
-		/*
-		BufferedReader reader = FileSystem.getReader( "Cities.txt" );
-		String line;
-		try{
-			while( null != ( line = reader.readLine() )  ){
-				City city = new City( line );
-				cities.put( city.name, city );
-				System.out.println( city.toString() );
-			};
-		} catch (Exception e) { e.printStackTrace(); };
-		*/
-		//City clazz = new City( );
 		FileSystem.loadObjectMap( City.class, cities, "Cities.txt" );
 	}
 	
@@ -76,8 +66,43 @@ public class Globals {
 		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, "ComodityTypes.txt" );
 	}
 	
+	public static void initMachineTypes(){
+		FileSystem.loadObjectMap( MachineType.class, machineTypes, "MachineTypes.txt" );
+	}
+	
 	public static void initTechnologies(){
-		
+		BufferedReader reader = FileSystem.getReader( "Technologies.txt" );
+		String line;
+		try{
+			while( true ){
+				while ( true ){
+					line = reader.readLine();
+					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
+				}
+				
+				//System.out.println( "============="+line );
+				
+				Technology tech = new Technology ( line );
+				technologoies.put( tech.name, tech );
+				
+				line = reader.readLine(); 
+				line = line.substring( line.indexOf(" ")+1 );
+				//FileSystem.MapFromString_Double( tech.consumes, comodityTypes, line  );
+				FileSystem.MapFromString( tech.consumes, comodityTypes, line, Double::valueOf  );
+				
+				line = reader.readLine(); 
+				line = line.substring( line.indexOf(" ")+1 );
+				//FileSystem.MapFromString_Double( tech.produces, comodityTypes, line  );
+				FileSystem.MapFromString( tech.produces, comodityTypes, line, Double::valueOf  );
+				
+				line = reader.readLine(); 
+				line = line.substring( line.indexOf(" ")+1 );
+				//FileSystem.MapFromString_Integer( tech.machines, machineTypes, line  );
+				FileSystem.MapFromString( tech.machines, machineTypes, line, Integer::valueOf  );
+												
+				//System.out.println( tech.toString() );
+			}
+		} catch (Exception e) { e.printStackTrace(); };
 	}
 		
 	static public void exit() {

@@ -20,6 +20,11 @@ interface TxtStorbale {
 	public void writeToTxt ( BufferedWriter writer ) throws IOException;
 }
 
+@FunctionalInterface
+interface Parser<T> {
+    public T parse(String s);
+}
+
 // ========== Static objects
 
 public class FileSystem {
@@ -52,22 +57,107 @@ public class FileSystem {
 	}
 	*/
 	
-	public static void MapFromString_Double( Map<Named,Double> mp, Map<String,Named> dict, String s ){ 
+	/*
+	public static <TYPE> void MapFromString_Double( Map<TYPE,Double> mp, Map<String,TYPE> dict, String s ){ 
+		String [] words     = s.split("\\s+");
+		for ( int i=0; i<words.length; i++ ){
+			String [] tuple = s.split("=");
+			TYPE obj        = dict.get( tuple[0] );
+			Double num      = Double.parseDouble( tuple[1] );
+			mp.put( obj, num );	
+		}
+	}
+	
+	public static <TYPE> void MapFromString_Integer( Map<TYPE,Integer> mp, Map<String,TYPE> dict, String s ){ 
+		String [] words     = s.split("\\s+");
+		for ( int i=0; i<words.length; i++ ){
+			String [] tuple = s.split("=");
+			TYPE obj        = dict.get( tuple[0] );
+			Integer num     = Integer.parseInt( tuple[1] );
+			mp.put( obj, num );	
+		}
+	}
+	*/
+	
+	public static < TYPE, NUM extends Number> void MapFromString( Map<TYPE, NUM> mp, Map<String,TYPE> dict, String s, Parser<NUM> parser) {
+		//System.out.println( "++++ s:   |"+s+"|" );
+		for (String word : s.split("\\s+")) {
+			//System.out.println( word );
+			int idx  = word.indexOf('=');
+			TYPE obj = dict.get( word.substring(0, idx) );
+			//System.out.println( word+"|"+word.substring(0, idx)+ "|"+word.substring(idx + 1)+"|"+obj+"|"+parser+"|"+mp );
+			mp.put( obj, parser.parse( word.substring(idx + 1) ) );
+		}
+	}
+	
+	/*
+	public static <TYPE extends Named> void MapFromString( Map<TYPE,Double> mp, Map<String,TYPE> dict, String s ){ 
 		String [] words     = s.split("\\s+");
 		for ( int i=1; i<words.length; i++ ){
 			String [] tuple = s.split("=");
-			Named named     = dict.get( tuple[0] );
+			TYPE obj        = dict.get( tuple[0] );
 			Double num      = Double.parseDouble( tuple[1] );
-			mp.put( named, num );	
+			mp.put( obj, num );	
 		}
 	}
+	*/
+	
+	/*
+	public static <TYPE, NUM extends Number> 
+	void MapFromString( Class<NUM> clazz, Map<TYPE,NUM> mp, Map<String,TYPE> dict, String s ){ 
+		String [] words     = s.split("\\s+");
+		NUM  num;
+		try{
+			num = clazz.newInstance();
+		} catch (Exception e) { e.printStackTrace(); }
+		for ( int i=1; i<words.length; i++ ){
+			String [] tuple = s.split("=");
+			TYPE obj        = dict.get( tuple[0] );
+			//NUM  num      = NUM.valueOf( tuple[1] );
+			if( num instanceof Integer ){
+				num = Integer.parseInt( tuple[1] );
+			}else{
+				num = Double.parseDouble( tuple[1] );
+			}
+			mp.put( obj, num );	
+		}
+	}
+	*/
+	
+/*	
+	public static <NUM extends Number> 
+	void MapFromString( Map<String,NUM> mp, String s ){ 
+		String [] words     = s.split("\\s+");
+		
+		for ( int i=1; i<words.length; i++ ){
+			String [] tuple = s.split("=");
+			String name_string = tuple[0];
+			String val_string  = tuple[1];
+			
+			
+			// 1: is there any overriden string->Number conversion ?
+			NUM num = Number.decode( val_string );
+			
+			// 2: alternative using some reflections ? Does not work either
+			//NUM  num;
+			//if( num instanceof Integer ){
+			//	num = Integer.parseInt( val_string );
+			//}else{
+			//	num = Double.parseDouble( val_string );
+			//}
+			
+			mp.put( name_string, num );	
+		}
+	}
+*/	
+	
 	
 	public static <TYPE extends GameObject> void loadObjectMap( Class<TYPE> clazz, Map<String,TYPE> mp, String filename ){
 		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{
 			while( null != ( line = reader.readLine() )  ){
-				System.out.println( clazz +" "+ mp +" "+ filename  );
+				//System.out.println( clazz +" "+ mp +" "+ filename  );
 				TYPE item = clazz.newInstance( );
 				item.fromString( line );
 				mp.put( item.getName(), item );

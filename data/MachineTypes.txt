@@ -1,0 +1,10 @@
+people
+hores
+elefant
+tractor
+ship_barque
+ship_sail
+ship_steam
+ship_modern
+ship_nuclear
+

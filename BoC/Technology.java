@@ -46,16 +46,22 @@ class Technology extends GameObject {
 	
 	@Override
 	public void fromString( String s ){
+		//System.out.println( s );
 		String [] words = s.split("\\s+");
 		name         = words[0];
 		cycle_time   = Double.parseDouble( words[1] );
-		unit_space   = Double.parseDouble( words[2] );
-		
+		unit_space   = Double.parseDouble( words[2] );	
 	}
 	
 	// ========== Constructor
 	
-	public Technology( ){	} 
-	public Technology( String s ){ fromString( s ); }
+	void init(){
+		consumes = new HashMap<>(); // HashMap<ComodityType,Double>
+		produces = new HashMap<>();
+		machines = new HashMap<>();
+	}
+	
+	public Technology(          ){	init(); } 
+	public Technology( String s ){ init(); fromString( s ); }
 	
 }

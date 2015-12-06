@@ -1,7 +1,6 @@
 
 package BoC;
 
-public class MachineType {
-	String name;
+public class MachineType extends GameObject {
 	
 }
