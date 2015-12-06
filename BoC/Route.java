@@ -63,35 +63,42 @@ public class Route extends GameObject implements  Drawable{
 	
 	// ========== IO
 	
+	public boolean setCities( City city_a, City city_b ){
+		boolean switched = switchedCityOrder( city_a.name, city_b.name  );
+		if( switched ){  city_from = city_b; city_to=city_a; }else{ city_from = city_a; city_to=city_b; }
+		name = nameConcat( city_from.name, city_to.name );
+		return switched;
+	}
+	
+	@Override
 	public String toString(){
 		return city_from.name+" "+city_to.name;  //ix+" "+iy+" "+height+" "+type.name;
 	}
 	
 	@Override
 	public void fromString( String s ){
+		//System.out.println( s );
 		String [] words = s.split("\\s+");
-		city_from = Globals.cities.get( words[0] );
-		city_to   = Globals.cities.get( words[1] );
+		City a = Globals.cities.get( words[0] );
+		City b = Globals.cities.get( words[1] );
+		setCities( a, b );
 	}
 	
 	// ================= Graphics
 	@Override
 	public void paint( GraphicsCanvas canvas ) {
+		int sz  = canvas.tile_size;
+		int hsz = canvas.tile_size_half; 
 		Graphics2D g2 = canvas.g2;
-		//g2.setColor( type.color );
-		//g2.fillRect( ix*16, iy*16, 16, 16 );
-		
-		//g2.drawLine( city_from.site.ix*16, city_from.site.iy*16, city_to.site.ix*16, city_to.site.iy*16, );
-		g2.drawLine( city_from.site.ix*16, city_from.site.iy*16, city_to.site.ix*16, city_to.site.iy*16 );
+		g2.setColor ( canvas.route_color  );
+		g2.setStroke( canvas.route_stroke );
+		g2.drawLine ( city_from.site.ix*sz + hsz, city_from.site.iy*sz + hsz, city_to.site.ix*sz + hsz, city_to.site.iy*sz + hsz );
+		g2.fillOval( city_from.site.ix*sz+hsz-4, city_from.site.ix*sz+hsz-4, 8, 8 );
     }
 	
 	// ========= Constructor
-	
-	public Route( City city_a, City city_b ){
-		boolean switched = switchedCityOrder( city_a.name, city_b.name  );
-		if( switched ){  city_from = city_b; city_to=city_a; }else{ city_from = city_a; city_to=city_b; }
-		name = nameConcat( city_from.name, city_to.name );
-	} 
+	public Route( ){ }
+	public Route( City city_a, City city_b ){ setCities( city_a, city_b ); } 
 	public Route( String s ){ fromString( s ); }
 	
 }

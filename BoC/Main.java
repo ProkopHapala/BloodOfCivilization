@@ -64,15 +64,14 @@ public class Main extends JFrame {
 		
 		Globals.initSiteTypes();
 		
-		Globals.initSiteTypes();
-		Globals.worldMap        = new WorldMap( 4, 4, 3  );
-		
+		Globals.worldMap = new WorldMap( 4, 4, 3  );
+		Globals.worldMap.GenerateRandom( 154545 );
+		Globals.initCities();
+		Globals.initRoutes();
 		
 		//map.saveToTxt( "map.txt" );
-		
-		FileSystem.saveToTxt("map.txt", Globals.worldMap );
+		//FileSystem.saveToTxt("map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
-		Globals.initCities();
 		
 		canvas     = new GraphicsCanvas();		
 		

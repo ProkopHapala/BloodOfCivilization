@@ -139,7 +139,7 @@ public class WorldMap implements TxtStorbale, Drawable {
 	public WorldMap( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
 		reallocate    ( n_blocks_x_, n_blocks_y_, block_side_pow_ );
 		System.out.println( " init map: "+nx+" "+ny+" "+block_side_n );
-		GenerateRandom( 154545 );
+		//GenerateRandom( 154545 );
 	}
 	
 }

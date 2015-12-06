@@ -1,11 +1,15 @@
 
 package BoC;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.JPanel;
+//import java.awt.Color;
+//import java.awt.Graphics;
+//import java.awt.Graphics2D;
+//import java.awt.RenderingHints;
+//import javax.swing.JPanel;
+
+import java.awt.*;
+//import java.awt.geom.Line2D;
+import javax.swing.*;
 
 interface Drawable {
 	public void paint( GraphicsCanvas canvas );
@@ -21,9 +25,15 @@ public class GraphicsCanvas extends JPanel {
 	public static float x0   =  0.0f;
 	public static float y0   =  0.0f;
 	
-	int nx;
+	public int nx;
 	int ny;
 	int ix_min,ix_max,iy_min,iy_max;
+
+	public BasicStroke route_stroke = new BasicStroke(3);
+	public Color       route_color  = new Color( 10,10,200 ); 
+	
+	public int tile_size      = 16;
+	public int tile_size_half = tile_size/2;
 	
 	Graphics2D g2;
 	
@@ -58,6 +68,7 @@ public class GraphicsCanvas extends JPanel {
 		g2.fillOval(50, 50, 40, 40);
 		*/
 		Globals.worldMap.paint( this );
+		for ( Route route : Globals.routes.values() ){ route.paint(this); }
 	}
 
 }

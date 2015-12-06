@@ -36,30 +36,14 @@ public class Site implements StringIO, Drawable {
 	@Override
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
-		//float zoom = Globals.zoom;
-		//int sx     = (int)( ( ix - Globals.x0 )*zoom ); 
-		//int sy     = (int)( ( iy - Globals.y0 )*zoom ); 
-		//if( ( ix>0 ) && ( ix<Globals.winWidth ) && ( iy>0 ) && ( iy<Globals.winHeight ) ){	
-				//int c = 0xFF000000 | ( (   ) << 24 ) | ( (   ) << 24 ) | ( (   ) << 24 );
-				///g2.setColor( Color.RED );
-				//int c = (int)(255*height);
-				//g2.setColor( new Color( c, c, c ) );
-				//g2.fillOval( sx, sy, (int)zoom, (int)zoom );
-		
-		
-				if( type.img != null ){
-					g2.drawImage( type.img, ix*16, iy*16, null );
-				}else{
-					g2.setColor( type.color );
-					g2.fillRect( ix*16, iy*16, 16, 16 );
-				};	
-		
-		
-				if( city != null ){
-					city.paint( canvas );
-				}
-				//System.out.println( sx+" "+sy+"  "+type.img );
-		//}
+		int sz = canvas.tile_size;		
+		if( type.img != null ){
+			g2.drawImage( type.img, ix*sz, iy*sz, null );
+		}else{
+			g2.setColor( type.color );
+			g2.fillRect( ix*sz, iy*sz, sz, sz );
+		};	
+		if( city != null ){	city.paint( canvas );	}
     }
 	
 	// ========== Constructor

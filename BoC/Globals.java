@@ -35,33 +35,31 @@ public class Globals {
 	// global variables
 	
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
+
 	
-	public static WorldMap               worldMap;
-	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
+	public static WorldMap worldMap;
+	
 	public static HashMap< String, City          > cities         = new HashMap<>( );
+	public static HashMap< String, Route         > routes         = new HashMap<>( );
+	
+	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
 	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
 	public static HashMap< String, MachineType   > machineTypes   = new HashMap<>( );
 	public static HashMap< String, Technology    > technologoies  = new HashMap<>( );
 	
+	
 	public static void initSiteTypes(){
-		/*
-		SiteType siteType = new SiteType( "plain" );
-		siteTypes.put( siteType.name, siteType );
-		*/
-		BufferedReader reader = FileSystem.getReader( "SiteTypes.txt" );
-		String line;
-		try{
-			while( null != ( line = reader.readLine() )  ){
-				SiteType type = new SiteType( line );
-				siteTypes.put( type.name, type );
-			};
-		} catch (Exception e) { e.printStackTrace(); };
+		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
 	}
 	
 	public static void initCities(){
 		FileSystem.loadObjectMap( City.class, cities, "Cities.txt" );
 	}
 	
+	public static void initRoutes(){
+		FileSystem.loadObjectMap( Route.class, routes, "Routes.txt" );
+	}
+		
 	public static void initComodityTypes(){
 		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, "ComodityTypes.txt" );
 	}
@@ -104,7 +102,7 @@ public class Globals {
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
-		
+			
 	static public void exit() {
 		System.exit(0);
 	}
