@@ -57,7 +57,7 @@ public class GraphicsCanvas extends JPanel {
 		//g2d.drawOval(50, 50, 40, 40);
 		g2.fillOval(50, 50, 40, 40);
 		*/
-		Globals.map.paint( this );
+		Globals.worldMap.paint( this );
 	}
 
 }

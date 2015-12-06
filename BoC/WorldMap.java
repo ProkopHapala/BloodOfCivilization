@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Map implements TxtStorbale, Drawable {
+public class WorldMap implements TxtStorbale, Drawable {
 	
     public int block_side_pow, block_side_n, block_side_mask;
     public int block_area_pow, block_area_n, block_area_mask;
@@ -136,7 +136,7 @@ public class Map implements TxtStorbale, Drawable {
 		sites      = new Site[nx*ny][];
 	}
 	
-	public Map( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
+	public WorldMap( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
 		reallocate    ( n_blocks_x_, n_blocks_y_, block_side_pow_ );
 		System.out.println( " init map: "+nx+" "+ny+" "+block_side_n );
 		GenerateRandom( 154545 );

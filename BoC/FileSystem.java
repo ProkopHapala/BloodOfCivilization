@@ -1,6 +1,8 @@
 
 package BoC;
 
+import java.util.*;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
@@ -23,10 +25,27 @@ interface StringIO {
 	public void fromString( String s );
 }
 
+interface Named {
+	public String getName( );
+}
+
 // ========== Static objects
 
 public class FileSystem {
-
+	
+	public static String MapToString( Map<Named,StringIO> mp ){
+		StringBuilder sb = new StringBuilder( 3 * mp.size() );
+		Iterator it = mp.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry)it.next();
+			sb.append( sb + "\n"                   );
+			sb.append( pair.getValue().toString()  );
+			sb.append( "\n"                        );
+			//System.out.println( pair.getKey() + " = " + pair.getValue() );
+		}
+		return sb.toString(); 
+	}
+	
 	public static BufferedImage loadImage( String filename ){
 		String full_path = Globals.data_path + filename;
 		//System.out.println( " loadImage full_path: " + full_path );

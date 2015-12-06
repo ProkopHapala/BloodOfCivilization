@@ -45,7 +45,7 @@ public class City implements StringIO, Drawable {
 		FactorySpace  = Double.parseDouble(  words[3] );         
 		storageSpace  = Double.parseDouble(  words[4] );  
 		
-		site   = Globals.map.getSite( ix, iy );
+		site   = Globals.worldMap.getSite( ix, iy );
 		site.city = this;
 	}
 	

@@ -59,12 +59,12 @@ public class Main extends JFrame {
 		//this.getContentPane().setSize(800,400);
 		
 		Globals.initSiteTypes();
-		Globals.map        = new Map( 4, 4, 3  );
+		Globals.worldMap        = new WorldMap( 4, 4, 3  );
 		
 		
 		//map.saveToTxt( "map.txt" );
 		
-		FileSystem.saveToTxt( "map.txt", Globals.map );
+		FileSystem.saveToTxt("map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
 		Globals.initCities();
 		

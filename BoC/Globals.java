@@ -26,7 +26,7 @@ public class Globals {
 	public static Player PLAYER;
 	//public static Events EVENTS = new Events();
 	
-	public static String data_path = "/home/prokop/Dropbox/MyDevSW/java/BloodOfCivilization/data/";
+	public static String data_path = "/home/prokop/git/BloodOfCivilization/data/";
 	
 	public static Point mousePointOnScreen = new Point(0, 0);
 	public static String version = "0.0.1";
@@ -36,7 +36,7 @@ public class Globals {
 	
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 	
-	public static Map               map;
+	public static WorldMap               worldMap;
 	public static HashMap< String, SiteType > siteTypes = new HashMap<>( );
 	public static HashMap< String, City     > cities    = new HashMap<>( );
 	
