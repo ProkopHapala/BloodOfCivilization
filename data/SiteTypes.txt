@@ -1,0 +1,9 @@
+arctic    0.0 0.0 0.0 -20.0 0.1   f0f5f9
+tundra    0.0 0.1 0.1   0.0 0.1   808080
+plain     0.0 0.1 1.0  20.0 0.1   img/ground_plain.png
+hills     0.5 0.3 0.5  10.0 0.1   img/ground_hills.png
+mountains 1.0 0.1 0.2   0.0 0.1   img/ground_mountains.png
+desert    0.0 0.0 0.1  40.0 0.01  img/ground_desert.png
+forest    0.0 1.0 1.0  20.0 0.1   img/ground_forest.png
+swamp     0.0 1.0 1.0  20.0 0.5   img/ground_swamp.png
+jungle    0.0 2.0 1.0  30.0 0.3   img/ground_jungle.png
