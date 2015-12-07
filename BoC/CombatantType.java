@@ -39,21 +39,95 @@ public class CombatantType extends GameObject{
 	
 	// movement
 	double speed;
-	double terrain_speed;
+	double speed_halfTerrain; 
+	double speed_worstTerrain;
 	
 	// consumption
-	double fuel_consumption;   // move or combat
 	double food_consumption;   // all time
+	double fuel_consumption;   // move or combat
 	double shell_consumption;  // shells per combat
 	
 	// flags
-	boolean ground;
-	boolean naval;
-	boolean air;
-	boolean support;
+	boolean ground  = false;
+	boolean naval   = false;
+	boolean air     = false;
+	boolean support = false;
 	
 	// functions
+
+	// ========== IO
 	
+	private String flagToString( String flag_name, boolean flag ){
+		if( flag ){ return flag_name+","; }else{ return ""; }
+	}
+	
+	@Override
+	public String toString(){
+		return name
+			+" "+size
+			+" "+agility
+			+" "+supportDistance
+			+" "+soft_attack
+			+" "+hard_attack
+			+" "+air_attack
+			+" "+naval_attack
+			+" "+armor
+			+" "+penetration
+			+" "+defenceBonus
+			+" "+speed
+			+" "+speed_halfTerrain
+			+" "+speed_worstTerrain
+			+" "+food_consumption
+			+" "+fuel_consumption
+			+" "+shell_consumption+" "
+			+flagToString( "ground" , ground   )
+			+flagToString( "naval"  , naval    )
+			+flagToString( "air"    , air      )
+			+flagToString( "support", support  ) 
+		;
+	}
+	
+	@Override
+	public void fromString( String s ){ 
+		String [] words = s.split("\\s+");
+		int i = 0;
+		name               = words[i];   i++;
+		size               = Double.parseDouble( words[i] );   i++;
+		agility            = Double.parseDouble( words[i] );   i++;
+		supportDistance    = Double.parseDouble( words[i] );   i++;
+		soft_attack        = Double.parseDouble( words[i] );   i++;
+		hard_attack        = Double.parseDouble( words[i] );   i++;
+		air_attack         = Double.parseDouble( words[i] );   i++;
+		naval_attack       = Double.parseDouble( words[i] );   i++;
+		armor              = Double.parseDouble( words[i] );   i++;
+		penetration        = Double.parseDouble( words[i] );   i++;
+		defenceBonus       = Double.parseDouble( words[i] );   i++;
+		speed              = Double.parseDouble( words[i] );   i++;
+		speed_halfTerrain = Double.parseDouble( words[i] );   i++;
+		speed_worstTerrain = Double.parseDouble( words[i] );   i++;
+		food_consumption   = Double.parseDouble( words[i] );   i++;
+		fuel_consumption   = Double.parseDouble( words[i] );   i++;
+		shell_consumption  = Double.parseDouble( words[i] );   i++;
+		flagsFromString( words[i] );
+	}
+	
+	private void flagsFromString( String s ){
+		String [] words = s.split(",");
+		for( String word : words ){
+			switch( word ){
+				case "ground"  : ground = true; break;
+				case "naval"   : ground = true; break;
+				case "air"     : ground = true; break;
+				case "support" : ground = true; break;
+			}
+		}
+	}
+	
+	// ========== Constructor
+	
+	public CombatantType( ){ }
+	public CombatantType( String s ){ fromString( s ); }
+		
 }
 
 // =================== Other utils

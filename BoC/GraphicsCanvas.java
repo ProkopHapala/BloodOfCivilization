@@ -69,6 +69,7 @@ public class GraphicsCanvas extends JPanel {
 		*/
 		Globals.worldMap.paint( this );
 		for ( Route route : Globals.routes.values() ){ route.paint(this); }
+		for ( Army army   : Globals.armies.values() ){ army .paint(this); }
 	}
 
 }

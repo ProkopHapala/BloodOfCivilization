@@ -55,7 +55,7 @@ public class Main extends JFrame {
 			}
 		});
 		
-		this.setSize(800,400);
+		this.setSize(800,800);
 		//this.getContentPane().setSize(800,400);
 		
 		Globals.initComodityTypes();
@@ -68,6 +68,9 @@ public class Main extends JFrame {
 		Globals.worldMap.GenerateRandom( 154545 );
 		Globals.initCities();
 		Globals.initRoutes();
+		
+		Globals.initCombatantTypes();
+		Globals.initArmies();
 		
 		//map.saveToTxt( "map.txt" );
 		//FileSystem.saveToTxt("map.txt", Globals.worldMap );

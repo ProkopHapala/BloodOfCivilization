@@ -2,7 +2,7 @@ package BoC;
 
 import java.util.*;
 
-public class Combat{
+public class Combat extends GameObject {
     Army Attacker, Deffender;
 	Site      site;
 	double    start_time;

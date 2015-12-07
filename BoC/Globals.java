@@ -39,14 +39,18 @@ public class Globals {
 	
 	public static WorldMap worldMap;
 	
-	public static HashMap< String, City          > cities         = new HashMap<>( );
+	public static HashMap< String, City          > cities         = new HashMap<>( ); // split for each player ?
 	public static HashMap< String, Route         > routes         = new HashMap<>( );
 	
 	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
 	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
 	public static HashMap< String, MachineType   > machineTypes   = new HashMap<>( );
 	public static HashMap< String, Technology    > technologoies  = new HashMap<>( );
+	public static HashMap< String, CombatantType > combatantTypes = new HashMap<>( );
 	
+	public static HashMap< String, Army > armies = new HashMap<>( );   // this should be probably split for each player ?
+	
+	public static HashMap< String, Player > players = new HashMap<>( );
 	
 	public static void initSiteTypes(){
 		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
@@ -102,6 +106,25 @@ public class Globals {
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
+	
+	public static void initCombatantTypes(){
+		FileSystem.loadObjectMap( CombatantType.class, combatantTypes, "CombatantTypes.txt" );
+		for ( CombatantType type: combatantTypes.values() ){ System.out.println( type.toString() ); }
+	}
+	
+	public static void initArmies(){
+		Brigade brigade;
+			
+		Army army1 = new Army( "army1", 18, 19 );   armies.put( army1.name, army1 );
+		brigade  = new Brigade( combatantTypes.get("Tank"), army1, 5 );  
+		army1.brigades.put( brigade.type, brigade );
+		
+		Army army2 = new Army( "army2", 15, 15 );   armies.put( army2.name, army2 );
+		brigade  = new Brigade( combatantTypes.get("pikemen"), army2, 5 );  
+		army2.brigades.put( brigade.type, brigade );
+		
+	}
+	
 			
 	static public void exit() {
 		System.exit(0);

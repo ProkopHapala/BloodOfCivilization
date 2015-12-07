@@ -25,8 +25,13 @@ public class Brigade extends GameObject {
 	// ==== Methods
 	
 	public double evalSpeed( Site site ){
-		double f = site.type.terrain;
-		return type.terrain_speed * f + (1-f)*type.speed;
+		double f = site.type.terrain * 2.0d;
+		if( f < 1 ){
+			return f * type.speed_halfTerrain + (1-f)*type.speed;
+		}else{
+			f -= 1;
+			return f * type.speed_worstTerrain + (1-f)*type.speed_halfTerrain;
+		}
 	}
 	
 	public double distance( Site site ){
@@ -127,11 +132,44 @@ public class Brigade extends GameObject {
 		}
 		return choosen; 
 	}
+
 	
+	// ========== IO
+	
+	@Override
+	public String toString(){
+		return army+" "+type+" "+n_tot+" "+n_capable+" "+n_alive;
+	}
+	
+	@Override
+	public void fromString( String s ){
+		String [] words = s.split("\\s+");
+		army      = Globals.armies.get( words[0] );
+		type      = Globals.combatantTypes.get( words[1] );  
+		n_tot     = Integer.parseInt( words[2] );      
+		n_capable = Integer.parseInt( words[2] );     
+		n_alive   = Integer.parseInt( words[2] );     			
+	}
+	
+	public void makeName( ){
+		name = army.name+"/"+type.name;
+	}
+	
+	// ========== Constructor
+	Brigade(  ){}
+	Brigade( CombatantType type_, Army army_, int n ){
+		army = army_;
+		type = type_;
+		makeName();
+		n_tot = n;
+		n_capable = n_tot;
+		n_alive   = n_tot;	
+	}
 		
 }
 
-// =================== Other utils
+// =================== associated classes
+
 class BrigadePriorityComparator implements Comparator<Brigade> {
     @Override
     public int compare(Brigade a, Brigade b) {
