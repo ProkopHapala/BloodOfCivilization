@@ -13,16 +13,79 @@ public class Army extends GameObject implements Drawable {
 	double x,y;	// exact position  ?
 	City city;  // can be null if not min city
 	
+	Site    move_target;
+	
 	// posibilities ?
 	double organized;
 	
-	// ================= IO
+	// ======== temp vars
+	
+	//double speed;
+	
+	// ================= Turn update
+	
+	void update( double dt ){
+		if( move_target != null ){
+			move_to_target( dt );
+		}
+	}
+	
+	void move_to_target( double dt ){
+		double speed = getSpeed( );
+		double lmax  = speed * dt;
+		double dx    = move_target.ix - x;
+		double dy    = move_target.iy - y;
+		double r2    = dx*dx + dy*dy;
+		System.out.println( x +" "+ y +" "+move_target.ix+" "+move_target.iy+" "+dx +" "+ dy+" "+speed );
+		if( ( lmax*lmax ) < r2 ){ // cannot reach in one turn
+			double r  = Math.sqrt( r2 );
+			double renorm  = lmax / r;
+			x += dx * renorm;
+			y += dy * renorm;
+		}else{
+			x = move_target.ix;
+			y = move_target.iy;
+		}
+		check_site();
+	}
+	
+	// ================= Basic rutines
+	
+	void target_reached(){
+		move_target = null;
+	}
+	
+	void setTarget( Site target ){
+		move_target = target;
+	}
+	
+	void check_site(){
+		site = Globals.worldMap.getSite( (int)x, (int)y );
+		if( ( move_target != null ) && ( site == move_target ) ){
+			target_reached();
+		}
+	}
 	
 	void setPos( double x_, double y_ ){
 		x = x_; y = y_; 
 		site = Globals.worldMap.getSite( (int)x, (int)y );
 		//System.out.println(  (int)x +" "+ (int)y + "|" + site );
 	}
+	
+	double getSpeed( ){
+		double min_speed = Double.POSITIVE_INFINITY;
+		for( Brigade b : brigades.values() ){ 
+			double b_speed = b.evalSpeed( site );  
+			//System.out.println( b.name +" "+ b_speed );
+			min_speed = ( b_speed < min_speed ) ? b_speed : min_speed; 
+		}
+		return min_speed;
+	}
+	
+	
+	// ================= IO
+	
+
 	
 	// ================= Graphics
 	
@@ -31,8 +94,10 @@ public class Army extends GameObject implements Drawable {
 		int sz = canvas.tile_size;
 		Graphics2D g2 = canvas.g2;
 		g2.setColor ( Color.RED );
-		g2.fillRect  ( site.ix*sz, site.iy*sz, sz, sz );
-		g2.drawString( name, site.ix*sz, site.iy*sz );
+		int ix = (int) (x * sz);
+		int iy = (int) (y * sz);	
+		g2.fillRect  ( ix, iy, 5, 5 );
+		g2.drawString( name, ix, iy );
 	}
 	
 	// ========== Constructor

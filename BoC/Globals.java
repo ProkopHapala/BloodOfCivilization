@@ -36,9 +36,10 @@ public class Globals {
 	
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
+	// ======== Game Content
 	
 	public static WorldMap worldMap;
-	
+
 	public static HashMap< String, City          > cities         = new HashMap<>( ); // split for each player ?
 	public static HashMap< String, Route         > routes         = new HashMap<>( );
 	
@@ -51,6 +52,11 @@ public class Globals {
 	public static HashMap< String, Army > armies = new HashMap<>( );   // this should be probably split for each player ?
 	
 	public static HashMap< String, Player > players = new HashMap<>( );
+	
+	// ======== Game dynamics globals
+	
+	static double dt = 0.01d;
+	
 	
 	public static void initSiteTypes(){
 		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
@@ -123,6 +129,14 @@ public class Globals {
 		brigade  = new Brigade( combatantTypes.get("pikemen"), army2, 5 );  
 		army2.brigades.put( brigade.type, brigade );
 		
+		army1.setTarget( worldMap.getSite( 10, 5 ) );
+		
+	}
+	
+	
+	
+	public static void update(){
+		for( Army army : armies.values() ){ army.update(dt); }
 	}
 	
 			

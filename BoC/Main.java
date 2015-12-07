@@ -42,13 +42,8 @@ public class Main extends JFrame {
 		this.setFocusTraversalKeysEnabled(false);
 		setTitle(Globals.INFO);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//Globals.init(this, 1200, 800);
-		
-		Globals.form = this;
-		//winWidth = width;
-		//winHeight = height;
-		
+				
+		Globals.form = this;		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit( 0 );
@@ -57,6 +52,9 @@ public class Main extends JFrame {
 		
 		this.setSize(800,800);
 		//this.getContentPane().setSize(800,400);
+		
+		
+		// ====== Initialization of game content
 		
 		Globals.initComodityTypes();
 		Globals.initMachineTypes();
@@ -87,12 +85,19 @@ public class Main extends JFrame {
 		this.addMouseMotionListener (gml);
 		this.addMouseWheelListener  (gml);
 		*/	
-		setVisible(true);
-		run();		
+		setVisible(true);	
+		
+		
+		// ====== this is testing playgorund
+		
 	}
 	
 	public void run() {
 		while (true) {
+			
+			Globals.update();  
+			//System.exit(0);
+			
 			//cpu_timeStart = System.nanoTime();
 			//map.run();
 			//Graphics2D.drawLine(20, 100, 120, 100);
@@ -105,7 +110,9 @@ public class Main extends JFrame {
 	
     public static void main(String[] args) throws IOException {
 		//System.setOut(outputFile("output.log"));
-		new Main().start();
+		Main instance = new Main();
+		instance.start();
+		instance.run();
 	}
     
 }
