@@ -107,9 +107,9 @@ public class Army extends GameObject implements Drawable {
 		store    = new HashMap<>();
 	}
 	
-	Army( ){ init(); }
+	public Army( ){ init(); }
 	
-	Army( String name_, double x_, double y_ ){
+	public Army( String name_, double x_, double y_ ){
 		init();
 		name = name_;
 		setPos(x_,y_);

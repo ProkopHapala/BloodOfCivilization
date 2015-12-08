@@ -156,8 +156,8 @@ public class Brigade extends GameObject {
 	}
 	
 	// ========== Constructor
-	Brigade(  ){}
-	Brigade( CombatantType type_, Army army_, int n ){
+	public Brigade(  ){}
+	public Brigade( CombatantType type_, Army army_, int n ){
 		army = army_;
 		type = type_;
 		makeName();

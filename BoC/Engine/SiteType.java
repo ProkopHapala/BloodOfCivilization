@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 public class SiteType extends GameObject {
-	double terrain;      // how rugh is terrain for transit
-	double bush;         // how much vegetation there is for cover ( in urban areas these are houses )
-	double fertility;
-	double temperature;
-	double water;
+	public double terrain;      // how rugh is terrain for transit
+	public double bush;         // how much vegetation there is for cover ( in urban areas these are houses )
+	public double fertility;
+	public double temperature;
+	public double water;
 	
 	Color color = null;
 	//String imgName = "img/ground_Grass.png";
@@ -45,15 +45,16 @@ public class SiteType extends GameObject {
 	
 	// ========== Constructor
 	
-	SiteType( ){
+	public SiteType( ){
+	/*	
 		name         = "default";
 		terrain      = 0.0d;
 		bush         = 0.0d;
 		fertility    = 1.0d;
 		temperature  = 20.0d;
-		water        = 0.1d;
-		
+		water        = 0.1d;	
 		color = new Color( 150, 200, 100 );
+	*/	
 	}
 		
 	public SiteType( String s ){ fromString( s ); }

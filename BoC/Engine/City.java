@@ -61,7 +61,7 @@ public class City extends GameObject implements Drawable {
 	
 	// ========== Constructor
 	
-	City( ){ }
-    City( String s ){ fromString( s );	}
+	public City( ){ }
+    public City( String s ){ fromString( s );	}
 	
 }
