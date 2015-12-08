@@ -1,4 +1,6 @@
-package BoC;
+package BoC.Engine;
+
+import BoC.utils.*;
 
 import java.util.*;
 import java.awt.Graphics2D;
@@ -7,7 +9,7 @@ import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class WorldMap implements TxtStorbale, Drawable {
+public class WorldMap implements TxtStorable, Drawable {
 	
     public int block_side_pow, block_side_n, block_side_mask;
     public int block_area_pow, block_area_n, block_area_mask;

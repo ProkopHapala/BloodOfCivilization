@@ -1,10 +1,8 @@
-package BoC;
+package BoC.Engine;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
-
-import BoC.Globals;
 
 public class Site implements StringIO, Drawable {
     SiteType   type;

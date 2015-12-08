@@ -1,5 +1,5 @@
 
-package BoC;
+package BoC.Engine;
 
 //import java.awt.Color;
 //import java.awt.Graphics;
@@ -10,10 +10,6 @@ package BoC;
 import java.awt.*;
 //import java.awt.geom.Line2D;
 import javax.swing.*;
-
-interface Drawable {
-	public void paint( GraphicsCanvas canvas );
-}
 
 public class GraphicsCanvas extends JPanel {
 

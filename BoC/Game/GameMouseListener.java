@@ -1,5 +1,7 @@
 
-package BoC;
+package BoC.Game;
+
+import BoC.Engine.GraphicsCanvas;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -11,7 +13,7 @@ import javax.swing.SwingUtilities;
 
 public class GameMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-	GraphicsCanvas canvas ;
+	GraphicsCanvas canvas;
 
 	public GameMouseListener(GraphicsCanvas GC) {
 		this.canvas = GC;

@@ -1,4 +1,4 @@
-package BoC;
+package BoC.Engine;
 
 import java.util.*;
 
@@ -103,7 +103,7 @@ public class CombatantType extends GameObject{
 		penetration        = Double.parseDouble( words[i] );   i++;
 		defenceBonus       = Double.parseDouble( words[i] );   i++;
 		speed              = Double.parseDouble( words[i] );   i++;
-		speed_halfTerrain = Double.parseDouble( words[i] );   i++;
+		speed_halfTerrain  = Double.parseDouble( words[i] );   i++;
 		speed_worstTerrain = Double.parseDouble( words[i] );   i++;
 		food_consumption   = Double.parseDouble( words[i] );   i++;
 		fuel_consumption   = Double.parseDouble( words[i] );   i++;

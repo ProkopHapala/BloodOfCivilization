@@ -1,5 +1,5 @@
 
-package BoC;
+package BoC.Engine;
 
 public class NaturalResource {
 	ComodityType type;

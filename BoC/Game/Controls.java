@@ -1,8 +1,7 @@
 
-package BoC;
+package BoC.Game;
 
-//import BoC.Profile;
-import BoC.Player;
+import BoC.Engine.*;
 //import goa.Sounds;
 //import goa.GlobalVars;
 //import goa.DialogWindows;

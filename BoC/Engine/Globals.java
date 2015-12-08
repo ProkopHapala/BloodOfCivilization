@@ -1,5 +1,7 @@
 
-package BoC;
+package BoC.Engine;
+
+import BoC.utils.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,9 +27,6 @@ public class Globals {
 	//public static Main   form;
 	
 	//public static Events EVENTS = new Events();
-	
-	public static String data_path = "/home/prokop/git/BloodOfCivilization/data/";
-	
 	
 	// global variables
 	

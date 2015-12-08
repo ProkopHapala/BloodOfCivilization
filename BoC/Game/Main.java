@@ -1,4 +1,6 @@
-package BoC;
+package BoC.Game;
+
+import BoC.Engine.*;
 
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;

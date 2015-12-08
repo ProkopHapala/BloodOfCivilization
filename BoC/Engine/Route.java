@@ -1,4 +1,4 @@
-package BoC;
+package BoC.Engine;
 
 import java.awt.Graphics2D;
 import java.util.*;

@@ -1,22 +1,22 @@
-package BoC;
+package BoC.Engine;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
 public class Army extends GameObject implements Drawable {
-	Player owner;
-    HashMap<CombatantType,Brigade>        brigades;
-	HashMap<ComodityType,ComodityManager> store;
+	public Player owner;
+    public HashMap<CombatantType,Brigade>        brigades;
+	public HashMap<ComodityType,ComodityManager> store;
 	
-	Site site;
-	double x,y;	// exact position  ?
-	City city;  // can be null if not min city
+	public Site site;
+	public double x,y;	// exact position  ?
+	public City city;  // can be null if not min city
 	
-	Site    move_target;
+	public Site    move_target;
 	
 	// posibilities ?
-	double organized;
+	public double organized;
 	
 	// ======== temp vars
 	
@@ -24,13 +24,13 @@ public class Army extends GameObject implements Drawable {
 	
 	// ================= Turn update
 	
-	void update( double dt ){
+	public void update( double dt ){
 		if( move_target != null ){
 			move_to_target( dt );
 		}
 	}
 	
-	void move_to_target( double dt ){
+	public void move_to_target( double dt ){
 		double speed = getSpeed( );
 		double lmax  = speed * dt;
 		double dx    = move_target.ix - x;
@@ -51,28 +51,28 @@ public class Army extends GameObject implements Drawable {
 	
 	// ================= Basic rutines
 	
-	void target_reached(){
+	public void target_reached(){
 		move_target = null;
 	}
 	
-	void setTarget( Site target ){
+	public void setTarget( Site target ){
 		move_target = target;
 	}
 	
-	void check_site(){
+	public void check_site(){
 		site = Globals.worldMap.getSite( (int)x, (int)y );
 		if( ( move_target != null ) && ( site == move_target ) ){
 			target_reached();
 		}
 	}
 	
-	void setPos( double x_, double y_ ){
+	public void setPos( double x_, double y_ ){
 		x = x_; y = y_; 
 		site = Globals.worldMap.getSite( (int)x, (int)y );
 		//System.out.println(  (int)x +" "+ (int)y + "|" + site );
 	}
 	
-	double getSpeed( ){
+	public double getSpeed( ){
 		double min_speed = Double.POSITIVE_INFINITY;
 		for( Brigade b : brigades.values() ){ 
 			double b_speed = b.evalSpeed( site );  
@@ -102,7 +102,7 @@ public class Army extends GameObject implements Drawable {
 	
 	// ========== Constructor
 	
-	void init(){
+	public void init(){
 		brigades = new HashMap<>();
 		store    = new HashMap<>();
 	}

@@ -1,4 +1,4 @@
-package BoC;
+package BoC.Engine;
         
 public class Convoy extends GameObject{
 	Route    route;
