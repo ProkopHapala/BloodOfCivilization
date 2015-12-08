@@ -10,17 +10,22 @@ import javax.swing.JFrame;
 
 import java.lang.Thread;
 
-import static BoC.Globals.form;
-
 public class Main extends JFrame {
 	
-	public GraphicsCanvas    canvas;
-	public GameKeyListener   gkl;
-	public GameMouseListener gml;
+	// ========== Static part
+	
+	public static String version = "0.0.1";
+	public static String INFO = " Blood of Civilization v " + version + " - Made by Prokop Hapala ";
+	
+	// ========== Instanciated part
+	
+	public static GraphicsCanvas    canvas;
+	public static GameKeyListener   gkl;
+	public static GameMouseListener gml;
 	
 	public void setFullscreen() {
 		setVisible(false);
-		setExtendedState(form.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setExtendedState( this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		dispose();
 		setUndecorated(true);
 		setVisible(true);
@@ -28,7 +33,7 @@ public class Main extends JFrame {
 
 	public void setWindowed(int width, int height) {
 		setVisible(false);
-		setExtendedState(form.getExtendedState());
+		setExtendedState( this.getExtendedState() );
 		setSize(width, height);
 		setLocationRelativeTo(null);
 		dispose();
@@ -40,10 +45,10 @@ public class Main extends JFrame {
 		//Graphics2D.drawLine(20, 100, 120, 100);
 		
 		this.setFocusTraversalKeysEnabled(false);
-		setTitle(Globals.INFO);
+		setTitle( INFO );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
-		Globals.form = this;		
+		//Globals.form = this;		
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit( 0 );
@@ -55,38 +60,24 @@ public class Main extends JFrame {
 		
 		
 		// ====== Initialization of game content
-		
-		Globals.initComodityTypes();
-		Globals.initMachineTypes();
-		Globals.initTechnologies();
-		
-		Globals.initSiteTypes();
-		
-		Globals.worldMap = new WorldMap( 4, 4, 3  );
-		Globals.worldMap.GenerateRandom( 154545 );
-		Globals.initCities();
-		Globals.initRoutes();
-		
-		Globals.initCombatantTypes();
-		Globals.initArmies();
-		
-		//map.saveToTxt( "map.txt" );
-		//FileSystem.saveToTxt("map.txt", Globals.worldMap );
-		//FileSystem.loadFromTxt( "map.txt", map );
-		
+				
+		Globals.initGame();
+					
 		canvas     = new GraphicsCanvas();		
 		
 		this.getContentPane().add   (canvas);
 		gkl = new GameKeyListener   (    );
 		this.addKeyListener         (gkl );
+		
 		gml = new GameMouseListener (canvas);
-		/*
+		 
 		this.addMouseListener       (gml);
 		this.addMouseMotionListener (gml);
 		this.addMouseWheelListener  (gml);
-		*/	
-		setVisible(true);	
 		
+			
+		setVisible(true);	
+		canvas.setTileSize( 16 );
 		
 		// ====== this is testing playgorund
 		

@@ -22,16 +22,13 @@ public class Globals {
 	
 	// global constants
 	
-	public static Main   form;
-	public static Player PLAYER;
+	//public static Main   form;
+	
 	//public static Events EVENTS = new Events();
 	
 	public static String data_path = "/home/prokop/git/BloodOfCivilization/data/";
 	
-	public static Point mousePointOnScreen = new Point(0, 0);
-	public static String version = "0.0.1";
-	public static String INFO = " Blood of Civilization v " + version + " - Made by Prokop Hapala ";
-
+	
 	// global variables
 	
 	public static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
@@ -57,6 +54,26 @@ public class Globals {
 	
 	static double dt = 0.01d;
 	
+	
+	
+	public static void initGame(){
+		initComodityTypes();
+		initMachineTypes();
+		initTechnologies();
+		initSiteTypes();
+		
+		worldMap = new WorldMap( 4, 4, 3  );
+		worldMap.GenerateRandom( 154545 );
+		initCities();
+		initRoutes();
+		
+		//map.saveToTxt( "map.txt" );
+		//FileSystem.saveToTxt("map.txt", Globals.worldMap );
+		//FileSystem.loadFromTxt( "map.txt", map );
+		
+		initCombatantTypes();
+		initArmies();
+	}
 	
 	public static void initSiteTypes(){
 		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
@@ -132,8 +149,6 @@ public class Globals {
 		army1.setTarget( worldMap.getSite( 10, 5 ) );
 		
 	}
-	
-	
 	
 	public static void update(){
 		for( Army army : armies.values() ){ army.update(dt); }

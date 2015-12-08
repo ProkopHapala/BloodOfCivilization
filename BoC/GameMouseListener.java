@@ -11,85 +11,96 @@ import javax.swing.SwingUtilities;
 
 public class GameMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-	GraphicsCanvas GC;
+	GraphicsCanvas canvas ;
 
 	public GameMouseListener(GraphicsCanvas GC) {
-		this.GC = GC;
+		this.canvas = GC;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent me) {
-
 		//
 	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
-
-		Point pos = GC.getParent().getMousePosition();
+		Point pos = canvas.getParent().getMousePosition();
+		UI.mousePos_pressed.setLocation(pos);
 		if (pos != null) {
-			Globals.mousePointOnScreen = pos.getLocation();
 			if (SwingUtilities.isLeftMouseButton(me)) {
-				Globals.PLAYER.MOUSEANDKEYS.mouseLeftClick(pos);
+				UI.LMB_pressed( );
 			}
 			if (SwingUtilities.isRightMouseButton(me)) {
-				Globals.PLAYER.MOUSEANDKEYS.mouseRightClick(pos);
+				UI.RMB_pressed( );
 			}
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent me) {
-
-		Point pos = GC.getParent().getMousePosition();
-
+		Point pos = canvas.getParent().getMousePosition();
+		UI.mousePos_released.setLocation( pos );
 		if (pos != null) {
-			Globals.mousePointOnScreen = pos.getLocation();//GC.getParent().getMousePosition();    
-			Globals.PLAYER.MOUSEANDKEYS.mouseReleased(pos);
+			if (SwingUtilities.isLeftMouseButton(me)) {
+				UI.LMB_released( );
+			}
+			if (SwingUtilities.isRightMouseButton(me)) {
+				UI.RMB_released( );
+			}
 		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent me) {
-		Point pos = GC.getParent().getMousePosition();
+		/*
+		Point pos = canvas.getParent().getMousePosition();
 		System.out.println("Eited position "+pos.toString());
+		*/
 	}
 
 	@Override
 	public void mouseExited(MouseEvent me) {
+		/*
+		// this leads to null pointer exception
 		Globals.PLAYER.MOUSEANDKEYS.mousePointEnd=Globals.PLAYER.MOUSEANDKEYS.mousePointStart;
 		Globals.PLAYER.MOUSEANDKEYS.mousePressed=false;
+		*/
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
-		Point pos = GC.getParent().getMousePosition();
-
+		/*
+		Point pos = canvas.getParent().getMousePosition();
 		if (pos != null) {
-			Globals.mousePointOnScreen = pos.getLocation();//GC.getParent().getMousePosition();    
+			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();    
 			if (SwingUtilities.isLeftMouseButton(me)) {
-				Globals.PLAYER.MOUSEANDKEYS.mouseDraggedLeft(pos);
+				UI.PLAYER.MOUSEANDKEYS.mouseDraggedLeft(pos);
 			}
 			if (SwingUtilities.isRightMouseButton(me)) {
-				Globals.PLAYER.MOUSEANDKEYS.mouseDraggedRight(pos);
+				UI.PLAYER.MOUSEANDKEYS.mouseDraggedRight(pos);
 			}
 		}
+		*/	
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
-
-		Point pos = GC.getParent().getMousePosition();
-
+		if( UI.recordMouseMove ){
+			Point pos = canvas.getParent().getMousePosition();
+			UI.mousePos_moved.setLocation( pos );
+		}
+		/*
+		Point pos = canvas.getParent().getMousePosition();
 		if (pos != null) {
-			Globals.mousePointOnScreen = pos.getLocation();//GC.getParent().getMousePosition();       
+			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();       
 			//GlobalVars.PLAYER.MOUSEANDKEYS.mouseMoved(pos);
 		}
+		*/
 	}
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent mwe) {
-		int notches = mwe.getWheelRotation();
+		//int notches = mwe.getWheelRotation();
 		//GlobalVars.PLAYER.MOUSEANDKEYS.mouseWheelMoved(notches);
 	}
 

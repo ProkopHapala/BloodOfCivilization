@@ -36,7 +36,7 @@ public class Army extends GameObject implements Drawable {
 		double dx    = move_target.ix - x;
 		double dy    = move_target.iy - y;
 		double r2    = dx*dx + dy*dy;
-		System.out.println( x +" "+ y +" "+move_target.ix+" "+move_target.iy+" "+dx +" "+ dy+" "+speed );
+		//System.out.println( x +" "+ y +" "+move_target.ix+" "+move_target.iy+" "+dx +" "+ dy+" "+speed );
 		if( ( lmax*lmax ) < r2 ){ // cannot reach in one turn
 			double r  = Math.sqrt( r2 );
 			double renorm  = lmax / r;
