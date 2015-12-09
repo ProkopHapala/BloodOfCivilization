@@ -1,17 +1,21 @@
 package BoC.Engine;
 
+import BoC.utils.Drawable;
+import BoC.utils.StringIO;
+import BoC.utils.Named;
+import BoC.Engine.Economy.NaturalResource;
+import BoC.Engine.Economy.Route;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
 public class Site implements StringIO, Drawable {
-    SiteType   type;
-    double     height;
-    int        ix,iy;
-    City       city;
-    Set<Route> routes;
-	
-	HashMap<City,NaturalResource> resources;
+    public SiteType   type;
+    public double     height;
+    public int        ix,iy;
+    public City       city;
+    public Set<Route> routes;
+	public HashMap<City,NaturalResource> resources;
 	
 	// ========== IO
 	

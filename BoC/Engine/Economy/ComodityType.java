@@ -1,12 +1,14 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
         
+import BoC.Engine.GameObject;
+
 public class ComodityType extends GameObject{
 	
-	double transport_weight; // transport weight can difer from unit weight due to container
-	double transport_volume;
+	public double transport_weight; // transport weight can difer from unit weight due to container
+	public double transport_volume;
 	
-	double price_max;
-	double price_normal;
+	public double price_max;
+	public double price_normal;
         	
 	// ========== IO
 	

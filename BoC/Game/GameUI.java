@@ -1,6 +1,7 @@
 
 package BoC.Game;
 
+import BoC.Engine.Military.Army;
 import BoC.Engine.*;
 
 import java.awt.Point;

@@ -1,19 +1,27 @@
 package BoC.Engine;
 
+import BoC.utils.Drawable;
+import BoC.Engine.Economy.Factory;
+import BoC.Engine.Economy.Route;
+import BoC.Engine.Economy.Technology;
+import BoC.Engine.Economy.ComodityType;
+import BoC.Engine.Economy.ComodityManager;
+import BoC.Engine.Military.Army;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
 public class City extends GameObject implements Drawable {
-	Player owner;
-    Site   site;
-    Set<Route> routes; // HasSet ?
-	HashMap<ComodityType,ComodityManager> store;
-	HashMap<Technology,Factory> factories;
-	Set<Army> Armies;
+	public Player owner;
+    public Site   site;
+    public Set<Route> routes; // HasSet ?
+	public HashMap<ComodityType,ComodityManager> store;
+	public HashMap<Technology,Factory> factories;
+	public Set<Army> Armies;
 	
-	double FactorySpace; // ? is this useful
-	double storageSpace; // ? is this useful
+	public double FactorySpace; // ? is this useful
+	public double storageSpace; // ? is this useful
 	
 	// ========= Comodity Management
 	

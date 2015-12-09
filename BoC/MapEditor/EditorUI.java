@@ -1,6 +1,7 @@
 
 package BoC.MapEditor;
 
+import BoC.Engine.Military.Army;
 import BoC.Engine.*;
 
 import java.awt.Point;

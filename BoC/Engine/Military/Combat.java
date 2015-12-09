@@ -1,5 +1,7 @@
-package BoC.Engine;
+package BoC.Engine.Military;
 
+import BoC.Engine.GameObject;
+import BoC.Engine.Site;
 import java.util.*;
 
 public class Combat extends GameObject {

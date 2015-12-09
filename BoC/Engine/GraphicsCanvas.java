@@ -7,18 +7,19 @@ package BoC.Engine;
 //import java.awt.RenderingHints;
 //import javax.swing.JPanel;
 
+import BoC.Engine.Economy.Route;
+import BoC.Engine.Military.Army;
 import java.awt.*;
 //import java.awt.geom.Line2D;
 import javax.swing.*;
 
 public class GraphicsCanvas extends JPanel {
 
-	Graphics2D g2;
+	public Graphics2D g2;
 	
-	static public int Width = 1024;
-	static public int Height = 768;
+	public int Width = 1024;
+	public int Height = 768;
 
-	
 	// ==== Transfromation between map [tile] and screen [pixel] coordinates
 	
 	public int tile_size;

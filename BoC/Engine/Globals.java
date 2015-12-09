@@ -1,18 +1,18 @@
 
 package BoC.Engine;
 
+import BoC.Engine.Economy.MachineType;
+import BoC.Engine.Economy.Route;
+import BoC.Engine.Economy.Technology;
+import BoC.Engine.Economy.ComodityType;
+import BoC.Engine.Military.Army;
+import BoC.Engine.Military.Brigade;
+import BoC.Engine.Military.CombatantType;
 import BoC.utils.*;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.UUID;
+
 
 import java.util.*;
 

@@ -1,5 +1,14 @@
-package BoC.Engine;
+package BoC.Engine.Military;
 
+import BoC.Engine.City;
+import BoC.Engine.Economy.ComodityManager;
+import BoC.Engine.Economy.ComodityType;
+import BoC.utils.Drawable;
+import BoC.Engine.GameObject;
+import BoC.Engine.Globals;
+import BoC.Engine.GraphicsCanvas;
+import BoC.Engine.Player;
+import BoC.Engine.Site;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;

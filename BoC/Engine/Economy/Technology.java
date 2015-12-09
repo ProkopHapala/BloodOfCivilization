@@ -1,17 +1,19 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
 
+import BoC.Engine.City;
+import BoC.Engine.GameObject;
 import java.util.*;
 
 /*
 Technology is ( or FactoryType ? ) is a production process which converts some comodities into some other comodities and machines, with asistence of other machines
 */
-class Technology extends GameObject {
-	double cycle_time;  // time to produce unit
-	double unit_space;  // unit space taken in factory
+public class Technology extends GameObject {
+	public double cycle_time;  // time to produce unit
+	public double unit_space;  // unit space taken in factory
 	
-	HashMap<ComodityType,Double> consumes;
-	HashMap<ComodityType,Double> produces;
-	HashMap<MachineType,Integer> machines;
+	public HashMap<ComodityType,Double> consumes;
+	public HashMap<ComodityType,Double> produces;
+	public HashMap<MachineType,Integer> machines;
 	// HashMap<MachineType,Integer> machines_produced;  // maybe later ?
 	
 	public void consume_units( double units, City city ){

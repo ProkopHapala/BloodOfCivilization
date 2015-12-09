@@ -1,12 +1,14 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
         
+import BoC.Engine.GameObject;
+
 public class Convoy extends GameObject{
-	Route    route;
-	boolean  forward;
-	double   time_loc;
+	public Route    route;
+	public boolean  forward;
+	public double   time_loc;
 	
-	int      site_i;  // site on road
-	double   site_dist;  // distance to next site
+	public int      site_i;  // site on road
+	public double   site_dist;  // distance to next site
 	
 	
 	public boolean update( double time ){

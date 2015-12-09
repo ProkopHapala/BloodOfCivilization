@@ -1,13 +1,20 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
 
+import BoC.Engine.City;
+import BoC.utils.Drawable;
+import BoC.Engine.Economy.Convoy;
+import BoC.Engine.GameObject;
+import BoC.Engine.Globals;
+import BoC.Engine.GraphicsCanvas;
+import BoC.Engine.Site;
 import java.awt.Graphics2D;
 import java.util.*;
 
 public class Route extends GameObject implements  Drawable{
-    RouteType    type;
-    City         city_from, city_to;
-    Site []      sites; 
-    Set<Convoy>  convoys;
+    public RouteType    type;
+    public City         city_from, city_to;
+    public Site []      sites; 
+    public Set<Convoy>  convoys;
 	
 	// ========= static 
 	

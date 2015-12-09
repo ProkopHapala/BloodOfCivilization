@@ -1,6 +1,9 @@
 
-package BoC.Engine;
+package BoC.Engine.Military;
 
+import BoC.Engine.GameObject;
+import BoC.Engine.Globals;
+import BoC.Engine.Site;
 import java.util.*;
 
 public class Brigade extends GameObject {
@@ -9,11 +12,11 @@ public class Brigade extends GameObject {
 	
 	// ==== State Variables
 	
-	Army army;
-	CombatantType type;
-	int n_tot;
-	int n_capable;
-	int n_alive;
+	public Army army;
+	public CombatantType type;
+	public int n_tot;
+	public int n_capable;
+	public int n_alive;
 	
 	// ==== temp vars
 	double attack_effectivness;  // multiplier 

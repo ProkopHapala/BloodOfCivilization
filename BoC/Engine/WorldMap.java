@@ -1,5 +1,6 @@
 package BoC.Engine;
 
+import BoC.utils.Drawable;
 import BoC.utils.*;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class WorldMap implements TxtStorable, Drawable {
     public int n_blocks_x, n_blocks_y;
 	public int nx,ny;
 
+	
     private Site [][] sites;
 
 	// ================= Map intexing rutines

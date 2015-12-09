@@ -1,13 +1,15 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
         
+import BoC.Engine.City;
+import BoC.Engine.GameObject;
 import java.util.*;
 
 public class Factory extends GameObject{
-    double size;
-	double activity;
-    Technology technology;
-	HashMap<MachineType,Integer> machines;
-	City city;
+    public double size;
+	public double activity;
+    public Technology technology;
+	public HashMap<MachineType,Integer> machines;
+	public City city;
 
 	/*
 	ComodityType limiting_comodity;

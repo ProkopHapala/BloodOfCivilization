@@ -1,11 +1,11 @@
 
-package BoC.Engine;
+package BoC.Engine.Economy;
 
 public class NaturalResource {
-	ComodityType type;
-	boolean depleating;
-	double  stored;
-	double  drain_rate;
+	public ComodityType type;
+	public boolean depleating;
+	public double  stored;
+	public double  drain_rate;
 	
 	double drain( double dt, double max_d ){
 		double d = drain_rate * dt;

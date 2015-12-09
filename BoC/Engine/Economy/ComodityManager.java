@@ -1,13 +1,13 @@
-package BoC.Engine;
+package BoC.Engine.Economy;
         
 public class ComodityManager{
-	double stored;
-	double price;
-        ComodityType type;
+	public double stored;
+	public double price;
+    public  ComodityType type;
         
-        // price model
-        double supply_target;
-        double price_stiffness;
+    // price model
+    public double supply_target;
+    public double price_stiffness;
         
 	public double add( double amount ){
 		stored += amount;

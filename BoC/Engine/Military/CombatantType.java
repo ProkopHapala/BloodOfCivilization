@@ -1,5 +1,6 @@
-package BoC.Engine;
+package BoC.Engine.Military;
 
+import BoC.Engine.GameObject;
 import java.util.*;
 
 public class CombatantType extends GameObject{

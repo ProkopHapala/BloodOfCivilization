@@ -1,16 +1,11 @@
 
 package BoC.Engine;
 
-interface StringIO {
-	public void fromString( String s );
-}
-
-interface Named {
-	public String getName( );
-}
+import BoC.utils.StringIO;
+import BoC.utils.Named;
 
 public class GameObject implements Named, StringIO {
-	String name;
+	public String name;
 	
 	// ========== IO
 	
