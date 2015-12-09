@@ -21,7 +21,6 @@ public class Army extends GameObject implements Drawable {
 	// ======== temp vars
 	
 	//double speed;
-	
 	// ================= Turn update
 	
 	public void update( double dt ){

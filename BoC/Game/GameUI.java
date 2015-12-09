@@ -5,7 +5,7 @@ import BoC.Engine.*;
 
 import java.awt.Point;
 
-class UI {
+class GameUI {
 	
 	public static boolean recordMouseMove = false;
 	
@@ -29,7 +29,7 @@ class UI {
 		switch( mode ){
 			case ARMY_MODE:
 				selected_army = null;
-				Site site = Main.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+				Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 				System.out.println( " Site " + site );
 				for( Army army : Globals.armies.values() ) { 
 					if( army.site == site ) {
@@ -56,7 +56,7 @@ class UI {
 		switch( mode ){
 			case ARMY_MODE:
 				if( selected_army != null ){
-					Site site = Main.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+					Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 					selected_army.setTarget( site );
 					System.out.println( " Army: "+selected_army+" move to "+selected_army.move_target );
 				}

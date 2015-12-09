@@ -1,5 +1,5 @@
 
-package BoC.Game;
+package BoC.MapEditor;
 
 import BoC.Engine.GraphicsCanvas;
 
@@ -11,11 +11,11 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import javax.swing.SwingUtilities;
 
-public class GameMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
+public class EditorMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
 
 	GraphicsCanvas canvas;
 
-	public GameMouseListener(GraphicsCanvas GC) {
+	public EditorMouseListener(GraphicsCanvas GC) {
 		this.canvas = GC;
 	}
 
@@ -27,13 +27,13 @@ public class GameMouseListener implements MouseListener, MouseMotionListener, Mo
 	@Override
 	public void mousePressed(MouseEvent me) {
 		Point pos = canvas.getParent().getMousePosition();
-		GameUI.mousePos_pressed.setLocation(pos);
+		EditorUI.mousePos_pressed.setLocation(pos);
 		if (pos != null) {
 			if (SwingUtilities.isLeftMouseButton(me)) {
-				GameUI.LMB_pressed( );
+				EditorUI.LMB_pressed( );
 			}
 			if (SwingUtilities.isRightMouseButton(me)) {
-				GameUI.RMB_pressed( );
+				EditorUI.RMB_pressed( );
 			}
 		}
 	}
@@ -41,13 +41,13 @@ public class GameMouseListener implements MouseListener, MouseMotionListener, Mo
 	@Override
 	public void mouseReleased(MouseEvent me) {
 		Point pos = canvas.getParent().getMousePosition();
-		GameUI.mousePos_released.setLocation( pos );
+		EditorUI.mousePos_released.setLocation( pos );
 		if (pos != null) {
 			if (SwingUtilities.isLeftMouseButton(me)) {
-				GameUI.LMB_released( );
+				EditorUI.LMB_released( );
 			}
 			if (SwingUtilities.isRightMouseButton(me)) {
-				GameUI.RMB_released( );
+				EditorUI.RMB_released( );
 			}
 		}
 	}
@@ -87,9 +87,9 @@ public class GameMouseListener implements MouseListener, MouseMotionListener, Mo
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
-		if( GameUI.recordMouseMove ){
+		if( EditorUI.recordMouseMove ){
 			Point pos = canvas.getParent().getMousePosition();
-			GameUI.mousePos_moved.setLocation( pos );
+			EditorUI.mousePos_moved.setLocation( pos );
 		}
 		/*
 		Point pos = canvas.getParent().getMousePosition();

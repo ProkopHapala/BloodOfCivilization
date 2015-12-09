@@ -12,18 +12,17 @@ import javax.swing.JFrame;
 
 import java.lang.Thread;
 
-public class Main extends JFrame {
+public class GameMain extends JFrame {
 	
 	// ========== Static part
-	
 	public static String version = "0.0.1";
 	public static String INFO = " Blood of Civilization v " + version + " - Made by Prokop Hapala ";
 	
 	// ========== Instanciated part
 	
 	public static GraphicsCanvas    canvas;
-	public static GameKeyListener   gkl;
-	public static GameMouseListener gml;
+	public static GameKeyListener   keyListener;
+	public static GameMouseListener mouseListener;
 	
 	public void setFullscreen() {
 		setVisible(false);
@@ -68,14 +67,14 @@ public class Main extends JFrame {
 		canvas     = new GraphicsCanvas();		
 		
 		this.getContentPane().add   (canvas);
-		gkl = new GameKeyListener   (    );
-		this.addKeyListener         (gkl );
+		keyListener = new GameKeyListener (    );
+		this.addKeyListener         ( keyListener );
 		
-		gml = new GameMouseListener (canvas);
+		mouseListener = new GameMouseListener (canvas);
 		 
-		this.addMouseListener       (gml);
-		this.addMouseMotionListener (gml);
-		this.addMouseWheelListener  (gml);
+		this.addMouseListener       (mouseListener);
+		this.addMouseMotionListener (mouseListener);
+		this.addMouseWheelListener  (mouseListener);
 		
 			
 		setVisible(true);	
@@ -103,7 +102,7 @@ public class Main extends JFrame {
 	
     public static void main(String[] args) throws IOException {
 		//System.setOut(outputFile("output.log"));
-		Main instance = new Main();
+		GameMain instance = new GameMain();
 		instance.start();
 		instance.run();
 	}
