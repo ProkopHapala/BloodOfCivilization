@@ -4,6 +4,8 @@ package BoC.Game;
 import BoC.Engine.Military.Army;
 import BoC.Engine.*;
 
+import BoC.utils.*;
+
 import java.awt.Point;
 
 class GameUI {

@@ -82,7 +82,7 @@ public class WorldMap implements TxtStorable, Drawable {
 	
 	@Override
 	public void writeToTxt( BufferedWriter writer ) throws IOException {
-		writer.write( n_blocks_x +" "+ n_blocks_y+" "+block_side_pow );
+		writer.write( n_blocks_x +" "+ n_blocks_y+" "+block_side_pow+"\n" );
 		for( Site [] block : sites ){
 			if( block != null ){ 
 				for( Site site  : block ){
@@ -101,6 +101,7 @@ public class WorldMap implements TxtStorable, Drawable {
 		n_blocks_y      = Integer.parseInt( words[1] );
 		block_side_pow  = Integer.parseInt( words[2] );
 		while( null != ( line = reader.readLine() )  ){
+			//System.out.println( line );
 			Site site = new Site( line );
 			setSite( site.ix, site.iy, site );
 		};

@@ -9,7 +9,7 @@ class EditorKeyListener implements KeyListener {
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		//GlobalVars.PLAYER.MOUSEANDKEYS.keyPressed(keyCode);
+		EditorUI.keyPressed( keyCode );
 	}
 
 	@Override

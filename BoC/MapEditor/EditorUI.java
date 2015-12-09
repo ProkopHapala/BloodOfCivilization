@@ -4,7 +4,10 @@ package BoC.MapEditor;
 import BoC.Engine.Military.Army;
 import BoC.Engine.*;
 
+import BoC.utils.*;
+
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 
 class EditorUI {
 	
@@ -112,6 +115,23 @@ class EditorUI {
 		}
 	}
 	
+	
+	
+	// ========== Keyboard
+	
+	
+	public static void keyPressed( int keyCode ){
+		switch( keyCode ){
+			case KeyEvent.VK_S: 
+				System.out.println( " [S]-key: save worldMap " );
+				FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
+				break;
+			case KeyEvent.VK_L: 
+				System.out.println( " [L]-key: load worldMap " );
+				FileSystem.loadFromTxt  ( "map.txt", Globals.worldMap );
+				break;
+		}
+	}
 	
 	
 	

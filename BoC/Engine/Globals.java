@@ -67,7 +67,7 @@ public class Globals {
 		initRoutes();
 		
 		//map.saveToTxt( "map.txt" );
-		//FileSystem.saveToTxt("map.txt", Globals.worldMap );
+		//FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
 		
 		initCombatantTypes();
