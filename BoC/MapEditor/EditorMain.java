@@ -59,6 +59,8 @@ public class EditorMain extends JFrame {
 		setVisible(true);	
 		canvas.setTileSize( 16 );
 		
+		EditorUI.selected_siteType = Globals.siteTypes.get( "plain" );
+		
 	}
 	
 	public void run() {

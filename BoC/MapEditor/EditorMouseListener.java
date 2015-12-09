@@ -14,15 +14,15 @@ import javax.swing.SwingUtilities;
 public class EditorMouseListener implements MouseListener, MouseMotionListener, MouseWheelListener {
 
 	GraphicsCanvas canvas;
-
-	public EditorMouseListener(GraphicsCanvas GC) {
-		this.canvas = GC;
+	
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent mwe) {
+		//int notches = mwe.getWheelRotation();
+		//GlobalVars.PLAYER.MOUSEANDKEYS.mouseWheelMoved(notches);
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent me) {
-		//
-	}
+	public void mouseClicked(MouseEvent me) {	}
 
 	@Override
 	public void mousePressed(MouseEvent me) {
@@ -53,6 +53,36 @@ public class EditorMouseListener implements MouseListener, MouseMotionListener, 
 	}
 
 	@Override
+	public void mouseDragged(MouseEvent me) {
+		if( EditorUI.recordMouseDrag ){
+			Point pos = canvas.getParent().getMousePosition();
+			if (pos != null) {  
+				if (SwingUtilities.isLeftMouseButton(me)) {
+					EditorUI.LMB_dragged( pos.x, pos.y );
+				}
+				if (SwingUtilities.isRightMouseButton(me)) {
+					EditorUI.RMB_dragged( pos.x, pos.y );
+				}
+			}
+		}
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent me) {
+		if( EditorUI.recordMouseMove ){
+			Point pos = canvas.getParent().getMousePosition();
+			if (pos != null) {  
+				if (SwingUtilities.isLeftMouseButton(me)) {
+					EditorUI.LMB_moved( pos.x, pos.y );
+				}
+				if (SwingUtilities.isRightMouseButton(me)) {
+					EditorUI.RMB_moved( pos.x, pos.y );
+				}
+			}
+		}
+	}
+	
+	@Override
 	public void mouseEntered(MouseEvent me) {
 		/*
 		Point pos = canvas.getParent().getMousePosition();
@@ -69,41 +99,7 @@ public class EditorMouseListener implements MouseListener, MouseMotionListener, 
 		*/
 	}
 
-	@Override
-	public void mouseDragged(MouseEvent me) {
-		/*
-		Point pos = canvas.getParent().getMousePosition();
-		if (pos != null) {
-			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();    
-			if (SwingUtilities.isLeftMouseButton(me)) {
-				UI.PLAYER.MOUSEANDKEYS.mouseDraggedLeft(pos);
-			}
-			if (SwingUtilities.isRightMouseButton(me)) {
-				UI.PLAYER.MOUSEANDKEYS.mouseDraggedRight(pos);
-			}
-		}
-		*/	
+	public EditorMouseListener(GraphicsCanvas GC) {
+		this.canvas = GC;
 	}
-
-	@Override
-	public void mouseMoved(MouseEvent me) {
-		if( EditorUI.recordMouseMove ){
-			Point pos = canvas.getParent().getMousePosition();
-			EditorUI.mousePos_moved.setLocation( pos );
-		}
-		/*
-		Point pos = canvas.getParent().getMousePosition();
-		if (pos != null) {
-			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();       
-			//GlobalVars.PLAYER.MOUSEANDKEYS.mouseMoved(pos);
-		}
-		*/
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent mwe) {
-		//int notches = mwe.getWheelRotation();
-		//GlobalVars.PLAYER.MOUSEANDKEYS.mouseWheelMoved(notches);
-	}
-
 }

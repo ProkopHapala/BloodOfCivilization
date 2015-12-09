@@ -59,10 +59,17 @@ public class GraphicsCanvas extends JPanel {
 	public float screen2map_y( int iy ){ return iy * inv_tile_size  - iy_min; }
 	
 	
+	public int tileHash( int sx, int sy ){
+		short ix = (short) screen2map_x( sx );
+		short iy = (short) screen2map_y( sy );
+		return (ix<<16) ^ iy;
+	}
+	
+	
 	public Site getSite( int sx, int sy ){
 		int ix = (int) screen2map_x( sx );
 		int iy = (int) screen2map_y( sy );
-		System.out.println( sx+" "+sy+" ->  "+ix +" "+ iy );
+		//System.out.println( sx+" "+sy+" ->  "+ix +" "+ iy );
 		return Globals.worldMap.getSite( ix, iy );
 	}
 	

@@ -50,6 +50,7 @@ public class Site implements StringIO, Drawable {
 	
 	// ========== Constructor
 	
+	public Site(){};
 	public Site( int ix, int iy, double height, SiteType type ){	this.ix=ix; this.iy=iy; this.height=height; this.type=type;	} 
 	public Site( String s ){ fromString( s ); }
 }
