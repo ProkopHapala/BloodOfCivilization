@@ -55,7 +55,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		});
 		
 		this.setSize(800,800);
-		//this.getContentPane().setSize(800,400);
+		this.getContentPane().setSize(800,800);
 		
 		
 		// ====== Initialization of game content
@@ -206,6 +206,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 	
 	// =============== Common functions
 	
+	/*
 	public void setFullscreen() {
 		setVisible(false);
 		setExtendedState( this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -223,7 +224,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		setUndecorated(false);
 		setVisible(true);
 	}
-	
+	*/
 	
     public static void main(String[] args) throws IOException {
 		//System.setOut(outputFile("output.log"));

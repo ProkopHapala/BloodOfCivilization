@@ -130,6 +130,10 @@ class EditorUI {
 				System.out.println( " [L]-key: load worldMap " );
 				FileSystem.loadFromTxt  ( "map.txt", Globals.worldMap );
 				break;
+			case KeyEvent.VK_UP:     EditorMain.canvas.scroolBy(  0, 1 ); break;
+            case KeyEvent.VK_DOWN:   EditorMain.canvas.scroolBy(  0,-1 ); break;
+            case KeyEvent.VK_LEFT:   EditorMain.canvas.scroolBy(  1, 0 ); break;
+            case KeyEvent.VK_RIGHT : EditorMain.canvas.scroolBy( -1, 0 ); break;
 		}
 	}
 	

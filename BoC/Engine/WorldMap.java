@@ -142,7 +142,7 @@ public class WorldMap implements TxtStorable, Drawable {
 				nb_painted++;
 			}
 		}
-		System.out.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
+		//System.out.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
 	}
 	
 	// ================= Constructor
