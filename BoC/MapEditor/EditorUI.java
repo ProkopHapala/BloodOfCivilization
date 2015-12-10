@@ -44,9 +44,8 @@ class EditorUI {
 			case SITE_MODE:
 				if( selected_siteType != null ){ changeSiteType(  mousePos_pressed.x, mousePos_pressed.y, selected_siteType ); 	}
 				break;
-			case CITY_MODE:
-			case ARMY_MODE:
-			break;
+			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); break;
+			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); break;
 		}
 	}
 		
@@ -70,9 +69,9 @@ class EditorUI {
 		
 	public static void RMB_released( ){
 		switch( mode ){
-			case ARMY_MODE:
-			case CITY_MODE:
 			case SITE_MODE:
+			case CITY_MODE: reposCity( mousePos_released.x, mousePos_released.y );	break;
+			case ARMY_MODE:	reposArmy( mousePos_released.x, mousePos_released.y );	break;
 		}
 	}
 	
@@ -134,6 +133,9 @@ class EditorUI {
 				System.out.println( " [L]-key: load worldMap " );
 				FileSystem.loadFromTxt  ( "map.txt", Globals.worldMap );
 				break;
+			case KeyEvent.VK_C: mode = CITY_MODE; break;
+			case KeyEvent.VK_A: mode = ARMY_MODE; break;
+			case KeyEvent.VK_X: mode = SITE_MODE; break;
 			case KeyEvent.VK_UP:     EditorMain.canvas.scroolBy(  0, 1 ); break;
             case KeyEvent.VK_DOWN:   EditorMain.canvas.scroolBy(  0,-1 ); break;
             case KeyEvent.VK_LEFT:   EditorMain.canvas.scroolBy(  1, 0 ); break;
@@ -142,10 +144,7 @@ class EditorUI {
 			case KeyEvent.VK_SUBTRACT : zoom( 0.5f ); break;
 		}
 	}
-	
-	
-	
-	
+		
 	// =========== rutines
 	
 	static void zoom( float f ){
@@ -158,8 +157,47 @@ class EditorUI {
 		System.out.println( scrool_speed+" "+EditorMain.canvas.tile_size  );
 	}
 	
+	static void selectArmy( int mx, int my ){
+		selected_army = null;
+		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		System.out.println( " Site " + site );
+		for( Army army : Globals.armies.values() ) { 
+			if( army.site == site ) {
+				selected_army = army;
+				System.out.println( " Selected Army: "+selected_army );
+				break;
+			}
+		}
+	}
 	
+	static void reposArmy( int mx, int my ){
+		if( selected_army != null ){
+			float x = EditorMain.canvas.screen2map_x( mx );
+			float y = EditorMain.canvas.screen2map_y( my );
+			selected_army.setPos( x, y );
+		}
+	}
 	
+	static void selectCity( int mx, int my ){
+		selected_city = null;
+		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		System.out.println( " Site " + site );
+		for( City city : Globals.cities.values() ) { 
+			if( city.site == site ) {
+				selected_city = city;
+				System.out.println( " Selected city: "+selected_city );
+				break;
+			}
+		}
+	}
+	
+	static void reposCity( int mx, int my ){
+		if( selected_city != null ){
+			int x = (int) EditorMain.canvas.screen2map_x( mx );
+			int y = (int) EditorMain.canvas.screen2map_y( my );
+			selected_city.setPos( x, y );
+		}
+	}
 	
 	// =========== Operations
 	

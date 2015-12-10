@@ -80,17 +80,20 @@ public class EditorMain extends JFrame implements KeyListener, MouseListener, Mo
 	@Override
 	public synchronized void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		EditorUI.keyPressed(keyCode);
+		EditorUI.keyPressed( keyCode );
 	}
 
 	@Override
 	public synchronized void keyReleased(KeyEvent e) {
 		int keyCode = e.getKeyCode();
-		
+		//EditorUI.keyReleased( keyCode );
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+		//int keyCode = e.getKeyCode();
+		//EditorUI.keyTyped( keyCode );
+	}
 
 	// =============== MOUSE HANDLING
 	

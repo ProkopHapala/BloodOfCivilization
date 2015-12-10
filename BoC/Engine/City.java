@@ -35,6 +35,13 @@ public class City extends GameObject implements Drawable {
 		return amount;
 	}
 	
+	public void setPos( int ix, int iy ){
+		if( site.city == this ) site.city = null;
+		site = Globals.worldMap.getSite( ix, iy );
+		site.city = this;
+		//System.out.println(  (int)x +" "+ (int)y + "|" + site );
+	}
+	
 	// ========== IO
 	
 	@Override
