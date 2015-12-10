@@ -129,18 +129,20 @@ public class WorldMap implements TxtStorable, Drawable {
 	
 	@Override
 	public void paint( GraphicsCanvas canvas ) {
-		System.out.println( " Map.paint "  );
-		int n_painted = 0;
+		//System.out.println( " Map.paint "  );
+		int nt_painted = 0;
+		int nb_painted = 0;
 		for ( int i=0; i<sites.length; i++ ){
 			int ibx = block_x( i );
 			int iby = block_y( i );
 			//System.out.println( "Map block "+i+" "+ibx+" "+iby );
 			if ( canvas.boxInView( ibx, iby, ibx+block_side_n, iby+block_side_n ) ){
 				//System.out.println( "Map block "+i+" "+ibx+" "+iby+" " );
-				n_painted += paintBlock( canvas, sites[i] );
+				nt_painted += paintBlock( canvas, sites[i] );
+				nb_painted++;
 			}
 		}
-		System.out.println( " Map.paint n_painted = "+n_painted );
+		System.out.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
 	}
 	
 	// ================= Constructor

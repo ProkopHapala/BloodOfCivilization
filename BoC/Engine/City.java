@@ -61,10 +61,12 @@ public class City extends GameObject implements Drawable {
 	@Override
 	public void paint( GraphicsCanvas canvas ){
 		int sz = canvas.tile_size;
+		int sx = canvas.map2screen_x( site.ix );
+		int sy = canvas.map2screen_y( site.iy );
 		Graphics2D g2 = canvas.g2;
 		g2.setColor( Color.BLACK );
-		g2.fillOval( site.ix*sz, site.iy*sz, sz, sz );
-		g2.drawString( name, site.ix*sz, site.iy*sz );
+		g2.fillOval( sx, sy, sz, sz );
+		g2.drawString( name, sx, sy );
 	}
 	
 	// ========== Constructor

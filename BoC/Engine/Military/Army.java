@@ -93,19 +93,17 @@ public class Army extends GameObject implements Drawable {
 	
 	// ================= IO
 	
-
-	
 	// ================= Graphics
 	
 	@Override
 	public void paint( GraphicsCanvas canvas ){
 		int sz = canvas.tile_size;
+		int sx = canvas.map2screen_x( (float)x );
+		int sy = canvas.map2screen_y( (float)y );
 		Graphics2D g2 = canvas.g2;
 		g2.setColor ( Color.RED );
-		int ix = (int) (x * sz);
-		int iy = (int) (y * sz);	
-		g2.fillRect  ( ix, iy, 5, 5 );
-		g2.drawString( name, ix, iy );
+		g2.fillRect  ( sx, sy, 5, 5 );
+		g2.drawString( name, sx, sy );
 	}
 	
 	// ========== Constructor

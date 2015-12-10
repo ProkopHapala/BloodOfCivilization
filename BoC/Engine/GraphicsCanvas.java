@@ -17,21 +17,18 @@ public class GraphicsCanvas extends JPanel {
 
 	public Graphics2D g2;
 	
-	
 	public static final int default_tile_size = 16;
 	
-	public int Width = 1024;
-	public int Height = 768;
-
+	
 	// ==== Transfromation between map [tile] and screen [pixel] coordinates
 	
 	public int tile_size;
 	public int tile_size_half;
 	
-	float      inv_tile_size;
+	public float      inv_tile_size;
 	public int tiles_per_screen_x,tiles_per_screen_y;
 	
-	int ix_min,ix_max,iy_min,iy_max;
+	public int ix_min,ix_max,iy_min,iy_max;
 	
 	// ==== Settings for visualization of different things
 	
@@ -53,14 +50,16 @@ public class GraphicsCanvas extends JPanel {
 		tile_size      = sz;
 		tile_size_half = tile_size >> 1;
 		inv_tile_size  = 1.0f / tile_size;
-		tiles_per_screen_x = (int)( Width  * inv_tile_size );
-		tiles_per_screen_y = (int)( Height * inv_tile_size );
+		tiles_per_screen_x = (int)( getWidth()  * inv_tile_size );
+		tiles_per_screen_y = (int)( getHeight() * inv_tile_size );
 		System.out.println( tile_size+" "+tile_size_half+" "+inv_tile_size+" "+tiles_per_screen_x+" "+tiles_per_screen_y );
 		scroolTo( ix_min, ix_max );
 	}
 	
-	public float screen2map_x( int ix ){ return ix * inv_tile_size  - ix_min; 	}
-	public float screen2map_y( int iy ){ return iy * inv_tile_size  - iy_min; }
+	public float screen2map_x( int x    ){ return x * inv_tile_size  + ix_min; }
+	public float screen2map_y( int y    ){ return y * inv_tile_size  + iy_min; }
+	public int   map2screen_x( float ix ){ return (int)(( ix - ix_min ) * tile_size); }
+	public int   map2screen_y( float iy ){ return (int)(( iy - iy_min ) * tile_size); }
 	
 	
 	public int tileHash( int sx, int sy ){
@@ -79,12 +78,12 @@ public class GraphicsCanvas extends JPanel {
 	
 	public boolean tileInView( int ix, int iy ){
 		//System.out.println( ix+" "+iy+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
-		return ( ix < ix_max ) && ( (ix+1) > ix_min ) && ( iy < iy_max ) && ( (iy+1) > iy_min ); 
+		return ( ix < ix_max ) && ( ix > (ix_min-1) ) && ( iy < iy_max ) && ( iy > (iy_min-1) ); 
 	}
 	
 	public boolean boxInView( int ix1, int iy1, int ix2, int iy2 ){
-		System.out.println( ix1+" "+ix2+" "+iy1+" "+iy2+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
-		return ( ( ix1 < ix_max ) && ( (ix2+1) > ix_min ) ) && ( ( iy1 < iy_max ) && ( (iy2+1) > iy_min ) ); 
+		//System.out.println( ix1+" "+ix2+" "+iy1+" "+iy2+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
+		return ( ( ix1 < ix_max ) && ( ix2 > (ix_min-1) ) ) && ( ( iy1 < iy_max ) && ( iy2 > (iy_min-1) ) ); 
 	}
 	
 	/*
@@ -95,7 +94,10 @@ public class GraphicsCanvas extends JPanel {
 	public void scroolTo( int ix, int iy ){
 		ix_min = ix;            iy_min = iy;
 		ix_max = ix_min + tiles_per_screen_x;   iy_max = iy_min + tiles_per_screen_y;
+		System.out.println( "scroolTo: "+ix_min+" "+iy_min+" "+ix_max+" "+iy_max );
 	}
+	
+	public void scroolBy( int dix, int diy ){	scroolTo( ix_min+dix, iy_min+diy );	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -107,6 +109,8 @@ public class GraphicsCanvas extends JPanel {
 	public void paint( Graphics g ) {
 		//Create Graphics2D object, cast g as a Graphics2D
 		g2 = (Graphics2D) g;
+		g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, getWidth(), getHeight() );
 		/*
 		g2.setColor(Color.ORANGE);
 		g2.fillRect(0, 0, 150, 150);

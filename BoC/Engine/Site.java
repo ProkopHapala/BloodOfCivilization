@@ -39,13 +39,15 @@ public class Site implements StringIO, Drawable {
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
 		int sz = canvas.tile_size;		
-		System.out.println( "site.paint "+ix+" "+iy+" " );
+		//System.out.println( "site.paint "+ix+" "+iy+" " );
+		int sx = canvas.map2screen_x( ix );
+		int sy = canvas.map2screen_y( iy );
 		if( type.sprite != null ){
 			//g2.drawImage( type.img, ix*sz, iy*sz, null );
-			type.sprite.paint( ix*sz, iy*sz, canvas);
+			type.sprite.paint( sx, sy, canvas);
 		}else{
 			g2.setColor( type.color );
-			g2.fillRect( ix*sz, iy*sz, sz, sz );
+			g2.fillRect( sx, sy, sz, sz );
 		};	
 		if( city != null ){	city.paint( canvas );	}
     }

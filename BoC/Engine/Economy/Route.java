@@ -96,11 +96,15 @@ public class Route extends GameObject implements  Drawable{
 	public void paint( GraphicsCanvas canvas ) {
 		int sz  = canvas.tile_size;
 		int hsz = canvas.tile_size_half; 
+		int sx1 = canvas.map2screen_x( city_from.site.ix );
+		int sy1 = canvas.map2screen_y( city_from.site.iy );
+		int sx2 = canvas.map2screen_x( city_to.site.ix   );
+		int sy2 = canvas.map2screen_y( city_to.site.iy   );
 		Graphics2D g2 = canvas.g2;
 		g2.setColor ( canvas.route_color  );
 		g2.setStroke( canvas.route_stroke );
-		g2.drawLine ( city_from.site.ix*sz + hsz, city_from.site.iy*sz + hsz, city_to.site.ix*sz + hsz, city_to.site.iy*sz + hsz );
-		g2.fillOval( city_from.site.ix*sz+hsz-4, city_from.site.ix*sz+hsz-4, 8, 8 );
+		g2.drawLine ( sx1 + hsz, sy1 + hsz,  sx2+ hsz, sy2 + hsz );
+		g2.fillOval( sx1+hsz-4, sy1+hsz-4, 8, 8 );
     }
 	
 	// ========= Constructor

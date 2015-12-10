@@ -7,6 +7,7 @@ import BoC.Engine.*;
 import BoC.utils.*;
 
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 
 class GameUI {
 	
@@ -77,6 +78,27 @@ class GameUI {
 			case SITE_MODE:
 		}
 	}
+	
+	
+	// ========== Keyboard
+	
+	public static void keyPressed( int keyCode ){
+		switch( keyCode ){
+			case KeyEvent.VK_S: 
+				System.out.println( " [S]-key: save worldMap " );
+				FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
+				break;
+			case KeyEvent.VK_L: 
+				System.out.println( " [L]-key: load worldMap " );
+				FileSystem.loadFromTxt  ( "map.txt", Globals.worldMap );
+				break;
+			case KeyEvent.VK_UP:     GameMain.canvas.scroolBy(  0, 1 ); break;
+            case KeyEvent.VK_DOWN:   GameMain.canvas.scroolBy(  0,-1 ); break;
+            case KeyEvent.VK_LEFT:   GameMain.canvas.scroolBy(  1, 0 ); break;
+            case KeyEvent.VK_RIGHT : GameMain.canvas.scroolBy( -1, 0 ); break;
+		}
+	}
+	
 	
 	// =========== rutines
 		
