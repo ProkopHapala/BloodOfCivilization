@@ -24,6 +24,9 @@ public class GameMain extends JFrame {
 	public static GameKeyListener   keyListener;
 	public static GameMouseListener mouseListener;
 	
+	int iframe = 0;
+	
+	
 	public void setFullscreen() {
 		setVisible(false);
 		setExtendedState( this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -85,8 +88,10 @@ public class GameMain extends JFrame {
 	}
 	
 	public void run() {
+		
 		while (true) {
-			
+			iframe ++;
+			System.out.println( " ============= frame: "+iframe );
 			Globals.update();  
 			//System.exit(0);
 			
@@ -96,7 +101,9 @@ public class GameMain extends JFrame {
 			canvas.repaint();
 			//GlobalVars.ACTUAL_SPEED = GlobalVars.GAME_SPEED - timeWait;
 			//GlobalVars.INFO = "CPU used: " + GlobalVars.getProfile().CPUs + " desired speed: " + GlobalVars.GAME_SPEED + " act. speed: " + GlobalVars.ACTUAL_SPEED + " wait:" + timeWait + " real game speed: " + diff2 + " comp: " + diff + " FPS: " + 1000 / (1 + GlobalVars.PLAYER.graphics.actual_fps);
+			
 			try{ Thread.sleep(10); }catch (Exception e){};
+			break;
 		}
 	}
 	

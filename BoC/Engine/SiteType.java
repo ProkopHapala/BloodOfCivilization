@@ -1,6 +1,8 @@
 package BoC.Engine;
 
 import BoC.utils.FileSystem;
+import BoC.utils.Sprite;
+
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 
@@ -12,9 +14,12 @@ public class SiteType extends GameObject {
 	public double water;
 	
 	Color color = null;
+	/*
 	//String imgName = "img/ground_Grass.png";
 	String         imgName = "img/ground_Grass.png";
 	BufferedImage  img = null; 
+	*/
+	Sprite sprite;
 	
 	// ========== IO
 	
@@ -34,8 +39,11 @@ public class SiteType extends GameObject {
 		water           = Double.parseDouble( words[5] );
 		
 		if( words[6].charAt(0) == 'i' ){
+			/*
 			imgName         = words[6];
 			this.img = FileSystem.loadImage( imgName );
+			*/
+			sprite = new Sprite( words[6] );
 		}else{
 			int c = Integer.parseInt( words[6], 16);
 			color = new Color( c );

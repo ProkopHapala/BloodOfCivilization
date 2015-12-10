@@ -17,6 +17,9 @@ public class GraphicsCanvas extends JPanel {
 
 	public Graphics2D g2;
 	
+	
+	public static final int default_tile_size = 16;
+	
 	public int Width = 1024;
 	public int Height = 768;
 
@@ -52,7 +55,8 @@ public class GraphicsCanvas extends JPanel {
 		inv_tile_size  = 1.0f / tile_size;
 		tiles_per_screen_x = (int)( Width  * inv_tile_size );
 		tiles_per_screen_y = (int)( Height * inv_tile_size );
-		
+		System.out.println( tile_size+" "+tile_size_half+" "+inv_tile_size+" "+tiles_per_screen_x+" "+tiles_per_screen_y );
+		scroolTo( ix_min, ix_max );
 	}
 	
 	public float screen2map_x( int ix ){ return ix * inv_tile_size  - ix_min; 	}
@@ -73,10 +77,24 @@ public class GraphicsCanvas extends JPanel {
 		return Globals.worldMap.getSite( ix, iy );
 	}
 	
+	public boolean tileInView( int ix, int iy ){
+		//System.out.println( ix+" "+iy+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
+		return ( ix < ix_max ) && ( (ix+1) > ix_min ) && ( iy < iy_max ) && ( (iy+1) > iy_min ); 
+	}
+	
+	public boolean boxInView( int ix1, int iy1, int ix2, int iy2 ){
+		System.out.println( ix1+" "+ix2+" "+iy1+" "+iy2+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
+		return ( ( ix1 < ix_max ) && ( (ix2+1) > ix_min ) ) && ( ( iy1 < iy_max ) && ( (iy2+1) > iy_min ) ); 
+	}
+	
+	/*
+	public boolean lineInView( int ix1, int iy1, int ix2, int iy2 ){
+	}
+	*/
 	
 	public void scroolTo( int ix, int iy ){
 		ix_min = ix;            iy_min = iy;
-		iy_max = ix_min + tiles_per_screen_x;   iy_max = iy_min + tiles_per_screen_y;
+		ix_max = ix_min + tiles_per_screen_x;   iy_max = iy_min + tiles_per_screen_y;
 	}
 	
 	@Override

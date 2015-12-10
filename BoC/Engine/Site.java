@@ -39,8 +39,10 @@ public class Site implements StringIO, Drawable {
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
 		int sz = canvas.tile_size;		
-		if( type.img != null ){
-			g2.drawImage( type.img, ix*sz, iy*sz, null );
+		System.out.println( "site.paint "+ix+" "+iy+" " );
+		if( type.sprite != null ){
+			//g2.drawImage( type.img, ix*sz, iy*sz, null );
+			type.sprite.paint( ix*sz, iy*sz, canvas);
 		}else{
 			g2.setColor( type.color );
 			g2.fillRect( ix*sz, iy*sz, sz, sz );
