@@ -37,6 +37,7 @@ public class Sprite {
 		g2d.drawImage( original, 0, 0, w, h, null);
 		g2d.dispose();
 		actual = new_image;
+		//System.out.println( "Sprite.resize "+name );
 	}
 	
 	public void checkCanvas( GraphicsCanvas canvas ){

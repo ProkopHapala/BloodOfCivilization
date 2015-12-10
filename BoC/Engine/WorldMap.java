@@ -117,10 +117,10 @@ public class WorldMap implements TxtStorable, Drawable {
 			for ( Site site : block ){	
 				if( site !=null ){
 					//System.out.println( site.ix +" "+ site.iy +" "+ canvas.tileInView( site.ix, site.iy ));
-					if( canvas.tileInView( site.ix, site.iy ) ){
+					//if( canvas.tileInView( site.ix, site.iy ) ){
 						site.paint( canvas ); 
 						n_painted++;
-					}
+					//}
 				}
 			}
 		}
@@ -136,11 +136,11 @@ public class WorldMap implements TxtStorable, Drawable {
 			int ibx = block_x( i );
 			int iby = block_y( i );
 			//System.out.println( "Map block "+i+" "+ibx+" "+iby );
-			if ( canvas.boxInView( ibx, iby, ibx+block_side_n, iby+block_side_n ) ){
+			//if ( canvas.boxInView( ibx, iby, ibx+block_side_n, iby+block_side_n ) ){
 				//System.out.println( "Map block "+i+" "+ibx+" "+iby+" " );
 				nt_painted += paintBlock( canvas, sites[i] );
 				nb_painted++;
-			}
+			//}
 		}
 		//System.out.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
 	}

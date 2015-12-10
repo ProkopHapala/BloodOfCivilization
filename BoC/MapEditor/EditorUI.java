@@ -34,6 +34,10 @@ class EditorUI {
 	static Army     selected_army     = null;
 	static City     selected_city     = null;
 	
+	
+	static public int scrool_speed = 1;
+	
+	
 	public static void LMB_pressed( ){
 		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
@@ -134,6 +138,8 @@ class EditorUI {
             case KeyEvent.VK_DOWN:   EditorMain.canvas.scroolBy(  0,-1 ); break;
             case KeyEvent.VK_LEFT:   EditorMain.canvas.scroolBy(  1, 0 ); break;
             case KeyEvent.VK_RIGHT : EditorMain.canvas.scroolBy( -1, 0 ); break;
+			case KeyEvent.VK_ADD      : zoom( 2.0f ); break;
+			case KeyEvent.VK_SUBTRACT : zoom( 0.5f ); break;
 		}
 	}
 	
@@ -141,6 +147,16 @@ class EditorUI {
 	
 	
 	// =========== rutines
+	
+	static void zoom( float f ){
+		EditorMain.canvas.setTileSize( (int)( EditorMain.canvas.tile_size * f ) ); 
+		if ( EditorMain.canvas.tile_size < GraphicsCanvas.default_tile_size ){
+			scrool_speed = (int) ( GraphicsCanvas.default_tile_size / EditorMain.canvas.tile_size );
+		}else{
+			scrool_speed = 1;
+		}
+		System.out.println( scrool_speed+" "+EditorMain.canvas.tile_size  );
+	}
 	
 	
 	

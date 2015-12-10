@@ -46,14 +46,14 @@ public class GraphicsCanvas extends JPanel {
 	
 	
 	public void setTileSize( int sz ){
-		if( (sz & 1)==1 ){ sz++; }
-		tile_size      = sz;
-		tile_size_half = tile_size >> 1;
-		inv_tile_size  = 1.0f / tile_size;
+		//if( ( sz & 1)==1 ){ sz++; }
+		tile_size          = sz;
+		tile_size_half     = tile_size >> 1;
+		inv_tile_size      = 1.0f / tile_size;
 		tiles_per_screen_x = (int)( getWidth()  * inv_tile_size );
 		tiles_per_screen_y = (int)( getHeight() * inv_tile_size );
 		System.out.println( tile_size+" "+tile_size_half+" "+inv_tile_size+" "+tiles_per_screen_x+" "+tiles_per_screen_y );
-		scroolTo( ix_min, ix_max );
+		scroolBy( 0, 0 );
 	}
 	
 	public float screen2map_x( int x    ){ return x * inv_tile_size  + ix_min; }

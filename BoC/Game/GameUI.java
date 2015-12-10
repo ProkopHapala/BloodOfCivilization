@@ -28,6 +28,9 @@ class GameUI {
 	static Army selected_army = null;
 	static City selected_city = null;
 	
+	static public int scrool_speed = 1;
+	
+	
 	public static void LMB_pressed( ){
 		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
@@ -84,14 +87,26 @@ class GameUI {
 	
 	public static void keyPressed( int keyCode ){
 		switch( keyCode ){
-			case KeyEvent.VK_UP:     GameMain.canvas.scroolBy(  0, 1 ); break;
-            case KeyEvent.VK_DOWN:   GameMain.canvas.scroolBy(  0,-1 ); break;
-            case KeyEvent.VK_LEFT:   GameMain.canvas.scroolBy(  1, 0 ); break;
-            case KeyEvent.VK_RIGHT : GameMain.canvas.scroolBy( -1, 0 ); break;
+			case KeyEvent.VK_UP       : GameMain.canvas.scroolBy(  0, scrool_speed ); break;
+            case KeyEvent.VK_DOWN     : GameMain.canvas.scroolBy(  0,-scrool_speed ); break;
+            case KeyEvent.VK_LEFT     : GameMain.canvas.scroolBy(  scrool_speed, 0 ); break;
+            case KeyEvent.VK_RIGHT    : GameMain.canvas.scroolBy( -scrool_speed, 0 ); break;
+			case KeyEvent.VK_ADD      : zoom( 2.0f ); break;
+			case KeyEvent.VK_SUBTRACT : zoom( 0.5f ); break;
 		}
 	}
 	
 	
 	// =========== rutines
+	
+	static void zoom( float f ){
+		GameMain.canvas.setTileSize( (int)( GameMain.canvas.tile_size * f ) ); 
+		if ( GameMain.canvas.tile_size < GraphicsCanvas.default_tile_size ){
+			scrool_speed = (int) ( GraphicsCanvas.default_tile_size / GameMain.canvas.tile_size );
+		}else{
+			scrool_speed = 1;
+		}
+		System.out.println( scrool_speed+" "+GameMain.canvas.tile_size  );
+	}
 		
 }
