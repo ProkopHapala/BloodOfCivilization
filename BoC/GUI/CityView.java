@@ -64,25 +64,28 @@ public class CityView extends JPanel {
 		}
 	}
 	
+	public void forceSize( int szx, int szy, JComponent comp ){
+		comp.setPreferredSize( new Dimension( szx, szy ) );
+		comp.setMaximumSize  ( new Dimension( szx, szy ) );
+		comp.setMinimumSize  ( new Dimension( szx, szy ) );
+	};
 	
 	public void addLabeledBox( String label_str, JTextField valField, JPanel labelPane, JPanel valuePane ){
 		JLabel label  = new JLabel( label_str );
 		label.setLabelFor( valField );
 		labelPane.add( label    );
-		//valField.setSize( 100, 10 );
-		//label   .setAlignmentY( Component.TOP_ALIGNMENT );
-		//valField.setAlignmentY( Component.TOP_ALIGNMENT );
-		//valField.setSize( 100, 10 );
+		forceSize( 100, 20, label );
+		forceSize( 100, 20, valField );
 		valuePane.add( valField );
 	}
 		
 	public JComponent makeCityPanel( ){
 
-		JPanel labelPane = new JPanel( new GridLayout(0,1) );
-	    JPanel valuePane = new JPanel( new GridLayout(0,1) );
+		//JPanel labelPane = new JPanel( new GridLayout(0,1) );
+	    //JPanel valuePane = new JPanel( new GridLayout(0,1) );
 		
-		//JPanel labelPane = new JPanel( ); labelPane.setLayout( new BoxLayout( labelPane, BoxLayout.Y_AXIS )  );
-	    //JPanel valuePane = new JPanel( ); valuePane.setLayout( new BoxLayout( valuePane, BoxLayout.Y_AXIS )  );
+		JPanel labelPane = new JPanel( ); labelPane.setLayout( new BoxLayout( labelPane, BoxLayout.Y_AXIS )  );
+	    JPanel valuePane = new JPanel( ); valuePane.setLayout( new BoxLayout( valuePane, BoxLayout.Y_AXIS )  );
 		
 		//panel.setLayout(new GridBagLayout());
 		//panel.setLayout(new GridBagLayout());
