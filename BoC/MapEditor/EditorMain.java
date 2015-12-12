@@ -1,8 +1,12 @@
 
 package BoC.MapEditor;
 
-import BoC.Engine.*;
+import BoC.Engine.Globals;
+import BoC.Engine.GraphicsCanvas;
+import BoC.Engine.City;
+import BoC.Engine.Military.Army;
 import BoC.GUI.CityView;
+import BoC.GUI.ArmyView;
 
 import java.awt.Point;
 
@@ -31,6 +35,7 @@ public class EditorMain extends JFrame implements KeyListener, MouseListener, Mo
 	public static String INFO = " Blood of Civilization v " + version + " - Made by Prokop Hapala ";
 	
 	static CityView cityView;
+	static ArmyView armyView;
 	
 	
 	// ========== Instanciated part
@@ -69,9 +74,16 @@ public class EditorMain extends JFrame implements KeyListener, MouseListener, Mo
 		
 
 		cityView = new CityView();
+		cityView.frame.setLocation( this.getWidth(), 0 );
 		City city = Globals.cities.values().iterator().next();
 		//System.out.print( city );
 		cityView.setCity( city );
+		
+		armyView = new ArmyView();
+		armyView.frame.setLocation( this.getWidth(), 400 );
+		Army army = Globals.armies.values().iterator().next();
+		//System.out.print( city );
+		armyView.setArmy( army );
 		
 		EditorUI.selected_siteType = Globals.siteTypes.get( "plain" );
 					

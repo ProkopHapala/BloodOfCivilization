@@ -1,6 +1,7 @@
 package BoC.Game;
 
 import BoC.Engine.*;
+import BoC.Engine.Military.*;
 
 import BoC.GUI.*;
 
@@ -44,6 +45,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 	
 	
 	static CityView cityView;
+	static ArmyView armyView;
 	
 	
 	// =============== INITIALIZATION
@@ -98,11 +100,25 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		//System.out.print( city );
 		cityView.setCity( city );
 		
+		armyView = new ArmyView();
+		armyView.frame.setLocation( this.getWidth(), 400 );
+		Army army = Globals.armies.values().iterator().next();
+		//System.out.print( city );
+		armyView.setArmy( army );
+		
+		this.toFront();
+		this.requestFocus(); 
+		//this.setF
+		
 	}
 	
 	// =============== PER FRAME
 	
 	public void run() {
+		
+		int frameDelay      =  10;                             // [ milisecond ]
+		int lazyUpdateDelay =  500;                            // [ milisecond ]
+		int framesPerLazy   =  lazyUpdateDelay / frameDelay ;  // [ 1 ]
 		
 		while (true) {
 			iframe ++;
@@ -117,7 +133,11 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 			//GlobalVars.ACTUAL_SPEED = GlobalVars.GAME_SPEED - timeWait;
 			//GlobalVars.INFO = "CPU used: " + GlobalVars.getProfile().CPUs + " desired speed: " + GlobalVars.GAME_SPEED + " act. speed: " + GlobalVars.ACTUAL_SPEED + " wait:" + timeWait + " real game speed: " + diff2 + " comp: " + diff + " FPS: " + 1000 / (1 + GlobalVars.PLAYER.graphics.actual_fps);
 			
-			try{ Thread.sleep(10); }catch (Exception e){};
+			if( ( iframe % framesPerLazy ) == 0 ) {
+				GameUI.update( );
+			}
+			
+			try{ Thread.sleep( 10 ); }catch (Exception e){};
 			//break;
 		}
 	}

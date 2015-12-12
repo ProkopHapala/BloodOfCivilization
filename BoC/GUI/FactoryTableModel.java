@@ -20,7 +20,7 @@ public class FactoryTableModel extends AbstractTableModel{
 		if( data_ != null ){
 			data = new ArrayList ( data_ );
 			fireTableDataChanged();
-			System.out.println( "FactoryTableModel.setData : "+data );
+			//System.out.println( "FactoryTableModel.setData : "+data );
 		}
 	}
 

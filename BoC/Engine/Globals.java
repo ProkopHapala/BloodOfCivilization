@@ -163,8 +163,41 @@ public class Globals {
 	}
 	
 	public static void initArmies(){
+		
+		BufferedReader reader = FileSystem.getReader( "Armies.txt" );
+		String line;
+		try{
+			while( true ){
+				while ( true ){
+					line = reader.readLine();
+					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
+				}
+				//System.out.println( "initCities City       Line: "+line );	
+				//Debugger.log("message here");
+				Army army = new Army( line );
+				armies.put( army.name, army );
+	
+				line = reader.readLine(); 
+				//System.out.println( "initCities comodities Line: "+line );	
+				line = line.substring( line.indexOf(":")+1 );
+				FileSystem.MapFromString( army.comodities, comodityTypes, line, ";", ComodityManager.class );
+				System.out.println( "initArmies army.comodities >>>> "+army.comodities );
+				
+				line = reader.readLine(); 
+				//System.out.println( "initCities comodities Line: "+line );	
+				line = line.substring( line.indexOf(":")+1 );
+				FileSystem.MapFromString( army.brigades, combatantTypes, line, ";", Brigade.class );											
+				System.out.println( "initArmies army.brigades >>>> "+army.brigades );
+				//army.reassingBrigades();
+				
+			}
+		} catch (Exception e) { e.printStackTrace(); };
+		
+		
+		
+		/*
 		Brigade brigade;
-			
+		
 		Army army1 = new Army( "army1", 18, 19 );   armies.put( army1.name, army1 );
 		brigade  = new Brigade( combatantTypes.get("Tank"), army1, 5 );  
 		army1.brigades.put( brigade.type, brigade );
@@ -174,6 +207,10 @@ public class Globals {
 		army2.brigades.put( brigade.type, brigade );
 		
 		army1.setTarget( worldMap.getSite( 10, 5 ) );
+		*/
+		
+		
+		
 		
 	}
 	

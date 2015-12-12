@@ -16,7 +16,7 @@ import java.util.*;
 public class Army extends GameObject implements Drawable {
 	public Player owner;
     public HashMap<CombatantType,Brigade>        brigades;
-	public HashMap<ComodityType,ComodityManager> store;
+	public HashMap<ComodityType,ComodityManager> comodities;
 	
 	public Site site;
 	public double x,y;	// exact position  ?
@@ -93,6 +93,29 @@ public class Army extends GameObject implements Drawable {
 	
 	// ================= IO
 	
+	@Override
+	public String toString(){
+		return name+" "+x+" "+y+" "+organized;
+	}
+	
+	@Override
+	public void fromString( String s ){
+		//System.out.println( s );
+		String [] words = s.split("\\s+");
+		name          =                      words[0]  ;
+		double x_     = Double.parseDouble(  words[1] );
+		double y_     = Double.parseDouble(  words[2] );   
+		organized     = Double.parseDouble(  words[3] );         
+		
+		setPos( x_, y_ );
+	}
+	
+	/*
+	public void reassingBrigades(){
+		for( Brigade b : brigades.values() ){ b.assignToArmy( this );	}
+	}
+	*/
+	
 	// ================= Graphics
 	
 	@Override
@@ -109,12 +132,12 @@ public class Army extends GameObject implements Drawable {
 	// ========== Constructor
 	
 	public void init(){
-		brigades = new HashMap<>();
-		store    = new HashMap<>();
+		brigades    = new HashMap<>();
+		comodities  = new HashMap<>();
 	}
 	
 	public Army( ){ init(); }
-	
+	public Army( String s ){ init(); fromString( s );  }
 	public Army( String name_, double x_, double y_ ){
 		init();
 		name = name_;

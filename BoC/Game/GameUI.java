@@ -37,7 +37,7 @@ class GameUI {
 		switch( mode ){
 			case SITE_MODE: break;
 			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); GameMain.cityView.setCity(selected_city); GameMain.cityView.frame.setVisible(true); break;
-			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); break;
+			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); GameMain.armyView.setArmy(selected_army); GameMain.armyView.frame.setVisible(true); break;
 		}
 	}
 	
@@ -122,6 +122,13 @@ class GameUI {
 			case KeyEvent.VK_ADD      : zoom( 2.0f ); break;
 			case KeyEvent.VK_SUBTRACT : zoom( 0.5f ); break;
 		}
+	}
+	
+	// ========== Per Frame Update
+	
+	static void update(){
+		// FIXME: TODO: Generating the table each frame could be very performance intensive !!! Find better solution  
+		if( ( selected_army != null ) && ( GameMain.armyView.frame.isVisible() ) ){ GameMain.armyView.setArmy(selected_army); }
 	}
 	
 	

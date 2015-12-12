@@ -1,13 +1,16 @@
 
 package BoC.Engine.Military;
 
+import BoC.utils.StringIO;
 import BoC.Engine.GameObject;
 import BoC.Engine.Globals;
 import BoC.Engine.Site;
 import java.util.*;
 
-public class Brigade extends GameObject {
-    
+//public class Brigade extends GameObject {
+
+public class Brigade implements StringIO {
+	
 	// ==== Static
 	
 	// ==== State Variables
@@ -140,30 +143,46 @@ public class Brigade extends GameObject {
 	// ========== IO
 	
 	@Override
+	public String getName(){
+		return type.name;
+	}
+	
+	@Override
 	public String toString(){
-		return army+" "+type+" "+n_tot+" "+n_capable+" "+n_alive;
+		//return army+" "+type+" "+n_tot+" "+n_capable+" "+n_alive;
+		return type.name+" "+n_tot+" "+n_capable+" "+n_alive;
 	}
 	
 	@Override
 	public void fromString( String s ){
+		System.out.println( "Brigade.fromString  "+ s );
+		s = s.trim();
 		String [] words = s.split("\\s+");
-		army      = Globals.armies.get( words[0] );
-		type      = Globals.combatantTypes.get( words[1] );  
-		n_tot     = Integer.parseInt( words[2] );      
+		//army      = Globals.armies.get( words[0] );
+		type      = Globals.combatantTypes.get( words[0] );  
+		n_tot     = Integer.parseInt( words[1] );      
 		n_capable = Integer.parseInt( words[2] );     
-		n_alive   = Integer.parseInt( words[2] );     			
+		n_alive   = Integer.parseInt( words[3] );     			
 	}
 	
+	
+	/*
 	public void makeName( ){
 		name = army.name+"/"+type.name;
 	}
+	
+	public void assignToArmy( Army army_ ){
+		army = army_;
+		makeName( );
+	}
+	*/
 	
 	// ========== Constructor
 	public Brigade(  ){}
 	public Brigade( CombatantType type_, Army army_, int n ){
 		army = army_;
 		type = type_;
-		makeName();
+		//makeName();
 		n_tot = n;
 		n_capable = n_tot;
 		n_alive   = n_tot;	

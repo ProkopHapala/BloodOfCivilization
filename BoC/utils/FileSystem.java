@@ -36,13 +36,13 @@ public class FileSystem {
 	
 	public static < DTYPE, CLASS extends StringIO> 
 	void MapFromString( Map<DTYPE, CLASS> mp, Map<String,DTYPE> dict, String s, String separator, Class<CLASS> clazz ) {
-		//System.out.println( "++++ >>"+separator+"<< , >>"+s+"<<" );
+		System.out.println( "++++ >>"+separator+"<< , >>"+s+"<<" );
 		try{
 			for (String item_str : s.split( separator )) {
-				//System.out.println( item_str );
+				System.out.println( item_str );
 				CLASS item = clazz.newInstance();
 				item.fromString( item_str );
-				//System.out.println( " item: "+item );
+				System.out.println( " item: "+item );
 				DTYPE type = dict.get( item.getName() );
 				mp.put( type, item );
 			}

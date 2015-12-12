@@ -43,7 +43,7 @@ class EditorUI {
 		switch( mode ){
 			case SITE_MODE: drawTile  ( mousePos_pressed.x, mousePos_pressed.y, selected_siteType );	break;
 			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); EditorMain.cityView.setCity(selected_city); EditorMain.cityView.frame.setVisible(true); break;
-			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); break;
+			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); EditorMain.armyView.setArmy(selected_army); EditorMain.armyView.frame.setVisible(true);break;
 		}
 	}
 		
