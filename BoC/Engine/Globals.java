@@ -65,10 +65,9 @@ public class Globals {
 		//FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
 		
-		/*
 		initCombatantTypes();
 		initArmies();
-		*/
+		
 	}
 	
 	public static void initSiteTypes(){

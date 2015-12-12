@@ -93,6 +93,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		// ====== this is testing playgorund
 		
 		cityView = new CityView();
+		cityView.frame.setLocation( this.getWidth(), 0 );
 		City city = Globals.cities.values().iterator().next();
 		//System.out.print( city );
 		cityView.setCity( city );

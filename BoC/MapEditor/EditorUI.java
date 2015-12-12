@@ -15,7 +15,7 @@ class EditorUI {
 	final static int CITY_MODE = 2;
 	final static int ARMY_MODE = 3;
 	
-	static int mode = 1;
+	static int mode = SITE_MODE;
 	
 	public static boolean recordMouseMove = false; // just for optimization ? 
 	public static boolean recordMouseDrag = true; // just for optimization ? 
@@ -41,10 +41,8 @@ class EditorUI {
 	public static void LMB_pressed( ){
 		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
-			case SITE_MODE:
-				if( selected_siteType != null ){ changeSiteType(  mousePos_pressed.x, mousePos_pressed.y, selected_siteType ); 	}
-				break;
-			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); break;
+			case SITE_MODE: drawTile  ( mousePos_pressed.x, mousePos_pressed.y, selected_siteType );	break;
+			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); EditorMain.cityView.setCity(selected_city); EditorMain.cityView.frame.setVisible(true); break;
 			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); break;
 		}
 	}
@@ -75,16 +73,7 @@ class EditorUI {
 	
 	public static void LMB_dragged( int mx, int my ){
 		switch( mode ){
-			case SITE_MODE:
-				if( selected_siteType != null ){ 
-					int tileHash = EditorMain.canvas.tileHash( mx, my );
-					if( tileHash != lastDragTileHash ){
-						System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y+" "+tileHash+" "+lastDragTileHash );
-						changeSiteType(  mx, my, selected_siteType ); 
-						lastDragTileHash = tileHash;
-					}
-				}
-				break;
+			case SITE_MODE: drawTile( mx, my, selected_siteType );	break;
 			case CITY_MODE: break;
 			case ARMY_MODE: break;
 		}
@@ -141,7 +130,7 @@ class EditorUI {
 		}
 	}
 		
-	// =========== rutines
+	// =========== Operations
 	
 	static void zoom( float f ){
 		EditorMain.canvas.setTileSize( (int)( EditorMain.canvas.tile_size * f ) ); 
@@ -195,7 +184,16 @@ class EditorUI {
 		}
 	}
 	
-	// =========== Operations
+	static void drawTile( int mx, int my, SiteType siteType ){
+		if( siteType != null ){ 
+			int tileHash = EditorMain.canvas.tileHash( mx, my );
+			if( tileHash != lastDragTileHash ){
+				//System.out.println( " LMB_pressed " + mx +" "+ my+" "+tileHash+" "+lastDragTileHash );
+				changeSiteType(  mx, my, siteType ); 
+				lastDragTileHash = tileHash;
+			}
+		}
+	}
 	
 	static void changeSiteType( int ix, int iy, SiteType siteType ){
 		System.out.println( "changeSiteType "+ix+" "+iy+" "+siteType.name );
@@ -208,7 +206,7 @@ class EditorUI {
 		site.type = siteType;
 	}
 	
-	
+	// =========== rutines
 	
 		
 }

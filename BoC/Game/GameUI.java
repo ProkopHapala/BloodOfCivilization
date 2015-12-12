@@ -24,7 +24,7 @@ class GameUI {
 	final static int ARMY_MODE = 3;
 	
 	
-	static int mode = 1;
+	static int mode = ARMY_MODE;
 	
 	static Army selected_army = null;
 	static City selected_city = null;
@@ -36,7 +36,7 @@ class GameUI {
 		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
 			case SITE_MODE: break;
-			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); GameMain.cityView.setCity(selected_city); break;
+			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); GameMain.cityView.setCity(selected_city); GameMain.cityView.frame.setVisible(true); break;
 			case ARMY_MODE: selectArmy( mousePos_pressed.x, mousePos_pressed.y ); break;
 		}
 	}
@@ -125,7 +125,7 @@ class GameUI {
 	}
 	
 	
-	// =========== rutines
+	// =========== Operations
 	
 	static void zoom( float f ){
 		GameMain.canvas.setTileSize( (int)( GameMain.canvas.tile_size * f ) ); 
@@ -163,14 +163,6 @@ class GameUI {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// =========== rutines
 		
 }

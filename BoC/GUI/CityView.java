@@ -3,11 +3,15 @@ package BoC.GUI;
 
 import BoC.Engine.City;
 import java.awt.Color;
+import java.awt.Component;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
@@ -18,29 +22,32 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 
+import javax.swing.SwingConstants;
+
 public class CityView extends JPanel {
 	
-	City               city;
+	public City               city;
 	
-	ComodityTableModel comodityModel;
-	FactoryTableModel factoryModel;
+	public ComodityTableModel comodityModel;
+	public FactoryTableModel factoryModel;
 	//ComodityTableModel factoryModel;
 	
-	JTable      comodityTable;
-	JTable      factoryTable;
-	JScrollPane comodityScroll;
-	JScrollPane factoryScroll;
-	JTabbedPane tabbedPane;
-	JFrame      frame;
+	public JTable      comodityTable;
+	public JTable      factoryTable;
+	public JScrollPane comodityScroll;
+	public JScrollPane factoryScroll;
+	public JTabbedPane tabbedPane;
+	public JFrame      frame;
 	
-	JTextField name_field;
-	JFormattedTextField ix_field;
-	JFormattedTextField iy_field;
-	JFormattedTextField factorySpace_field;
-	JFormattedTextField storeSpace_field;
+	public JTextField name_field;
+	public JFormattedTextField ix_field;
+	public JFormattedTextField iy_field;
+	public JFormattedTextField factorySpace_field;
+	public JFormattedTextField storeSpace_field;
 			
 	public void setCity( City city_ ){
-		if( city != city_ ){
+		//if( ( city_ != null ) && ( city_ != city ) ){
+		if( city_ != null ){
 			city  = city_;
 			comodityModel.setData( city.comodities.values() );
 			factoryModel.setData( city.factories.values() );
@@ -62,32 +69,45 @@ public class CityView extends JPanel {
 		JLabel label  = new JLabel( label_str );
 		label.setLabelFor( valField );
 		labelPane.add( label    );
+		//valField.setSize( 100, 10 );
+		//label   .setAlignmentY( Component.TOP_ALIGNMENT );
+		//valField.setAlignmentY( Component.TOP_ALIGNMENT );
+		//valField.setSize( 100, 10 );
 		valuePane.add( valField );
 	}
 		
-	public JPanel makeCityPanel( ){
+	public JComponent makeCityPanel( ){
 
-		JPanel labelPane = new JPanel(new GridLayout(0,1));
-		JPanel valuePane = new JPanel(new GridLayout(0,1));
-
+		JPanel labelPane = new JPanel( new GridLayout(0,1) );
+	    JPanel valuePane = new JPanel( new GridLayout(0,1) );
+		
+		//JPanel labelPane = new JPanel( ); labelPane.setLayout( new BoxLayout( labelPane, BoxLayout.Y_AXIS )  );
+	    //JPanel valuePane = new JPanel( ); valuePane.setLayout( new BoxLayout( valuePane, BoxLayout.Y_AXIS )  );
+		
+		//panel.setLayout(new GridBagLayout());
+		//panel.setLayout(new GridBagLayout());
+		
 		name_field = new JTextField( );
 		addLabeledBox( "name",       name_field,         labelPane, valuePane );
 
 		ix_field = new JFormattedTextField( NumberFormat.getNumberInstance() );
-		addLabeledBox( "ix",         ix_field,         labelPane, valuePane );
+		addLabeledBox( "ix",         ix_field,         labelPane, valuePane);
 
 		iy_field = new JFormattedTextField( NumberFormat.getNumberInstance() );
-		addLabeledBox( "iy",         iy_field,         labelPane, valuePane );
+		addLabeledBox( "iy",         iy_field,         labelPane, valuePane);
 
 		factorySpace_field = new JFormattedTextField( NumberFormat.getNumberInstance() );
-		addLabeledBox( "FactorySpace",  factorySpace_field,         labelPane, valuePane );
+		addLabeledBox( "FactorySpace",  factorySpace_field,         labelPane, valuePane);
 
 		storeSpace_field = new JFormattedTextField( NumberFormat.getNumberInstance() );
 		addLabeledBox( "StoreSapce",    storeSpace_field,         labelPane, valuePane );
 		
+		//JScrollPane cityPanel = new  JScrollPane( ); 
 		JPanel cityPanel = new JPanel(new GridLayout(1,0));
 		cityPanel.add( labelPane );
 		cityPanel.add( valuePane );
+		cityPanel.setSize( 100 , 100 );
+		
 		return cityPanel;
 	}
 	
@@ -98,7 +118,7 @@ public class CityView extends JPanel {
 		
 		tabbedPane = new JTabbedPane();
 		
-		JPanel cityPane = makeCityPanel( );
+		JComponent cityPane = makeCityPanel( );
 		tabbedPane.addTab("City", null, cityPane, "Does nothing");
 		
 		comodityModel = new ComodityTableModel();
@@ -123,7 +143,7 @@ public class CityView extends JPanel {
 		//tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		
         frame = new JFrame("CityView");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
         this.setOpaque(true);
         frame.setContentPane(this);
