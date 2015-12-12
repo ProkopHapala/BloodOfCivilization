@@ -2,6 +2,7 @@
 package BoC.MapEditor;
 
 import BoC.Engine.*;
+import BoC.GUI.CityView;
 
 import java.awt.Point;
 
@@ -28,6 +29,9 @@ public class EditorMain extends JFrame implements KeyListener, MouseListener, Mo
 	// ========== Static part
 	public static String version = "0.0.1";
 	public static String INFO = " Blood of Civilization v " + version + " - Made by Prokop Hapala ";
+	
+	static CityView cityView;
+	
 	
 	// ========== Instanciated part
 	
@@ -62,6 +66,12 @@ public class EditorMain extends JFrame implements KeyListener, MouseListener, Mo
 		setVisible(true); // it is important to put this in right place 
 		
 		canvas.setTileSize( 16 );
+		
+
+		cityView = new CityView();
+		City city = Globals.cities.values().iterator().next();
+		//System.out.print( city );
+		cityView.setCity( city );
 		
 		EditorUI.selected_siteType = Globals.siteTypes.get( "plain" );
 					

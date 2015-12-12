@@ -17,7 +17,8 @@ public class ComodityTableModel extends AbstractTableModel {
 		public void setData( Collection<ComodityManager> data_ ){
 			if( data_ != null ){
 				data = new ArrayList ( data_ );
-				System.out.println( "ComodityTableModel : "+data );
+				fireTableDataChanged();
+				System.out.println( "ComodityTableModel.setData : "+data );
 			}
 		}
 		
@@ -44,7 +45,6 @@ public class ComodityTableModel extends AbstractTableModel {
 			}
 			return null;
 		}
-
 
 		@Override
         public Class getColumnClass(int c) { return getValueAt(0, c).getClass(); }

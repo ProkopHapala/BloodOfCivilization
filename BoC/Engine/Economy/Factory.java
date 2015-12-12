@@ -1,10 +1,11 @@
 package BoC.Engine.Economy;
-        
+
+import BoC.Engine.Globals;
 import BoC.Engine.City;
-import BoC.Engine.GameObject;
+import BoC.utils.StringIO;
 import java.util.*;
 
-public class Factory extends GameObject{
+public class Factory implements StringIO{
     public double size;
 	public double activity;
     public Technology technology;
@@ -60,6 +61,29 @@ public class Factory extends GameObject{
 		technology.consume_units( n_units, city );
 		technology.produce_units( n_units, city );
 		return n_units;
+	}
+	
+	// ========== IO
+	
+	@Override
+	public String getName(){
+		return technology.name;
+	}
+		
+	@Override
+	public String toString(){
+		return technology.name+" "+size+" "+activity;
+	}
+	
+	@Override
+	public void fromString( String s ){
+		//System.out.println( "ComodityManager.fromString"+ s );
+		s = s.trim();
+		String [] words = s.split("\\s+");
+		//System.out.println( "ComodityManager.fromString: "+ words[0] +";"+ words[1] +";"+ words[2] );
+		technology = Globals.technologies.get( words[0] );
+		size       = Double.parseDouble( words[1] );
+		activity   = Double.parseDouble( words[2] );	
 	}
 
 }

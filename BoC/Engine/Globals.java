@@ -1,14 +1,8 @@
 
 package BoC.Engine;
 
-import BoC.Engine.Economy.MachineType;
-import BoC.Engine.Economy.Route;
-import BoC.Engine.Economy.Technology;
-import BoC.Engine.Economy.ComodityType;
-import BoC.Engine.Economy.ComodityManager;
-import BoC.Engine.Military.Army;
-import BoC.Engine.Military.Brigade;
-import BoC.Engine.Military.CombatantType;
+import BoC.Engine.Economy.*;
+import BoC.Engine.Military.*;
 import BoC.utils.*;
 
 import java.awt.GraphicsDevice;
@@ -43,7 +37,7 @@ public class Globals {
 	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
 	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
 	public static HashMap< String, MachineType   > machineTypes   = new HashMap<>( );
-	public static HashMap< String, Technology    > technologoies  = new HashMap<>( );
+	public static HashMap< String, Technology    > technologies  = new HashMap<>( );
 	public static HashMap< String, CombatantType > combatantTypes = new HashMap<>( );
 	
 	public static HashMap< String, Army > armies = new HashMap<>( );   // this should be probably split for each player ?
@@ -112,7 +106,7 @@ public class Globals {
 				//System.out.println( "============="+line );
 				
 				Technology tech = new Technology ( line );
-				technologoies.put( tech.name, tech );
+				technologies.put( tech.name, tech );
 				
 				line = reader.readLine(); 
 				line = line.substring( line.indexOf(" ")+1 );
@@ -151,11 +145,15 @@ public class Globals {
 	
 				line = reader.readLine(); 
 				//System.out.println( "initCities comodities Line: "+line );	
-				//Debugger.log("message here");
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( city.comodities, comodityTypes, line, ";", ComodityManager.class );
-																
 				//System.out.println( "initCities city.comodities >>>> "+city.comodities );
+				
+				line = reader.readLine(); 
+				//System.out.println( "initCities comodities Line: "+line );	
+				line = line.substring( line.indexOf(":")+1 );
+				FileSystem.MapFromString( city.factories, technologies, line, ";", Factory.class );											
+				System.out.println( "initCities city.factories >>>> "+city.factories );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}

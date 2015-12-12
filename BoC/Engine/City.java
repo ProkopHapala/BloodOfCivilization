@@ -20,8 +20,8 @@ public class City extends GameObject implements Drawable {
 	public HashMap<Technology,Factory>           factories;
 	public Set<Army> Armies;
 	
-	public double FactorySpace; // ? is this useful
-	public double storageSpace; // ? is this useful
+	public double factorySpace; // ? is this useful
+	public double storeSpace; // ? is this useful
 	
 	// ========= Comodity Management
 	
@@ -46,7 +46,7 @@ public class City extends GameObject implements Drawable {
 	
 	@Override
 	public String toString(){
-		return name+" "+site.ix+" "+site.iy+" "+FactorySpace+" "+storageSpace;
+		return name+" "+site.ix+" "+site.iy+" "+factorySpace+" "+storeSpace;
 	}
 	
 	@Override
@@ -56,8 +56,8 @@ public class City extends GameObject implements Drawable {
 		name          =                      words[0]  ;
 		int ix        = Integer.parseInt(    words[1] );
 		int iy        = Integer.parseInt(    words[2] );   
-		FactorySpace  = Double.parseDouble(  words[3] );         
-		storageSpace  = Double.parseDouble(  words[4] );  
+		factorySpace  = Double.parseDouble(  words[3] );         
+		storeSpace    = Double.parseDouble(  words[4] );  
 		
 		site   = Globals.worldMap.getSite( ix, iy );
 		site.city = this;
