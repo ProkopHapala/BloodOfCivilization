@@ -1,6 +1,11 @@
 package BoC.Game;
 
 import BoC.Engine.*;
+
+import BoC.GUI.*;
+
+
+
 import java.awt.Point;
 
 import java.awt.event.ComponentAdapter;
@@ -36,6 +41,9 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 	//public static GameMouseListener mouseListener;
 	
 	int iframe = 0;
+	
+	
+	CityView cityView;
 	
 	
 	// =============== INITIALIZATION
@@ -78,12 +86,17 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		this.addMouseListener       ( this );
 		this.addMouseMotionListener ( this );
 		this.addMouseWheelListener  ( this );
-
 		
 		setVisible(true);	
 		canvas.setTileSize( 16 );
 		
 		// ====== this is testing playgorund
+		
+		cityView = new CityView();
+		
+		City city = Globals.cities.values().iterator().next();
+		System.out.print( city );
+		cityView.setCity( city );
 		
 	}
 	
@@ -159,33 +172,32 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 
 	@Override
 	public void mouseDragged(MouseEvent me) {
-		/*
-		Point pos = canvas.getParent().getMousePosition();
-		if (pos != null) {
-			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();    
-			if (SwingUtilities.isLeftMouseButton(me)) {
-				UI.PLAYER.MOUSEANDKEYS.mouseDraggedLeft(pos);
-			}
-			if (SwingUtilities.isRightMouseButton(me)) {
-				UI.PLAYER.MOUSEANDKEYS.mouseDraggedRight(pos);
+		if( GameUI.recordMouseDrag ){
+			Point pos = canvas.getParent().getMousePosition();
+			if (pos != null) {  
+				if (SwingUtilities.isLeftMouseButton(me)) {
+					GameUI.LMB_dragged( pos.x, pos.y );
+				}
+				if (SwingUtilities.isRightMouseButton(me)) {
+					GameUI.RMB_dragged( pos.x, pos.y );
+				}
 			}
 		}
-		*/	
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent me) {
 		if( GameUI.recordMouseMove ){
 			Point pos = canvas.getParent().getMousePosition();
-			GameUI.mousePos_moved.setLocation( pos );
+			if (pos != null) {  
+				if (SwingUtilities.isLeftMouseButton(me)) {
+					GameUI.LMB_moved( pos.x, pos.y );
+				}
+				if (SwingUtilities.isRightMouseButton(me)) {
+					GameUI.RMB_moved( pos.x, pos.y );
+				}
+			}
 		}
-		/*
-		Point pos = canvas.getParent().getMousePosition();
-		if (pos != null) {
-			UI.mousePos = pos.getLocation();//GC.getParent().getMousePosition();       
-			//GlobalVars.PLAYER.MOUSEANDKEYS.mouseMoved(pos);
-		}
-		*/
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package BoC.Engine.Economy;
         
-public class ComodityManager{
+import BoC.Engine.Globals;
+import BoC.utils.StringIO;
+
+public class ComodityManager implements StringIO{
 	public double stored;
 	public double price;
     public  ComodityType type;
@@ -49,6 +52,28 @@ public class ComodityManager{
             
         }
         
+	// ========== IO
+	
+	//@Override
+	public String getName(){
+		return type.name;
+	}
+		
+	//@Override
+	public String toString(){
+		return type.name+" "+stored+" "+price;
+	}
+	
+	//@Override
+	public void fromString( String s ){
+		//System.out.println( "ComodityManager.fromString"+ s );
+		s = s.trim();
+		String [] words = s.split("\\s+");
+		//System.out.println( "ComodityManager.fromString: "+ words[0] +";"+ words[1] +";"+ words[2] );
+		type    = Globals.comodityTypes.get( words[0] );
+		stored  = Double.parseDouble( words[1] );
+		price   = Double.parseDouble( words[2] );	
+	}
         
         
 	

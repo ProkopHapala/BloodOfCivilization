@@ -12,15 +12,16 @@ import java.awt.event.KeyEvent;
 class GameUI {
 	
 	public static boolean recordMouseMove = false;
+	public static boolean recordMouseDrag = true; // just for optimization ? 
 	
 	public static Player PLAYER;
 	public static Point  mousePos_pressed  = new Point(0, 0);
 	public static Point  mousePos_released = new Point(0, 0);
 	public static Point  mousePos_moved    = new Point(0, 0);
 	
-	final static int ARMY_MODE = 1;
+	final static int SITE_MODE = 1;
 	final static int CITY_MODE = 2;
-	final static int SITE_MODE = 3;
+	final static int ARMY_MODE = 3;
 	
 	
 	static int mode = 1;
@@ -34,6 +35,8 @@ class GameUI {
 	public static void LMB_pressed( ){
 		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
+			case SITE_MODE: break;
+			case CITY_MODE: break;
 			case ARMY_MODE:
 				selected_army = null;
 				Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
@@ -52,15 +55,17 @@ class GameUI {
 	public static void LMB_released( ){
 		//System.out.println( " RMB_released " + mousePos_released.x +" "+ mousePos_released.y );
 		switch( mode ){
-			case ARMY_MODE:
-			case CITY_MODE:
-			case SITE_MODE:
+			case SITE_MODE:  break;
+			case CITY_MODE:  break;
+			case ARMY_MODE:  break;
 		}
 	}
 	
 	public static void RMB_pressed( ){
 		System.out.println( " RMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
+			case SITE_MODE:  break;
+			case CITY_MODE:  break;
 			case ARMY_MODE:
 				if( selected_army != null ){
 					Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
@@ -68,17 +73,48 @@ class GameUI {
 					System.out.println( " Army: "+selected_army+" move to "+selected_army.move_target );
 				}
 				break;
-			case CITY_MODE:
-			case SITE_MODE:
 		}
 	}
 		
 	public static void RMB_released( ){
 		//System.out.println( " RMB_released " + mousePos_released.x +" "+ mousePos_released.y );
 		switch( mode ){
-			case ARMY_MODE:
-			case CITY_MODE:
-			case SITE_MODE:
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
+		}
+	}
+	
+	
+	public static void LMB_dragged( int mx, int my ){
+		switch( mode ){
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
+		}
+	}
+		
+	public static void RMB_dragged( int mx, int my ){
+		switch( mode ){
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
+		}
+	}
+	
+	public static void LMB_moved( int mx, int my ){
+		switch( mode ){
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
+		}
+	}
+		
+	public static void RMB_moved( int mx, int my ){
+		switch( mode ){
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 	

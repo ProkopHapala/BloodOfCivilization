@@ -34,7 +34,23 @@ public class FileSystem {
 		}
 	}
 	
-	public static <TYPE extends GameObject> void loadObjectMap( Class<TYPE> clazz, Map<String,TYPE> mp, String filename ){
+	public static < DTYPE, CLASS extends StringIO> 
+	void MapFromString( Map<DTYPE, CLASS> mp, Map<String,DTYPE> dict, String s, String separator, Class<CLASS> clazz ) {
+		//System.out.println( "++++ >>"+separator+"<< , >>"+s+"<<" );
+		try{
+			for (String item_str : s.split( separator )) {
+				//System.out.println( item_str );
+				CLASS item = clazz.newInstance();
+				item.fromString( item_str );
+				//System.out.println( " item: "+item );
+				DTYPE type = dict.get( item.getName() );
+				mp.put( type, item );
+			}
+		} catch (Exception e) { e.printStackTrace(); }
+	}
+	
+	public static <TYPE extends GameObject> 
+	void loadObjectMap( Class<TYPE> clazz, Map<String,TYPE> mp, String filename ){
 		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{

@@ -16,8 +16,8 @@ public class City extends GameObject implements Drawable {
 	public Player owner;
     public Site   site;
     public Set<Route> routes; // HasSet ?
-	public HashMap<ComodityType,ComodityManager> store;
-	public HashMap<Technology,Factory> factories;
+	public HashMap<ComodityType,ComodityManager> comodities;
+	public HashMap<Technology,Factory>           factories;
 	public Set<Army> Armies;
 	
 	public double FactorySpace; // ? is this useful
@@ -26,12 +26,12 @@ public class City extends GameObject implements Drawable {
 	// ========= Comodity Management
 	
 	public double addComodity( ComodityType type, double amount ){
-		store.get(type).add(amount);
+		comodities.get(type).add(amount);
 		return amount;
 	}
 	
 	public double removeComodity( ComodityType type, double amount ){
-		store.get(type).remove(amount);
+		comodities.get(type).remove(amount);
 		return amount;
 	}
 	
@@ -78,7 +78,12 @@ public class City extends GameObject implements Drawable {
 	
 	// ========== Constructor
 	
-	public City( ){ }
-    public City( String s ){ fromString( s );	}
+	void init(){
+		comodities = new HashMap<>(); // HashMap<ComodityType,Double>
+		factories = new HashMap<>();
+	}
+	
+	public City( ){ init(); }
+    public City( String s ){ init(); fromString( s );	}
 	
 }

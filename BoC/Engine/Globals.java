@@ -5,6 +5,7 @@ import BoC.Engine.Economy.MachineType;
 import BoC.Engine.Economy.Route;
 import BoC.Engine.Economy.Technology;
 import BoC.Engine.Economy.ComodityType;
+import BoC.Engine.Economy.ComodityManager;
 import BoC.Engine.Military.Army;
 import BoC.Engine.Military.Brigade;
 import BoC.Engine.Military.CombatantType;
@@ -70,17 +71,21 @@ public class Globals {
 		//FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
 		
+		/*
 		initCombatantTypes();
 		initArmies();
+		*/
 	}
 	
 	public static void initSiteTypes(){
 		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
 	}
 	
+	/*
 	public static void initCities(){
 		FileSystem.loadObjectMap( City.class, cities, "Cities.txt" );
 	}
+	*/
 	
 	public static void initRoutes(){
 		FileSystem.loadObjectMap( Route.class, routes, "Routes.txt" );
@@ -125,6 +130,32 @@ public class Globals {
 				FileSystem.MapFromString( tech.machines, machineTypes, line, Integer::valueOf  );
 												
 				//System.out.println( tech.toString() );
+			}
+		} catch (Exception e) { e.printStackTrace(); };
+	}
+	
+	public static void initCities(){
+		//System.out.println( "initCities comodityTypes: "+comodityTypes );
+		BufferedReader reader = FileSystem.getReader( "Cities.txt" );
+		String line;
+		try{
+			while( true ){
+				while ( true ){
+					line = reader.readLine();
+					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
+				}
+				//System.out.println( "initCities City       Line: "+line );	
+				//Debugger.log("message here");
+				City city = new City( line );
+				cities.put( city.name, city );
+	
+				line = reader.readLine(); 
+				//System.out.println( "initCities comodities Line: "+line );	
+				//Debugger.log("message here");
+				line = line.substring( line.indexOf(":")+1 );
+				FileSystem.MapFromString( city.comodities, comodityTypes, line, ";", ComodityManager.class );
+																
+				//System.out.println( "initCities city.comodities >>>> "+city.comodities );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}

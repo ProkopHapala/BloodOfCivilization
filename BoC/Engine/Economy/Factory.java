@@ -50,7 +50,7 @@ public class Factory extends GameObject{
 	}
 	
 	public double produce( double max_units_alowed, double delta_t ){
-		ComodityType limiting_comodity = getLimitingComodity( city.store, technology.consumes );
+		ComodityType limiting_comodity = getLimitingComodity( city.comodities, technology.consumes );
 		MachineType  limiting_machine  = getLimitingMachine ( machines,   technology.machines );
 		double max_units_resources  = technology.consumes.get( limiting_comodity );
 		double max_units_per_cycle  = technology.machines.get( limiting_machine  );

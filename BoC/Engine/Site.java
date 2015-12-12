@@ -2,7 +2,6 @@ package BoC.Engine;
 
 import BoC.utils.Drawable;
 import BoC.utils.StringIO;
-import BoC.utils.Named;
 import BoC.Engine.Economy.NaturalResource;
 import BoC.Engine.Economy.Route;
 import java.awt.Color;
@@ -18,6 +17,11 @@ public class Site implements StringIO, Drawable {
 	public HashMap<City,NaturalResource> resources;
 	
 	// ========== IO
+	
+	//@Override
+	public String getName(){
+		return ix+" "+iy;
+	}
 	
 	@Override
 	public String toString(){

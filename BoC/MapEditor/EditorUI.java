@@ -51,25 +51,23 @@ class EditorUI {
 		
 	public static void RMB_pressed( ){
 		switch( mode ){
-			case SITE_MODE:
-			case CITY_MODE:
-			case ARMY_MODE:
-			break;
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 	
 	public static void LMB_released( ){
 		switch( mode ){
-			case SITE_MODE:
-			case CITY_MODE:
-			case ARMY_MODE:
-			break;
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 		
 	public static void RMB_released( ){
 		switch( mode ){
-			case SITE_MODE:
+			case SITE_MODE: break;
 			case CITY_MODE: reposCity( mousePos_released.x, mousePos_released.y );	break;
 			case ARMY_MODE:	reposArmy( mousePos_released.x, mousePos_released.y );	break;
 		}
@@ -87,34 +85,32 @@ class EditorUI {
 					}
 				}
 				break;
-			case CITY_MODE:
-			case ARMY_MODE:
-			break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 		
 	public static void RMB_dragged( int mx, int my ){
 		switch( mode ){
-			case ARMY_MODE:
-			case CITY_MODE:
-			case SITE_MODE:
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 	
 	public static void LMB_moved( int mx, int my ){
 		switch( mode ){
-			case SITE_MODE:
-			case CITY_MODE:
-			case ARMY_MODE:
-			break;
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 		
 	public static void RMB_moved( int mx, int my ){
 		switch( mode ){
-			case ARMY_MODE:
-			case CITY_MODE:
-			case SITE_MODE:
+			case SITE_MODE: break;
+			case CITY_MODE: break;
+			case ARMY_MODE: break;
 		}
 	}
 	

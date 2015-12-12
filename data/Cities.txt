@@ -1,4 +1,11 @@
 New_York  10 10 100.0 100.0
+comodities: Wood 1000.0 0.1 ; Coal 10.0 0.5 ; IronOre 100.0 2.0 ; Iron 2.0 10.0
+
 London    10 20 100.0 100.0
+comodities: Wood 1000.0 0.1 ; Coal 10.0 0.5 ; IronOre 100.0 2.0 ; Iron 2.0 10.0
+
 Paris     20 10 100.0 100.0
+comodities: Wood 1000.0 0.1 ; Coal 10.0 0.5 ; IronOre 100.0 2.0 ; Iron 2.0 10.0
+
 Prague    20 20 100.0 100.0 
+comodities: Wood 1000.0 0.1 ; Coal 10.0 0.5 ; IronOre 100.0 2.0 ; Iron 2.0 10.0

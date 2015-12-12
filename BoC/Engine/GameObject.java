@@ -2,9 +2,8 @@
 package BoC.Engine;
 
 import BoC.utils.StringIO;
-import BoC.utils.Named;
 
-public class GameObject implements Named, StringIO {
+public class GameObject implements StringIO {
 	public String name;
 	
 	// ========== IO
