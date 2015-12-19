@@ -76,5 +76,6 @@ public class ComodityManager implements StringIO{
 	}
         
         
-	
+	public ComodityManager(){ };
+	public ComodityManager( ComodityType type_, double stored_ ){ type = type_; stored = stored_;};
 }

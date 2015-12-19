@@ -6,6 +6,7 @@ import BoC.Engine.Economy.Route;
 import BoC.Engine.Economy.Technology;
 import BoC.Engine.Economy.ComodityType;
 import BoC.Engine.Economy.ComodityManager;
+import BoC.Engine.Economy.NaturalResource;
 import BoC.Engine.Military.Army;
 
 import java.awt.Color;
@@ -20,13 +21,39 @@ public class City extends GameObject implements Drawable {
 	public HashMap<Technology,Factory>           factories;
 	public Set<Army> Armies;
 	
+	public ArrayList<Site> sites;
+	
 	public double factorySpace; // ? is this useful
 	public double storeSpace; // ? is this useful
 	
 	// ========= Comodity Management
 	
-	public double addComodity( ComodityType type, double amount ){
-		comodities.get(type).add(amount);
+	void gatherCountrySide( double dt ){
+		for ( Site site : sites ){
+			addComodity( Globals.foot_type, site.getYield( ) );
+			/*
+			if( site.resources != null ){
+				for (Map.Entry<ComodityType, NaturalResource> entry :site.resources.entrySet() ){
+					ComodityType comodity    = entry.getKey();
+					NaturalResource resource = entry.getValue();
+					addComodity( Globals.foot_type, resource.getYield( ) );
+				}
+			}
+			*/
+			if( site.resources != null ){
+				for ( NaturalResource resource : site.resources.values() ){
+					addComodity( resource.type, resource.getYield( ) );
+				}
+			}
+		}
+	}
+	
+	public double addComodity( ComodityType comodity, double amount ){
+		ComodityManager manager = comodities.get( comodity );
+		if( manager == null ){
+			manager = new ComodityManager( comodity, 0.0d );
+		}
+		manager.add(amount);
 		return amount;
 	}
 	

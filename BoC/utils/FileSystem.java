@@ -49,7 +49,7 @@ public class FileSystem {
 		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
-	public static <TYPE extends GameObject> 
+	public static <TYPE extends StringIO> 
 	void loadObjectMap( Class<TYPE> clazz, Map<String,TYPE> mp, String filename ){
 		BufferedReader reader = FileSystem.getReader( filename );
 		String line;

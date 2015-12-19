@@ -44,11 +44,17 @@ public class Globals {
 	
 	public static HashMap< String, Player > players = new HashMap<>( );
 	
+	static ComodityType foot_type;
+	
+	
 	// ======== Game dynamics globals
 	
 	static double dt = 0.01d;
 	
-	
+	public static double explotationFunction( double workforce, double capacity, double maxYield ){
+		double saturation = workforce / capacity;
+		return maxYield * (  1 / (  1 +  ( saturation * saturation ) ) );
+	}
 	
 	public static void initGame(){
 		initComodityTypes();

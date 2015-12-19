@@ -2,14 +2,20 @@ package BoC.Engine;
 
 import BoC.utils.FileSystem;
 import BoC.utils.Sprite;
+import BoC.utils.StringIO;
+
+import BoC.Engine.Economy.Resource;
 
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 
-public class SiteType extends GameObject {
-	public double terrain;      // how rugh is terrain for transit
-	public double bush;         // how much vegetation there is for cover ( in urban areas these are houses )
-	public double fertility;
+public class SiteType implements StringIO {
+
+	public String name;
+	public double terrain;             // how rugh is terrain for transit
+	public double bush;                // how much vegetation there is for cover ( in urban areas these are houses )
+	public double food_maxYield;   // this is fertility per worker if used least extensively
+	public double food_capacity;       // this is the amount of workforce leading to reduction of fertility to 1/2
 	public double temperature;
 	public double water;
 	
@@ -24,8 +30,13 @@ public class SiteType extends GameObject {
 	// ========== IO
 	
 	@Override
+	public String getName(){
+		return name;
+	}
+	
+	@Override
 	public String toString(){
-		return name+" "+terrain+" "+bush+" "+fertility+" "+temperature+" "+water;
+		return name+" "+terrain+" "+bush+" "+temperature+" "+water+" "+food_maxYield+" "+food_capacity;
 	}
 	
 	@Override
@@ -34,9 +45,10 @@ public class SiteType extends GameObject {
 		name            = words[0];
 		terrain         = Double.parseDouble( words[1] );     
 		bush            = Double.parseDouble( words[2] );         
-		fertility       = Double.parseDouble( words[3] );  
 		temperature     = Double.parseDouble( words[4] );  
 		water           = Double.parseDouble( words[5] );
+		food_maxYield   = Double.parseDouble( words[3] );  
+		food_capacity   = Double.parseDouble( words[3] );  
 		
 		if( words[6].charAt(0) == 'i' ){
 			/*

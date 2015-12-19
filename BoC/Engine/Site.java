@@ -2,19 +2,25 @@ package BoC.Engine;
 
 import BoC.utils.Drawable;
 import BoC.utils.StringIO;
+import BoC.Engine.Economy.ComodityType;
 import BoC.Engine.Economy.NaturalResource;
 import BoC.Engine.Economy.Route;
+import BoC.Engine.Economy.Resource;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class Site implements StringIO, Drawable {
+public class Site implements StringIO, Drawable, Resource {
+	
     public SiteType   type;
     public double     height;
     public int        ix,iy;
     public City       city;
     public Set<Route> routes;
-	public HashMap<City,NaturalResource> resources;
+	public HashMap<ComodityType,NaturalResource> resources;
+	
+	double workforce;
 	
 	// ========== IO
 	
@@ -35,6 +41,25 @@ public class Site implements StringIO, Drawable {
 		iy     = Integer.parseInt( words[1] );   
 		height = Double.parseDouble( words[2] );         
 		type   = Globals.siteTypes.get( words[3]  );  
+	}
+	
+	// resources
+	
+	double gatherComodity( ComodityType comodity, double dt ){
+		double amount = 0.0d;
+		if( comodity == Globals.foot_type ){
+			amount += dt * getYield( );
+		}
+		NaturalResource resource = resources.get( comodity );
+		if( resource != null ){
+			amount += dt * resource.getYield(  );
+		}
+		return amount;
+	}
+	
+	@Override
+	public double getYield(){
+		return Globals.explotationFunction( workforce, type.food_capacity, type.food_maxYield  );
 	}
 	
 	// ================= Graphics
