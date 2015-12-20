@@ -70,7 +70,7 @@ public class WorldMap implements TxtStorable, Drawable {
 		for (int iy=0; iy<ny; iy++ ){
 			for (int ix=0; ix<nx; ix++ ){
 				int itype = ( random.nextInt() & 0xFFFFFF ) % types.length;
-				//System.out.println( " site: "+ix+" "+iy+" "+itype  );
+				//System.err.println( " site: "+ix+" "+iy+" "+itype  );
 				SiteType type = types[ itype ];
 				double height = random.nextDouble();
 				Site site = new Site( ix, iy, height, type );
@@ -103,7 +103,7 @@ public class WorldMap implements TxtStorable, Drawable {
 		n_blocks_y      = Integer.parseInt( words[1] );
 		block_side_pow  = Integer.parseInt( words[2] );
 		while( null != ( line = reader.readLine() )  ){
-			//System.out.println( line );
+			//System.err.println( line );
 			Site site = new Site( line );
 			setSite( site.ix, site.iy, site );
 		};
@@ -116,7 +116,7 @@ public class WorldMap implements TxtStorable, Drawable {
 		if( block != null ){
 			for ( Site site : block ){	
 				if( site !=null ){
-					//System.out.println( site.ix +" "+ site.iy +" "+ canvas.tileInView( site.ix, site.iy ));
+					//System.err.println( site.ix +" "+ site.iy +" "+ canvas.tileInView( site.ix, site.iy ));
 					if( canvas.tileInView( site.ix, site.iy ) ){
 						site.paint( canvas ); 
 						n_painted++;
@@ -129,20 +129,20 @@ public class WorldMap implements TxtStorable, Drawable {
 	
 	@Override
 	public void paint( GraphicsCanvas canvas ) {
-		//System.out.println( " Map.paint "  );
+		//System.err.println( " Map.paint "  );
 		int nt_painted = 0;
 		int nb_painted = 0;
 		for ( int i=0; i<sites.length; i++ ){
 			int ibx = block_x( i );
 			int iby = block_y( i );
-			//System.out.println( "Map block "+i+" "+ibx+" "+iby );
+			//System.err.println( "Map block "+i+" "+ibx+" "+iby );
 			if ( canvas.boxInView( ibx, iby, ibx+block_side_n, iby+block_side_n ) ){
-				//System.out.println( "Map block "+i+" "+ibx+" "+iby+" " );
+				//System.err.println( "Map block "+i+" "+ibx+" "+iby+" " );
 				nt_painted += paintBlock( canvas, sites[i] );
 				nb_painted++;
 			}
 		}
-		//System.out.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
+		//System.err.println( " Map.paint n_painted = "+nb_painted+" "+nt_painted );
 	}
 	
 	// ================= Constructor
@@ -155,7 +155,7 @@ public class WorldMap implements TxtStorable, Drawable {
         block_area_n    = 1 << block_area_pow;
         block_area_mask = block_area_n - 1;
 		
-		System.out.println( "evalBlockParams: "+block_side_pow+" "+block_side_n+" "+block_area_pow+" "+block_area_n );
+		System.err.println( "evalBlockParams: "+block_side_pow+" "+block_side_n+" "+block_area_pow+" "+block_area_n );
     }
 	
 	public void reallocate( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
@@ -164,13 +164,13 @@ public class WorldMap implements TxtStorable, Drawable {
 		n_blocks_y = n_blocks_y_;
 		nx         = n_blocks_x_ << block_side_pow;
 		ny         = n_blocks_y_ << block_side_pow;	
-		System.out.println( "reallocate: "+n_blocks_x+" "+n_blocks_y+" "+nx+" "+ny );
+		System.err.println( "reallocate: "+n_blocks_x+" "+n_blocks_y+" "+nx+" "+ny );
 		sites      = new Site[ n_blocks_x * n_blocks_y ][];
 	}
 	
 	public WorldMap( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
 		reallocate    ( n_blocks_x_, n_blocks_y_, block_side_pow_ );
-		System.out.println( "WorldMap: "+nx+" "+ny+" "+block_side_n );
+		System.err.println( "WorldMap: "+nx+" "+ny+" "+block_side_n );
 		//GenerateRandom( 154545 );
 	}
 	

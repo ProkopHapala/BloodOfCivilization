@@ -1,0 +1,4 @@
+11 18 IronOre
+11 18 Coal
+11 18 30﻿	IronOre
+11 18 30﻿	Coal

@@ -156,7 +156,6 @@ public class Brigade implements StringIO {
 	@Override
 	public void fromString( String s ){
 		System.out.println( "Brigade.fromString  "+ s );
-		s = s.trim();
 		String [] words = s.split("\\s+");
 		//army      = Globals.armies.get( words[0] );
 		type      = Globals.combatantTypes.get( words[0] );  

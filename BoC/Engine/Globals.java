@@ -64,7 +64,10 @@ public class Globals {
 		
 		worldMap = new WorldMap( 4, 4, 3  );
 		worldMap.GenerateRandom( 154545 );
+		
 		initCities();
+		
+		//System.exit(0);
 		initRoutes();
 		
 		//map.saveToTxt( "map.txt" );
@@ -77,7 +80,29 @@ public class Globals {
 	}
 	
 	public static void initSiteTypes(){
-		FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
+		//FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
+		//System.err.println( "initCities comodityTypes: "+comodityTypes );
+		BufferedReader reader = FileSystem.getReader( "SiteTypes.txt" );
+		String line;
+		try{
+			while( true ){
+				while ( true ){
+					line = reader.readLine();
+					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
+				}
+				//System.err.println( "initCities City       Line: "+line );	
+				//Debugger.log("message here");
+				SiteType stype = new SiteType( line );
+				siteTypes.put( stype.name, stype );
+	
+				line = reader.readLine(); 
+				//System.err.println( "initCities comodities Line: "+line );	
+				line = line.substring( line.indexOf(":")+1 );
+				FileSystem.MapFromString( stype.resources, comodityTypes, line, ";", NaturalResource.class );
+				//System.err.println( "initCities city.comodities >>>> "+city.comodities );
+				
+			}
+		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
 	/*
@@ -87,18 +112,22 @@ public class Globals {
 	*/
 	
 	public static void initRoutes(){
+		System.out.println( " =============== initRoutes "  );
 		FileSystem.loadObjectMap( Route.class, routes, "Routes.txt" );
 	}
 		
 	public static void initComodityTypes(){
+		System.out.println( " =============== initComodityTypes "  );
 		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, "ComodityTypes.txt" );
 	}
 	
 	public static void initMachineTypes(){
+		System.out.println( " =============== initMachineTypes "  );
 		FileSystem.loadObjectMap( MachineType.class, machineTypes, "MachineTypes.txt" );
 	}
 	
 	public static void initTechnologies(){
+		System.out.println( " =============== initTechnologies "  );
 		BufferedReader reader = FileSystem.getReader( "Technologies.txt" );
 		String line;
 		try{
@@ -108,7 +137,7 @@ public class Globals {
 					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
 				}
 				
-				//System.out.println( "============="+line );
+				//System.err.println( "============="+line );
 				
 				Technology tech = new Technology ( line );
 				technologies.put( tech.name, tech );
@@ -128,13 +157,14 @@ public class Globals {
 				//FileSystem.MapFromString_Integer( tech.machines, machineTypes, line  );
 				FileSystem.MapFromString( tech.machines, machineTypes, line, Integer::valueOf  );
 												
-				//System.out.println( tech.toString() );
+				//System.err.println( tech.toString() );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
 	public static void initCities(){
-		//System.out.println( "initCities comodityTypes: "+comodityTypes );
+		System.out.println( " =============== initCities() "  );
+		//System.err.println( "initCities comodityTypes: "+comodityTypes );
 		BufferedReader reader = FileSystem.getReader( "Cities.txt" );
 		String line;
 		try{
@@ -143,33 +173,34 @@ public class Globals {
 					line = reader.readLine();
 					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
 				}
-				//System.out.println( "initCities City       Line: "+line );	
+				//System.err.println( "initCities City       Line: "+line );	
 				//Debugger.log("message here");
 				City city = new City( line );
 				cities.put( city.name, city );
 	
 				line = reader.readLine(); 
-				//System.out.println( "initCities comodities Line: "+line );	
+				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( city.comodities, comodityTypes, line, ";", ComodityManager.class );
-				//System.out.println( "initCities city.comodities >>>> "+city.comodities );
+				//System.err.println( "initCities city.comodities >>>> "+city.comodities );
 				
 				line = reader.readLine(); 
-				//System.out.println( "initCities comodities Line: "+line );	
+				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( city.factories, technologies, line, ";", Factory.class );											
-				System.out.println( "initCities city.factories >>>> "+city.factories );
+				System.err.println( "initCities city.factories >>>> "+city.factories );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
 	public static void initCombatantTypes(){
+		System.out.println( " =============== initCombatantTypes() "  );
 		FileSystem.loadObjectMap( CombatantType.class, combatantTypes, "CombatantTypes.txt" );
-		for ( CombatantType type: combatantTypes.values() ){ System.out.println( type.toString() ); }
+		for ( CombatantType type: combatantTypes.values() ){ System.err.println( type.toString() ); }
 	}
 	
 	public static void initArmies(){
-		
+		System.out.println( " =============== initArmies() "  );
 		BufferedReader reader = FileSystem.getReader( "Armies.txt" );
 		String line;
 		try{
@@ -178,46 +209,27 @@ public class Globals {
 					line = reader.readLine();
 					if( line == null ){ return; } else if( !line.trim().isEmpty() ){ break; }
 				}
-				//System.out.println( "initCities City       Line: "+line );	
+				//System.err.println( "initCities City       Line: "+line );	
 				//Debugger.log("message here");
 				Army army = new Army( line );
 				armies.put( army.name, army );
 	
 				line = reader.readLine(); 
-				//System.out.println( "initCities comodities Line: "+line );	
+				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( army.comodities, comodityTypes, line, ";", ComodityManager.class );
-				System.out.println( "initArmies army.comodities >>>> "+army.comodities );
+				System.err.println( "initArmies army.comodities >>>> "+army.comodities );
 				
 				line = reader.readLine(); 
-				//System.out.println( "initCities comodities Line: "+line );	
+				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( army.brigades, combatantTypes, line, ";", Brigade.class );											
-				System.out.println( "initArmies army.brigades >>>> "+army.brigades );
+				System.err.println( "initArmies army.brigades >>>> "+army.brigades );
 				//army.reassingBrigades();
 				
 			}
 		} catch (Exception e) { e.printStackTrace(); };
-		
-		
-		
-		/*
-		Brigade brigade;
-		
-		Army army1 = new Army( "army1", 18, 19 );   armies.put( army1.name, army1 );
-		brigade  = new Brigade( combatantTypes.get("Tank"), army1, 5 );  
-		army1.brigades.put( brigade.type, brigade );
-		
-		Army army2 = new Army( "army2", 15, 15 );   armies.put( army2.name, army2 );
-		brigade  = new Brigade( combatantTypes.get("pikemen"), army2, 5 );  
-		army2.brigades.put( brigade.type, brigade );
-		
-		army1.setTarget( worldMap.getSite( 10, 5 ) );
-		*/
-		
-		
-		
-		
+				
 	}
 	
 	public static void update(){

@@ -37,7 +37,7 @@ public class Sprite {
 		g2d.drawImage( original, 0, 0, w, h, null);
 		g2d.dispose();
 		actual = new_image;
-		//System.out.println( "Sprite.resize "+name );
+		//System.err.println( "Sprite.resize "+name );
 	}
 	
 	public void checkCanvas( GraphicsCanvas canvas ){
@@ -62,8 +62,8 @@ public class Sprite {
 		normalized_height  = original.getHeight() /  ( (float) GraphicsCanvas.default_tile_size );
 		resize( original.getWidth(), original.getHeight() );
 		
-		//System.out.println( name+" "+original+" "+actual+" "+normalized_width+" "+normalized_height+" "+tile_size );
-		System.out.println( name+" "+normalized_width+" "+normalized_height+" "+tile_size );
+		//System.err.println( name+" "+original+" "+actual+" "+normalized_width+" "+normalized_height+" "+tile_size );
+		System.err.println( name+" "+normalized_width+" "+normalized_height+" "+tile_size );
 	}
 	
 }

@@ -3,22 +3,22 @@ package BoC.Engine;
 import BoC.utils.Drawable;
 import BoC.utils.StringIO;
 import BoC.Engine.Economy.ComodityType;
-import BoC.Engine.Economy.NaturalResource;
+import BoC.Engine.Economy.ResourceDeposit;
 import BoC.Engine.Economy.Route;
-import BoC.Engine.Economy.Resource;
+import BoC.Engine.Economy.NaturalResource;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class Site implements StringIO, Drawable, Resource {
+public class Site implements StringIO, Drawable {
 	
     public SiteType   type;
     public double     height;
     public int        ix,iy;
     public City       city;
     public Set<Route> routes;
-	public HashMap<ComodityType,NaturalResource> resources;
+	public HashMap<ComodityType,ResourceDeposit> deposits;
 	
 	double workforce;
 	
@@ -45,6 +45,7 @@ public class Site implements StringIO, Drawable, Resource {
 	
 	// resources
 	
+	/*
 	double gatherComodity( ComodityType comodity, double dt ){
 		double amount = 0.0d;
 		if( comodity == Globals.foot_type ){
@@ -56,11 +57,7 @@ public class Site implements StringIO, Drawable, Resource {
 		}
 		return amount;
 	}
-	
-	@Override
-	public double getYield(){
-		return Globals.explotationFunction( workforce, type.food_capacity, type.food_maxYield  );
-	}
+	*/
 	
 	// ================= Graphics
 	
@@ -68,7 +65,7 @@ public class Site implements StringIO, Drawable, Resource {
 	public void paint( GraphicsCanvas canvas ) {
 		Graphics2D g2 = canvas.g2;
 		int sz = canvas.tile_size;		
-		//System.out.println( "site.paint "+ix+" "+iy+" " );
+		//System.err.println( "site.paint "+ix+" "+iy+" " );
 		int sx = canvas.map2screen_x( ix );
 		int sy = canvas.map2screen_y( iy );
 		if( type.sprite != null ){

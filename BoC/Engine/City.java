@@ -6,6 +6,7 @@ import BoC.Engine.Economy.Route;
 import BoC.Engine.Economy.Technology;
 import BoC.Engine.Economy.ComodityType;
 import BoC.Engine.Economy.ComodityManager;
+import BoC.Engine.Economy.ResourceDeposit;
 import BoC.Engine.Economy.NaturalResource;
 import BoC.Engine.Military.Army;
 
@@ -30,18 +31,14 @@ public class City extends GameObject implements Drawable {
 	
 	void gatherCountrySide( double dt ){
 		for ( Site site : sites ){
-			addComodity( Globals.foot_type, site.getYield( ) );
-			/*
-			if( site.resources != null ){
-				for (Map.Entry<ComodityType, NaturalResource> entry :site.resources.entrySet() ){
-					ComodityType comodity    = entry.getKey();
-					NaturalResource resource = entry.getValue();
-					addComodity( Globals.foot_type, resource.getYield( ) );
+			if( site.type.resources != null ){ // siteType resources
+				for ( NaturalResource resource : site.type.resources.values() ){
+					double percantage = resource.capacity * site.type.workforce_renorm; // part of workforce dedicated to this job
+					addComodity( resource.type, resource.getYield( site.workforce * percantage ) );
 				}
 			}
-			*/
-			if( site.resources != null ){
-				for ( NaturalResource resource : site.resources.values() ){
+			if( site.deposits != null ){ // additional resources deposits
+				for ( ResourceDeposit resource : site.deposits.values() ){
 					addComodity( resource.type, resource.getYield( ) );
 				}
 			}
@@ -66,7 +63,7 @@ public class City extends GameObject implements Drawable {
 		if( site.city == this ) site.city = null;
 		site = Globals.worldMap.getSite( ix, iy );
 		site.city = this;
-		//System.out.println(  (int)x +" "+ (int)y + "|" + site );
+		//System.err.println(  (int)x +" "+ (int)y + "|" + site );
 	}
 	
 	// ========== IO
@@ -78,7 +75,7 @@ public class City extends GameObject implements Drawable {
 	
 	@Override
 	public void fromString( String s ){
-		//System.out.println( s );
+		System.err.println( s );
 		String [] words = s.split("\\s+");
 		name          =                      words[0]  ;
 		int ix        = Integer.parseInt(    words[1] );

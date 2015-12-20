@@ -51,6 +51,9 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 	// =============== INITIALIZATION
 	
 	public void start() throws FileNotFoundException, IOException { 
+		
+		//System.setErr(System.out); // debug output to stdout 
+		
 		//Graphics2D.drawLine(20, 100, 120, 100);
 		
 		this.setFocusTraversalKeysEnabled(false);
@@ -97,13 +100,13 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		cityView = new CityView();
 		cityView.frame.setLocation( this.getWidth(), 0 );
 		City city = Globals.cities.values().iterator().next();
-		//System.out.print( city );
+		//System.err.print( city );
 		cityView.setCity( city );
 		
 		armyView = new ArmyView();
 		armyView.frame.setLocation( this.getWidth(), 400 );
 		Army army = Globals.armies.values().iterator().next();
-		//System.out.print( city );
+		//System.err.print( city );
 		armyView.setArmy( army );
 		
 		this.toFront();
@@ -122,7 +125,7 @@ public class GameMain extends JFrame implements KeyListener, MouseListener, Mous
 		
 		while (true) {
 			iframe ++;
-			//System.out.println( " ============= frame: "+iframe );
+			//System.err.println( " ============= frame: "+iframe );
 			Globals.update();  
 			//System.exit(0);
 			

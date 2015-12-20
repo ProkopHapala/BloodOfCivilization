@@ -1,39 +1,17 @@
 
 package BoC.Engine.Economy;
 
-import BoC.Engine.Site;
-import BoC.utils.StringIO;
+import BoC.Engine.Economy.MachineType;
 import BoC.Engine.Globals;
+import BoC.utils.StringIO;
 
-public class NaturalResource implements Resource, StringIO {
+public class NaturalResource implements StringIO {
 	
-	Site site;
 	public ComodityType type;
-	/*
-	public boolean depleating;
-	public double  stored;
-	public double  drain_rate;
-	*/
-	
 	public double maxYield;
 	public double capacity;
-	public double workforce;
-	
-	/*
-	double drain( double dt, double max_d ){
-		double d = drain_rate * dt;
-		d = ( d < max_d ) ? d : max_d;
-		if( depleating ) stored -= d;
-		return d;
-	}
-	*/
-	
-	double development_degree;
-	double difficulty;
-	
-
-	@Override
-	public double getYield( ){
+		
+	public double getYield( double workforce ){
 		return Globals.explotationFunction( workforce, maxYield, capacity  );
 	}
 	
@@ -41,23 +19,22 @@ public class NaturalResource implements Resource, StringIO {
 	
 	//@Override
 	public String getName(){
-		return type.name+"_"+site.ix+"_"+site.iy;
+		return type.name;
 	}
 	
 	@Override
 	public String toString(){
-		return site.ix+" "+site.iy+" "+type.name+" "+maxYield+" "+capacity+" "+workforce;
+		return type.name+" "+maxYield+" "+capacity;
 	}
 	
 	@Override
 	public void fromString( String s ){
-		String [] words = s.split("\\s+");
-		site.ix     = Integer.parseInt( words[0] );
-		site.iy     = Integer.parseInt( words[1] );         
-		type        = Globals.comodityTypes.get( words[2]  ); 
-		maxYield    = Double.parseDouble( words[3] );   
-		capacity    = Double.parseDouble( words[4] );   
-		workforce   = Double.parseDouble( words[5] );   
+		
+		String [] words = s.split("\\s+");   
+		System.err.println( words[0]+"|"+words[1]+"|"+words[2]  );
+		type      = Globals.comodityTypes.get( words[0]  );  
+		maxYield  = Double.parseDouble( words[1] );  
+		capacity  = Double.parseDouble( words[2] ); 
 	}
 	
 }

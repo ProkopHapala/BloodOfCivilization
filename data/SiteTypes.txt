@@ -1,9 +1,29 @@
-arctic    0.0 0.0 0.0 -20.0 0.1   f0f5f9
-tundra    0.0 0.1 0.1   0.0 0.1   808080
-plain     0.0 0.1 1.0  20.0 0.1   img/ground_plain.png
-hills     0.5 0.3 0.5  10.0 0.1   img/ground_hills.png
-mountains 1.0 0.1 0.2   0.0 0.1   img/ground_mountains.png
-desert    0.0 0.0 0.1  40.0 0.01  img/ground_desert.png
-forest    0.0 1.0 1.0  20.0 0.1   img/ground_forest.png
-swamp     0.0 1.0 1.0  20.0 0.5   img/ground_swamp.png
-jungle    0.0 2.0 1.0  30.0 0.3   img/ground_jungle.png
+arctic    0.0 0.0 -20.0 0.1   f0f5f9
+resources: Food 1.0   1.0 ; Wood  0.1   0.1 ; Stone 1.1  0.1;
+
+tundra    0.0 0.1   0.0 0.1   808080
+resources: Food 1.0   1.0 ; Wood  0.1   0.1 ; Stone  10.0 10.1;
+
+plain     0.0 0.1  20.0 0.1   img/ground_plain.png
+resources: Food 10.0 100.0 ; Wood  0.1   0.1 ; Stone  1.1  0.3;
+
+lush      0.0 0.3  20.0 0.2   img/ground_plain.png		
+resources: Food 10.0 100.0 ; Wood  0.1   0.1 ; Stone  1.1  0.3;
+
+hills     0.5 0.3  10.0 0.1   img/ground_hills.png		
+resources: Food  4.0  50.0 ; Wood  5.1   2.0 ; Stone  2.0  0.1;
+
+mountains 1.0 0.1   0.0 0.1   img/ground_mountains.png	
+resources: Food  2.0   5.0 ; Wood  2.1   2.0 ; Stone 50.0 10.1;
+
+desert    0.0 0.0  40.0 0.01  img/ground_desert.png		
+resources: Food  0.1   0.1 ; Wood 0.1   0.1 ; Stone  1.1  0.1;
+
+swamp     0.0 1.0  20.0 0.5   img/ground_swamp.png		
+resources: Food  1.0   1.0 ; Wood 0.1   0.1 ; Stone  1.0  0.01;
+
+forest    0.0 1.0  20.0 0.1   img/ground_forest.png		
+resources: Food 1.0   1.0 ; Wood  10.1 10.1 ; Stone  1.0  0.1;
+
+jungle    0.0 2.0  30.0 0.3   img/ground_jungle.png		
+resources: Food  2.0  10.0 ; Wood 100.0 5.0  ; Stone  1.0  0.1;

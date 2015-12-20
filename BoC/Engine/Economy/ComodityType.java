@@ -14,7 +14,7 @@ public class ComodityType extends GameObject{
 	
 	@Override
 	public String toString(){
-		return name+" "+transport_weight+" "+transport_volume+" "+price_max+" "+price_normal;
+		return name+" "+transport_weight+" "+transport_volume+" "+price_normal+" "+price_max;
 	}
 	
 	@Override
@@ -23,8 +23,8 @@ public class ComodityType extends GameObject{
 		name             = words[0];  
 		transport_weight = Double.parseDouble( words[1] );  
 		transport_volume = Double.parseDouble( words[2] );  
-		price_max        = Double.parseDouble( words[3] );  
-		price_normal     = Double.parseDouble( words[4] );  
+		price_normal     = Double.parseDouble( words[3] );  
+		price_max        = Double.parseDouble( words[4] );  
 	}
 	
 	// ========== Constructor
