@@ -31,14 +31,17 @@ public class Globals {
 	
 	public static WorldMap worldMap;
 
-	public static HashMap< String, City          > cities         = new HashMap<>( ); // split for each player ?
-	public static HashMap< String, Route         > routes         = new HashMap<>( );
-	
-	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
+
 	public static HashMap< String, ComodityType  > comodityTypes  = new HashMap<>( );
 	public static HashMap< String, MachineType   > machineTypes   = new HashMap<>( );
-	public static HashMap< String, Technology    > technologies  = new HashMap<>( );
+	public static HashMap< String, SiteType      > siteTypes      = new HashMap<>( );
+	
+	public static HashMap< String, Technology    > technologies   = new HashMap<>( );
 	public static HashMap< String, CombatantType > combatantTypes = new HashMap<>( );
+	
+	public static HashMap< String, ResourceDeposit > deposits       = new HashMap<>( );
+	public static HashMap< String, City            > cities         = new HashMap<>( ); // split for each player ?
+	public static HashMap< String, Route           > routes         = new HashMap<>( );
 	
 	public static HashMap< String, Army > armies = new HashMap<>( );   // this should be probably split for each player ?
 	
@@ -65,6 +68,7 @@ public class Globals {
 		worldMap = new WorldMap( 4, 4, 3  );
 		worldMap.GenerateRandom( 154545 );
 		
+		initResourceDeposits( "ResourceDeposits.txt" );
 		initCities( "Cities.txt" );
 		initRoutes( "Routes.txt" );
 		
@@ -104,11 +108,10 @@ public class Globals {
 		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
-	/*
-	public static void initCities(){
-		FileSystem.loadObjectMap( City.class, cities, "Cities.txt" );
+	public static void initResourceDeposits( String filename ){
+		System.out.println( " =============== initResourceDeposits "  );
+		FileSystem.loadObjectMap( ResourceDeposit.class, deposits, filename );
 	}
-	*/
 	
 	public static void initRoutes( String filename ){
 		System.out.println( " =============== initRoutes "  );

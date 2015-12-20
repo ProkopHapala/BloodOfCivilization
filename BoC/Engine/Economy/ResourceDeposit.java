@@ -40,15 +40,24 @@ public class ResourceDeposit extends NaturalResource {
 	
 	@Override
 	public void fromString( String s ){
+		System.err.println( Globals.comodityTypes );
+		System.err.println( "ResourceDeposit.fromString:"+ s );
 		String [] words = s.split("\\s+");
-		site.ix     = Integer.parseInt    ( words[0] );
-		site.iy     = Integer.parseInt    ( words[1] );         
+		System.err.println( "ResourceDeposit.fromString:"+ words[0] +";"+ words[1] +";"+ words[2]+";"+words[3]+";"+words[4]+";"+words[5]+";"+words[6]+";"+words[7] );
+		int ix = Integer.parseInt    ( words[0] );
+		int iy = Integer.parseInt    ( words[1] );       
 		type        = Globals.comodityTypes.get( words[2]  ); 
 		maxYield    = Double.parseDouble  ( words[3] );   
 		capacity    = Double.parseDouble  ( words[4] );  
 		depleating  = Boolean.parseBoolean( words[5] );
 		stored      = Double.parseDouble  ( words[6] );  
 		workforce   = Double.parseDouble  ( words[7] );  
+		
+		site  = Globals.worldMap.getSite(ix, iy);
+		ResourceDeposit old = site.addNewDeposit( this );
+		if( old != null ){  
+			System.err.println( " Deposity already set "+s ); System.exit(1);   
+		}
 	}
 	
 }

@@ -59,6 +59,24 @@ public class Site implements StringIO, Drawable {
 	}
 	*/
 	
+	public ResourceDeposit addNewDeposit( ResourceDeposit deposit_new ){
+		if( deposits == null ){ deposits = new HashMap<>(); }
+		ResourceDeposit deposit_old = deposits.get( deposit_new.type );
+		if( deposit_old == null ){
+			deposits.put( deposit_new.type, deposit_new );
+		}
+		return deposit_old;
+	}
+	
+	public String caption_deposist( ){
+		String s = "";
+		for ( ResourceDeposit deposit : deposits.values() ){
+			s += deposit.type.name+";";
+		}
+		return s;
+	}
+	
+	
 	// ================= Graphics
 	
 	@Override
@@ -75,6 +93,12 @@ public class Site implements StringIO, Drawable {
 			g2.setColor( type.color );
 			g2.fillRect( sx, sy, sz, sz );
 		};	
+		if( deposits != null ){
+			g2.setColor( Color.BLACK );
+			g2.fillOval( sx, sy, sz, sz );
+			g2.drawString( caption_deposist( ), sx, sy );
+		};
+		
 		if( city != null ){	city.paint( canvas );	}
     }
 	

@@ -13,11 +13,16 @@ import java.awt.*;
 //import java.awt.geom.Line2D;
 import javax.swing.*;
 
+import javax.swing.*;
+
 public class GraphicsCanvas extends JPanel {
 
 	public Graphics2D g2;
 	
 	public static final int default_tile_size = 16;
+	
+	public static final int basicFontSize  = 10;
+	public static Font basicFont;
 	
 	
 	// ==== Transfromation between map [tile] and screen [pixel] coordinates
@@ -38,10 +43,12 @@ public class GraphicsCanvas extends JPanel {
 
 	public GraphicsCanvas() {
 		//map = new Map(true);
-		Graphics2D  g2;
+		//Graphics2D  g2;
 		setBackground( new Color(43, 29, 15, 255) );
 		setDoubleBuffered(true);
 		setIgnoreRepaint(true);
+		
+		basicFont = new Font( "Verdana", Font.PLAIN, basicFontSize );
 	}
 	
 	
@@ -102,6 +109,7 @@ public class GraphicsCanvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		g2 = (Graphics2D) g;
+		g2.setFont( basicFont ); 
 		//map.paint(g2);
 		//GlobalVars.paint(g2);
 	}
@@ -109,6 +117,7 @@ public class GraphicsCanvas extends JPanel {
 	public void paint( Graphics g ) {
 		//Create Graphics2D object, cast g as a Graphics2D
 		g2 = (Graphics2D) g;
+		g2.setFont( basicFont ); 
 		g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight() );
 		/*
