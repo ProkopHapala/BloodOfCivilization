@@ -57,32 +57,31 @@ public class Globals {
 	}
 	
 	public static void initGame(){
-		initComodityTypes();
-		initMachineTypes();
-		initTechnologies();
-		initSiteTypes();
+		initComodityTypes( "ComodityTypes.txt" );
+		initMachineTypes ( "MachineTypes.txt"  );
+		initTechnologies ( "Technologies.txt"  );
+		initSiteTypes    ( "SiteTypes.txt"     );
 		
 		worldMap = new WorldMap( 4, 4, 3  );
 		worldMap.GenerateRandom( 154545 );
 		
-		initCities();
-		
-		//System.exit(0);
-		initRoutes();
+		initCities( "Cities.txt" );
+		initRoutes( "Routes.txt" );
 		
 		//map.saveToTxt( "map.txt" );
 		//FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
 		//FileSystem.loadFromTxt( "map.txt", map );
 		
-		initCombatantTypes();
-		initArmies();
+		initCombatantTypes( "CombatantTypes.txt" );
+		initArmies        ( "Armies.txt"         );
 		
 	}
 	
-	public static void initSiteTypes(){
+	public static void initSiteTypes( String filename ){
+		System.out.println( " =============== initSiteTypes "  );
 		//FileSystem.loadObjectMap( SiteType.class, siteTypes, "SiteTypes.txt" );
 		//System.err.println( "initCities comodityTypes: "+comodityTypes );
-		BufferedReader reader = FileSystem.getReader( "SiteTypes.txt" );
+		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{
 			while( true ){
@@ -111,24 +110,24 @@ public class Globals {
 	}
 	*/
 	
-	public static void initRoutes(){
+	public static void initRoutes( String filename ){
 		System.out.println( " =============== initRoutes "  );
-		FileSystem.loadObjectMap( Route.class, routes, "Routes.txt" );
+		FileSystem.loadObjectMap( Route.class, routes, filename );
 	}
 		
-	public static void initComodityTypes(){
+	public static void initComodityTypes( String filename ){
 		System.out.println( " =============== initComodityTypes "  );
-		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, "ComodityTypes.txt" );
+		FileSystem.loadObjectMap( ComodityType.class, comodityTypes, filename );
 	}
 	
-	public static void initMachineTypes(){
+	public static void initMachineTypes( String filename ){
 		System.out.println( " =============== initMachineTypes "  );
-		FileSystem.loadObjectMap( MachineType.class, machineTypes, "MachineTypes.txt" );
+		FileSystem.loadObjectMap( MachineType.class, machineTypes, filename );
 	}
 	
-	public static void initTechnologies(){
+	public static void initTechnologies( String filename ){
 		System.out.println( " =============== initTechnologies "  );
-		BufferedReader reader = FileSystem.getReader( "Technologies.txt" );
+		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{
 			while( true ){
@@ -144,28 +143,25 @@ public class Globals {
 				
 				line = reader.readLine(); 
 				line = line.substring( line.indexOf(" ")+1 );
-				//FileSystem.MapFromString_Double( tech.consumes, comodityTypes, line  );
 				FileSystem.MapFromString( tech.consumes, comodityTypes, line, Double::valueOf  );
 				
 				line = reader.readLine(); 
 				line = line.substring( line.indexOf(" ")+1 );
-				//FileSystem.MapFromString_Double( tech.produces, comodityTypes, line  );
 				FileSystem.MapFromString( tech.produces, comodityTypes, line, Double::valueOf  );
 				
 				line = reader.readLine(); 
 				line = line.substring( line.indexOf(" ")+1 );
-				//FileSystem.MapFromString_Integer( tech.machines, machineTypes, line  );
 				FileSystem.MapFromString( tech.machines, machineTypes, line, Integer::valueOf  );
-												
+										
 				//System.err.println( tech.toString() );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
-	public static void initCities(){
+	public static void initCities( String filename ){
 		System.out.println( " =============== initCities() "  );
 		//System.err.println( "initCities comodityTypes: "+comodityTypes );
-		BufferedReader reader = FileSystem.getReader( "Cities.txt" );
+		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{
 			while( true ){
@@ -188,20 +184,20 @@ public class Globals {
 				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( city.factories, technologies, line, ";", Factory.class );											
-				System.err.println( "initCities city.factories >>>> "+city.factories );
+				//System.err.println( "initCities city.factories >>>> "+city.factories );
 			}
 		} catch (Exception e) { e.printStackTrace(); };
 	}
 	
-	public static void initCombatantTypes(){
+	public static void initCombatantTypes( String filename ){
 		System.out.println( " =============== initCombatantTypes() "  );
-		FileSystem.loadObjectMap( CombatantType.class, combatantTypes, "CombatantTypes.txt" );
-		for ( CombatantType type: combatantTypes.values() ){ System.err.println( type.toString() ); }
+		FileSystem.loadObjectMap( CombatantType.class, combatantTypes, filename );
+		//for ( CombatantType type: combatantTypes.values() ){ System.err.println( type.toString() ); }
 	}
 	
-	public static void initArmies(){
+	public static void initArmies( String filename ){
 		System.out.println( " =============== initArmies() "  );
-		BufferedReader reader = FileSystem.getReader( "Armies.txt" );
+		BufferedReader reader = FileSystem.getReader( filename );
 		String line;
 		try{
 			while( true ){
@@ -218,13 +214,13 @@ public class Globals {
 				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( army.comodities, comodityTypes, line, ";", ComodityManager.class );
-				System.err.println( "initArmies army.comodities >>>> "+army.comodities );
+				//System.err.println( "initArmies army.comodities >>>> "+army.comodities );
 				
 				line = reader.readLine(); 
 				//System.err.println( "initCities comodities Line: "+line );	
 				line = line.substring( line.indexOf(":")+1 );
 				FileSystem.MapFromString( army.brigades, combatantTypes, line, ";", Brigade.class );											
-				System.err.println( "initArmies army.brigades >>>> "+army.brigades );
+				//System.err.println( "initArmies army.brigades >>>> "+army.brigades );
 				//army.reassingBrigades();
 				
 			}

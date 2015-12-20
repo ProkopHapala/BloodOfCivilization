@@ -39,7 +39,7 @@ class EditorUI {
 	
 	
 	public static void LMB_pressed( ){
-		System.out.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
+		System.err.println( " LMB_pressed " + mousePos_pressed.x +" "+ mousePos_pressed.y );
 		switch( mode ){
 			case SITE_MODE: drawTile  ( mousePos_pressed.x, mousePos_pressed.y, selected_siteType );	break;
 			case CITY_MODE: selectCity( mousePos_pressed.x, mousePos_pressed.y ); EditorMain.cityView.setCity(selected_city); EditorMain.cityView.frame.setVisible(true); break;
@@ -111,16 +111,16 @@ class EditorUI {
 	public static void keyPressed( int keyCode ){
 		switch( keyCode ){
 			case KeyEvent.VK_S: 
-				System.out.println( " [S]-key: save worldMap " );
+				System.err.println( " [S]-key: save worldMap " );
 				FileSystem.saveToTxt  ( "map.txt", Globals.worldMap );
 				break;
 			case KeyEvent.VK_L: 
-				System.out.println( " [L]-key: load worldMap " );
+				System.err.println( " [L]-key: load worldMap " );
 				FileSystem.loadFromTxt  ( "map.txt", Globals.worldMap );
 				break;
-			case KeyEvent.VK_C: mode = CITY_MODE; System.out.println( "CITY_MODE" ); break;
-			case KeyEvent.VK_A: mode = ARMY_MODE; System.out.println( "ARMY_MODE" ); break;
-			case KeyEvent.VK_X: mode = SITE_MODE; System.out.println( "SITE_MODE" ); break;
+			case KeyEvent.VK_C: mode = CITY_MODE; System.err.println( "CITY_MODE" ); break;
+			case KeyEvent.VK_A: mode = ARMY_MODE; System.err.println( "ARMY_MODE" ); break;
+			case KeyEvent.VK_X: mode = SITE_MODE; System.err.println( "SITE_MODE" ); break;
 			case KeyEvent.VK_UP:     EditorMain.canvas.scroolBy(  0, 1 ); break;
             case KeyEvent.VK_DOWN:   EditorMain.canvas.scroolBy(  0,-1 ); break;
             case KeyEvent.VK_LEFT:   EditorMain.canvas.scroolBy(  1, 0 ); break;
@@ -139,17 +139,17 @@ class EditorUI {
 		}else{
 			scrool_speed = 1;
 		}
-		System.out.println( scrool_speed+" "+EditorMain.canvas.tile_size  );
+		System.err.println( scrool_speed+" "+EditorMain.canvas.tile_size  );
 	}
 	
 	static void selectArmy( int mx, int my ){
 		selected_army = null;
 		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
-		System.out.println( " Site " + site );
+		System.err.println( " Site " + site );
 		for( Army army : Globals.armies.values() ) { 
 			if( army.site == site ) {
 				selected_army = army;
-				System.out.println( " Selected Army: "+selected_army );
+				System.err.println( " Selected Army: "+selected_army );
 				break;
 			}
 		}
@@ -166,11 +166,11 @@ class EditorUI {
 	static void selectCity( int mx, int my ){
 		selected_city = null;
 		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
-		System.out.println( " Site " + site );
+		System.err.println( " Site " + site );
 		for( City city : Globals.cities.values() ) { 
 			if( city.site == site ) {
 				selected_city = city;
-				System.out.println( " Selected city: "+selected_city );
+				System.err.println( " Selected city: "+selected_city );
 				break;
 			}
 		}
@@ -188,7 +188,7 @@ class EditorUI {
 		if( siteType != null ){ 
 			int tileHash = EditorMain.canvas.tileHash( mx, my );
 			if( tileHash != lastDragTileHash ){
-				//System.out.println( " LMB_pressed " + mx +" "+ my+" "+tileHash+" "+lastDragTileHash );
+				//System.err.println( " LMB_pressed " + mx +" "+ my+" "+tileHash+" "+lastDragTileHash );
 				changeSiteType(  mx, my, siteType ); 
 				lastDragTileHash = tileHash;
 			}
@@ -196,7 +196,7 @@ class EditorUI {
 	}
 	
 	static void changeSiteType( int ix, int iy, SiteType siteType ){
-		System.out.println( "changeSiteType "+ix+" "+iy+" "+siteType.name );
+		System.err.println( "changeSiteType "+ix+" "+iy+" "+siteType.name );
 		Site site = EditorMain.canvas.getSite( ix, iy );
 		if( site == null ){
 			site = new Site();

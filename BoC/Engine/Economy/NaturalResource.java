@@ -29,9 +29,8 @@ public class NaturalResource implements StringIO {
 	
 	@Override
 	public void fromString( String s ){
-		
 		String [] words = s.split("\\s+");   
-		System.err.println( words[0]+"|"+words[1]+"|"+words[2]  );
+		//System.err.println( words[0]+"|"+words[1]+"|"+words[2]  );
 		type      = Globals.comodityTypes.get( words[0]  );  
 		maxYield  = Double.parseDouble( words[1] );  
 		capacity  = Double.parseDouble( words[2] ); 

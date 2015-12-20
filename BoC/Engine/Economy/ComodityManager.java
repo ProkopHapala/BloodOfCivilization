@@ -66,9 +66,9 @@ public class ComodityManager implements StringIO{
 	
 	//@Override
 	public void fromString( String s ){
-		System.err.println( "ComodityManager.fromString:"+ s );
+		//System.err.println( "ComodityManager.fromString:"+ s );
 		String [] words = s.split("\\s+");
-		System.err.println( "ComodityManager.fromString:"+ words[0] +";"+ words[1] +";"+ words[2] );
+		//System.err.println( "ComodityManager.fromString:"+ words[0] +";"+ words[1] +";"+ words[2] );
 		type    = Globals.comodityTypes.get( words[0] );
 		stored  = Double.parseDouble( words[1] );
 		price   = Double.parseDouble( words[2] );	

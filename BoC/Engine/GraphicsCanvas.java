@@ -52,7 +52,7 @@ public class GraphicsCanvas extends JPanel {
 		inv_tile_size      = 1.0f / tile_size;
 		tiles_per_screen_x = (int)( getWidth()  * inv_tile_size );
 		tiles_per_screen_y = (int)( getHeight() * inv_tile_size );
-		System.out.println( tile_size+" "+tile_size_half+" "+inv_tile_size+" "+tiles_per_screen_x+" "+tiles_per_screen_y );
+		//System.err.println( tile_size+" "+tile_size_half+" "+inv_tile_size+" "+tiles_per_screen_x+" "+tiles_per_screen_y );
 		scroolBy( 0, 0 );
 	}
 	
@@ -72,17 +72,17 @@ public class GraphicsCanvas extends JPanel {
 	public Site getSite( int sx, int sy ){
 		int ix = (int) screen2map_x( sx );
 		int iy = (int) screen2map_y( sy );
-		//System.out.println( sx+" "+sy+" ->  "+ix +" "+ iy );
+		//System.err.println( sx+" "+sy+" ->  "+ix +" "+ iy );
 		return Globals.worldMap.getSite( ix, iy );
 	}
 	
 	public boolean tileInView( int ix, int iy ){
-		//System.out.println( ix+" "+iy+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
+		//System.err.println( ix+" "+iy+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
 		return ( ix < ix_max ) && ( ix > (ix_min-1) ) && ( iy < iy_max ) && ( iy > (iy_min-1) ); 
 	}
 	
 	public boolean boxInView( int ix1, int iy1, int ix2, int iy2 ){
-		//System.out.println( ix1+" "+ix2+" "+iy1+" "+iy2+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
+		//System.err.println( ix1+" "+ix2+" "+iy1+" "+iy2+"      "+ix_max+" "+ix_min+" "+iy_max+" "+iy_min    );
 		return ( ( ix1 < ix_max ) && ( ix2 > (ix_min-1) ) ) && ( ( iy1 < iy_max ) && ( iy2 > (iy_min-1) ) ); 
 	}
 	
@@ -94,7 +94,7 @@ public class GraphicsCanvas extends JPanel {
 	public void scroolTo( int ix, int iy ){
 		ix_min = ix;            iy_min = iy;
 		ix_max = ix_min + tiles_per_screen_x;   iy_max = iy_min + tiles_per_screen_y;
-		System.out.println( "scroolTo: "+ix_min+" "+iy_min+" "+ix_max+" "+iy_max );
+		//System.err.println( "scroolTo: "+ix_min+" "+iy_min+" "+ix_max+" "+iy_max );
 	}
 	
 	public void scroolBy( int dix, int diy ){	scroolTo( ix_min+dix, iy_min+diy );	}

@@ -75,7 +75,7 @@ public class City extends GameObject implements Drawable {
 	
 	@Override
 	public void fromString( String s ){
-		System.err.println( s );
+		//System.err.println( s );
 		String [] words = s.split("\\s+");
 		name          =                      words[0]  ;
 		int ix        = Integer.parseInt(    words[1] );

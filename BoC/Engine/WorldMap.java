@@ -155,7 +155,7 @@ public class WorldMap implements TxtStorable, Drawable {
         block_area_n    = 1 << block_area_pow;
         block_area_mask = block_area_n - 1;
 		
-		System.err.println( "evalBlockParams: "+block_side_pow+" "+block_side_n+" "+block_area_pow+" "+block_area_n );
+		//System.err.println( "evalBlockParams: "+block_side_pow+" "+block_side_n+" "+block_area_pow+" "+block_area_n );
     }
 	
 	public void reallocate( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
@@ -164,13 +164,13 @@ public class WorldMap implements TxtStorable, Drawable {
 		n_blocks_y = n_blocks_y_;
 		nx         = n_blocks_x_ << block_side_pow;
 		ny         = n_blocks_y_ << block_side_pow;	
-		System.err.println( "reallocate: "+n_blocks_x+" "+n_blocks_y+" "+nx+" "+ny );
+		//System.err.println( "reallocate: "+n_blocks_x+" "+n_blocks_y+" "+nx+" "+ny );
 		sites      = new Site[ n_blocks_x * n_blocks_y ][];
 	}
 	
 	public WorldMap( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){
 		reallocate    ( n_blocks_x_, n_blocks_y_, block_side_pow_ );
-		System.err.println( "WorldMap: "+nx+" "+ny+" "+block_side_n );
+		//System.err.println( "WorldMap: "+nx+" "+ny+" "+block_side_n );
 		//GenerateRandom( 154545 );
 	}
 	

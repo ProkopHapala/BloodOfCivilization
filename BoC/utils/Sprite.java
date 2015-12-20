@@ -61,9 +61,8 @@ public class Sprite {
 		normalized_width   = original.getWidth()  /  ( (float) GraphicsCanvas.default_tile_size );
 		normalized_height  = original.getHeight() /  ( (float) GraphicsCanvas.default_tile_size );
 		resize( original.getWidth(), original.getHeight() );
-		
 		//System.err.println( name+" "+original+" "+actual+" "+normalized_width+" "+normalized_height+" "+tile_size );
-		System.err.println( name+" "+normalized_width+" "+normalized_height+" "+tile_size );
+		//System.err.println( name+" "+normalized_width+" "+normalized_height+" "+tile_size );
 	}
 	
 }

@@ -39,15 +39,15 @@ public class FileSystem {
 	
 	public static < DTYPE, CLASS extends StringIO> 
 	void MapFromString( Map<DTYPE, CLASS> mp, Map<String,DTYPE> dict, String s, String separator, Class<CLASS> clazz ) {
-		System.err.println( "++++ >>"+separator+"<< , >>"+s+"<<" );
+		//System.err.println( "++++ >>"+separator+"<< , >>"+s+"<<" );
 		try{
 			for (String item_str : s.split( separator )) {
 				CLASS item = clazz.newInstance();
 				item.fromString( item_str.trim() );
-				System.err.println( " item: "+item );
-				System.err.println( " dict: "+dict );
+				//System.err.println( " item: "+item );
+				//System.err.println( " dict: "+dict );
 				DTYPE type = dict.get( item.getName());
-				System.err.println( " item.getName(): "+">>"+item.getName()+"<<"+type+" "+mp  );
+				//System.err.println( " item.getName(): "+">>"+item.getName()+"<<"+type+" "+mp  );
 				mp.put( type, item );
 			}
 		} catch (Exception e) { exceptionDefault(e); }
