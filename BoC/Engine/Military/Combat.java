@@ -1,12 +1,12 @@
 package BoC.Engine.Military;
 
 import BoC.Engine.GameObject;
-import BoC.Engine.Site;
+import BoC.Engine.WorldSite;
 import java.util.*;
 
 public class Combat extends GameObject {
     Army Attacker, Deffender;
-	Site      site;
+	WorldSite      site;
 	double    start_time;
 	
 	// temp vars

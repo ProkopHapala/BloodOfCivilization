@@ -57,7 +57,7 @@ class GameUI {
 			case CITY_MODE:  break;
 			case ARMY_MODE:
 				if( selected_army != null ){
-					Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+					WorldSite site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 					selected_army.setTarget( site );
 					System.err.println( " Army: "+selected_army+" move to "+selected_army.move_target );
 				}
@@ -146,7 +146,7 @@ class GameUI {
 	
 	static void selectCity( int mx, int my ){
 		selected_city = null;
-		Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		WorldSite site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 		System.err.println( " Site " + site );
 		for( City city : Globals.cities.values() ) { 
 			if( city.site == site ) {
@@ -159,7 +159,7 @@ class GameUI {
 	
 	static void selectArmy( int mx, int my ){
 		selected_army = null;
-		Site site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		WorldSite site = GameMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 		System.err.println( " Site " + site );
 		for( Army army : Globals.armies.values() ) { 
 			if( army.site == site ) {

@@ -18,7 +18,7 @@ public class WorldMap implements TxtStorable, Drawable {
     public int n_blocks_x, n_blocks_y;
 	public int nx,ny;
 
-    private Site [][] sites;
+    private WorldSite [][] sites;
 
 	// ================= Map intexing rutines
 	
@@ -31,24 +31,24 @@ public class WorldMap implements TxtStorable, Drawable {
     public boolean checkValidPointPositive( int x, int y ){	return ( ( x < nx ) && ( y < ny  ) );	}
 	public boolean checkValidPoint         ( int x, int y ){	return ( ( x < nx ) && ( y < ny  ) && ( x >= 0 ) && ( y >= 0 ) ); }
     
-	public Site getSite( int x, int y ){
+	public WorldSite getSite( int x, int y ){
 		int iblock = getBlockIndex  ( x, y );
 		int jblock = getInBlockIndex( x, y );
-		Site [] block =  sites[ iblock ];
+		WorldSite [] block =  sites[ iblock ];
 		if ( block != null ){ return block[ jblock ]; }else{ return null; }
 	}
 	
-	public boolean setSite( int x, int y, Site site ){
+	public boolean setSite( int x, int y, WorldSite site ){
 		int iblock = getBlockIndex  ( x, y );
 		int jblock = getInBlockIndex( x, y );
 		boolean alocated_block = ( sites[ iblock ] == null );
-		if ( alocated_block ){ sites[ iblock ] = new Site[ block_area_n ]; }
+		if ( alocated_block ){ sites[ iblock ] = new WorldSite[ block_area_n ]; }
         sites[ iblock ][ jblock ] = site;
 		return alocated_block;
 	}
 	
-	public boolean checkCleanBlock( Site [] block ){
-		for( Site site : block ){  
+	public boolean checkCleanBlock( WorldSite [] block ){
+		for( WorldSite site : block ){  
 			if( site != null ) return false;
 		}
 		return true;
@@ -73,7 +73,7 @@ public class WorldMap implements TxtStorable, Drawable {
 				//System.err.println( " site: "+ix+" "+iy+" "+itype  );
 				SiteType type = types[ itype ];
 				double height = random.nextDouble();
-				Site site = new Site( ix, iy, height, type );
+				WorldSite site = new WorldSite( ix, iy, height, type );
 				setSite( ix, iy, site );
 				
 			}
@@ -85,9 +85,9 @@ public class WorldMap implements TxtStorable, Drawable {
 	@Override
 	public void writeToTxt( BufferedWriter writer ) throws IOException {
 		writer.write( n_blocks_x +" "+ n_blocks_y+" "+block_side_pow+"\n" );
-		for( Site [] block : sites ){
+		for( WorldSite [] block : sites ){
 			if( block != null ){ 
-				for( Site site  : block ){
+				for( WorldSite site  : block ){
 					if( site != null ) writer.write( site.toString() + "\n" );
 				}
 			}	
@@ -104,17 +104,17 @@ public class WorldMap implements TxtStorable, Drawable {
 		block_side_pow  = Integer.parseInt( words[2] );
 		while( null != ( line = reader.readLine() )  ){
 			//System.err.println( line );
-			Site site = new Site( line );
+			WorldSite site = new WorldSite( line );
 			setSite( site.ix, site.iy, site );
 		};
 	}
 	
 	// ================= Graphics
 	
-	public int paintBlock( GraphicsCanvas canvas, Site [] block ){
+	public int paintBlock( GraphicsCanvas canvas, WorldSite [] block ){
 		int n_painted = 0;
 		if( block != null ){
-			for ( Site site : block ){	
+			for ( WorldSite site : block ){	
 				if( site !=null ){
 					//System.err.println( site.ix +" "+ site.iy +" "+ canvas.tileInView( site.ix, site.iy ));
 					if( canvas.tileInView( site.ix, site.iy ) ){
@@ -165,7 +165,7 @@ public class WorldMap implements TxtStorable, Drawable {
 		nx         = n_blocks_x_ << block_side_pow;
 		ny         = n_blocks_y_ << block_side_pow;	
 		//System.err.println( "reallocate: "+n_blocks_x+" "+n_blocks_y+" "+nx+" "+ny );
-		sites      = new Site[ n_blocks_x * n_blocks_y ][];
+		sites      = new WorldSite[ n_blocks_x * n_blocks_y ][];
 	}
 	
 	public WorldMap( int n_blocks_x_, int n_blocks_y_, int block_side_pow_ ){

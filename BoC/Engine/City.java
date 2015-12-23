@@ -16,13 +16,13 @@ import java.util.*;
 
 public class City extends GameObject implements Drawable {
 	public Player owner;
-    public Site   site;
+    public WorldSite   site;
     public Set<Route> routes; // HasSet ?
 	public HashMap<ComodityType,ComodityManager> comodities;
 	public HashMap<Technology,Factory>           factories;
 	public Set<Army> Armies;
 	
-	public ArrayList<Site> sites;
+	public ArrayList<WorldSite> sites;
 	
 	public double factorySpace; // ? is this useful
 	public double storeSpace; // ? is this useful
@@ -30,7 +30,7 @@ public class City extends GameObject implements Drawable {
 	// ========= Comodity Management
 	
 	void gatherCountrySide( double dt ){
-		for ( Site site : sites ){
+		for ( WorldSite site : sites ){
 			if( site.type.resources != null ){ // siteType resources
 				for ( NaturalResource resource : site.type.resources.values() ){
 					double percantage = resource.capacity * site.type.workforce_renorm; // part of workforce dedicated to this job

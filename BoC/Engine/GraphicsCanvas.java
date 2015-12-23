@@ -76,7 +76,7 @@ public class GraphicsCanvas extends JPanel {
 	}
 	
 	
-	public Site getSite( int sx, int sy ){
+	public WorldSite getSite( int sx, int sy ){
 		int ix = (int) screen2map_x( sx );
 		int iy = (int) screen2map_y( sy );
 		//System.err.println( sx+" "+sy+" ->  "+ix +" "+ iy );

@@ -8,7 +8,7 @@ import BoC.Engine.GameObject;
 import BoC.Engine.Globals;
 import BoC.Engine.GraphicsCanvas;
 import BoC.Engine.Player;
-import BoC.Engine.Site;
+import BoC.Engine.WorldSite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
@@ -18,11 +18,11 @@ public class Army extends GameObject implements Drawable {
     public HashMap<CombatantType,Brigade>        brigades;
 	public HashMap<ComodityType,ComodityManager> comodities;
 	
-	public Site site;
+	public WorldSite site;
 	public double x,y;	// exact position  ?
 	public City city;  // can be null if not min city
 	
-	public Site    move_target;
+	public WorldSite    move_target;
 	
 	// posibilities ?
 	public double organized;
@@ -63,7 +63,7 @@ public class Army extends GameObject implements Drawable {
 		move_target = null;
 	}
 	
-	public void setTarget( Site target ){
+	public void setTarget( WorldSite target ){
 		move_target = target;
 	}
 	

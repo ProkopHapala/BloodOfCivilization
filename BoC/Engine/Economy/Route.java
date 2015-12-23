@@ -6,14 +6,14 @@ import BoC.Engine.Economy.Convoy;
 import BoC.Engine.GameObject;
 import BoC.Engine.Globals;
 import BoC.Engine.GraphicsCanvas;
-import BoC.Engine.Site;
+import BoC.Engine.WorldSite;
 import java.awt.Graphics2D;
 import java.util.*;
 
 public class Route extends GameObject implements  Drawable{
     public RouteType    type;
     public City         city_from, city_to;
-    public Site []      sites; 
+    public WorldSite []      sites; 
     public Set<Convoy>  convoys;
 	
 	// ========= static 
@@ -33,14 +33,14 @@ public class Route extends GameObject implements  Drawable{
 	
 	// ========= Convoy Movement
 	
-    public double getDistance( Site s1, Site s2 ){
+    public double getDistance( WorldSite s1, WorldSite s2 ){
         // later there will be probably more.
         int dx = s1.ix - s2.ix;
         int dy = s1.iy - s2.iy;
         return Math.sqrt( dx*dx + dy*dy );
     }
 	
-    public double getSpeed( Convoy convoy, Site s1, Site s2 ){
+    public double getSpeed( Convoy convoy, WorldSite s1, WorldSite s2 ){
 		// later there will be probably more.
 		return 1;
     }
@@ -48,8 +48,8 @@ public class Route extends GameObject implements  Drawable{
     public double moveConvoy( Convoy convoy, double delta_t ){
         int di     = convoy.forward ? 1 : -1;
         int site_j = convoy.site_i + di;
-        Site s1 = sites[ convoy.site_i ];
-        Site s2 = sites[        site_j ];
+        WorldSite s1 = sites[ convoy.site_i ];
+        WorldSite s2 = sites[        site_j ];
         double dist_left = getDistance(         s1, s2 ) - convoy.site_dist; 
         double speed     = getSpeed   ( convoy, s1, s2 ); 
         double dist_done = speed * delta_t; 

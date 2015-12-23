@@ -11,11 +11,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.*;
 
-public class Site implements StringIO, Drawable {
+public class WorldSite extends GeneralSite {
 	
     public SiteType   type;
     public double     height;
-    public int        ix,iy;
     public City       city;
     public Set<Route> routes;
 	public HashMap<ComodityType,ResourceDeposit> deposits;
@@ -104,7 +103,8 @@ public class Site implements StringIO, Drawable {
 	
 	// ========== Constructor
 	
-	public Site(){};
-	public Site( int ix, int iy, double height, SiteType type ){	this.ix=ix; this.iy=iy; this.height=height; this.type=type;	} 
-	public Site( String s ){ fromString( s ); }
+	public WorldSite(){};
+	public WorldSite( int ix, int iy, double height, SiteType type ){	this.ix=ix; this.iy=iy; this.height=height; this.type=type;	} 
+	public WorldSite( String s ){ fromString( s ); }
+	
 }

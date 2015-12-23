@@ -144,7 +144,7 @@ class EditorUI {
 	
 	static void selectArmy( int mx, int my ){
 		selected_army = null;
-		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		WorldSite site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 		System.err.println( " Site " + site );
 		for( Army army : Globals.armies.values() ) { 
 			if( army.site == site ) {
@@ -165,7 +165,7 @@ class EditorUI {
 	
 	static void selectCity( int mx, int my ){
 		selected_city = null;
-		Site site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
+		WorldSite site = EditorMain.canvas.getSite( mousePos_pressed.x, mousePos_pressed.y );
 		System.err.println( " Site " + site );
 		for( City city : Globals.cities.values() ) { 
 			if( city.site == site ) {
@@ -197,9 +197,9 @@ class EditorUI {
 	
 	static void changeSiteType( int ix, int iy, SiteType siteType ){
 		System.err.println( "changeSiteType "+ix+" "+iy+" "+siteType.name );
-		Site site = EditorMain.canvas.getSite( ix, iy );
+		WorldSite site = EditorMain.canvas.getSite( ix, iy );
 		if( site == null ){
-			site = new Site();
+			site = new WorldSite();
 			site.ix = ix; site.iy = iy;
 			Globals.worldMap.setSite(ix, iy, site);
 		}

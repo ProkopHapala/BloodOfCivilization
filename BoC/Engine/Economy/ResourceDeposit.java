@@ -1,13 +1,13 @@
 
 package BoC.Engine.Economy;
 
-import BoC.Engine.Site;
+import BoC.Engine.WorldSite;
 import BoC.utils.StringIO;
 import BoC.Engine.Globals;
 
 public class ResourceDeposit extends NaturalResource {
 	
-	public Site    site;
+	public WorldSite    site;
 	public boolean depleating;
 	public double  stored;
 	public double  workforce;

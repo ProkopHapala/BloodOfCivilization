@@ -4,7 +4,7 @@ package BoC.Engine.Military;
 import BoC.utils.StringIO;
 import BoC.Engine.GameObject;
 import BoC.Engine.Globals;
-import BoC.Engine.Site;
+import BoC.Engine.WorldSite;
 import java.util.*;
 
 //public class Brigade extends GameObject {
@@ -30,7 +30,7 @@ public class Brigade implements StringIO {
 
 	// ==== Methods
 	
-	public double evalSpeed( Site site ){
+	public double evalSpeed( WorldSite site ){
 		double f = site.type.terrain * 2.0d;
 		if( f < 1 ){
 			return f * type.speed_halfTerrain + (1-f)*type.speed;
@@ -40,13 +40,13 @@ public class Brigade implements StringIO {
 		}
 	}
 	
-	public double distance( Site site ){
+	public double distance( WorldSite site ){
 		int dx = ( army.site.ix - site.ix );
 		int dy = ( army.site.ix - site.ix );
 		return Math.sqrt( dx*dx + dy*dy );
 	}
 	
-	public void prepare_for_combat( Site site, boolean attacking ){
+	public void prepare_for_combat( WorldSite site, boolean attacking ){
 		actual_speed    = evalSpeed( site ); 
 		combat_priority = type.agility - distance(site) / actual_speed;
 		
