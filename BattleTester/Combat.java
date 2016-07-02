@@ -5,8 +5,8 @@ public class Combat {
 	
 	// consts
 	float inf_disable_rate = 0.1f;
-	float inf_kill_rate  = 0.1f;
-	float tank_kill_rate = 0.5f;
+	//float inf_kill_rate  = 0.1f;
+	//float tank_kill_rate = 0.5f;
 	
 	// parameters
 	TerrainType terrain;
@@ -23,13 +23,13 @@ public class Combat {
 	//float def_AirSupport;
 	
 	
-	void resolve( boolean att_tankCQC, boolean def_tankCQC  ){
+	void resolve( boolean att_tankCQC, boolean def_tankCQC, boolean surprise ){
 		
-		// --- armored combat
+		// --- armored assault
 		float att_pierce = penetration_func( att.AP * def.entrench_factor, def.Armor );
 		float def_pierce = penetration_func( def.AP, att.Armor     );
-		att.tanks.kill( def_pierce *       ( def.ATs + def.tanks.n ), tank_kill_rate );
-		att.tanks.kill( def_pierce *       ( att.tanks.n           ), tank_kill_rate );
+		att.tanks.kill( def_pierce *       ( def.ATs + def.tanks.n ) );
+		att.tanks.kill( def_pierce *       ( att.tanks.n           ) );
 		
 		//float att_loss   = def_pierce *    ( def.ATs + def.tanks.n ); 
 		//float def_loss   = def_pierce *    ( att.tanks.n           );
@@ -51,16 +51,14 @@ public class Combat {
 		att_power  = att.close_power_inf( terrain, natt_suppressed );
 		def_power  = def.close_power_inf( terrain, ndef_suppressed );
 		if( att_tankCQC ){
-			att.tanks.n -= att.tanks.n;
-			att_power   += att.tanks.n * terrain.tankCQC;
-			
+			att_power  += att.tanks.n  * terrain.tankCQC;
+			att.tanks.kill( def.RPGs * terrain.RPG );
 		}
 		if( def_tankCQC ){
-			def_power += def.tanks.n * terrain.tankCQC;
+			def_power += def.tanks.n   * terrain.tankCQC;
+			def.tanks.kill( att.RPGs * terrain.RPG );
 		}
-		
-		float att_suppress  =
-		float def_suppress  =
+		pass_chance   = powerBalance_func( att_power, def_power );
 	}
 	
 	
